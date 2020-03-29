@@ -17,11 +17,6 @@ export default function App() {
   );
 }
 
-async function onPress() {
-  Alert.alert('Pressed!');
-  console.log('Pressed!');
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -1,19 +1,26 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Alert } from 'react-native';
-import { WebView } from 'react-native-webview';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import DriverCheck from './views/DriverCheck';
+import DolForm from './views/DolForm';
 
-export default function App() {
-  let injectedJavaScript = `document.getElementById('edit-submitted-license').value = 'BEE4547'; ` +
-                           `document.getElementById('edit-submitted-state').value = 'AL'; ` +
-                           `document.getElementById('edit-submitted-highway-ferry-terminal').value = 'SR-16WB'; ` +
-                           `document.getElementById('edit-submitted-location').value = 'Driving on the highway HOV lane'`;
+const Stack = createStackNavigator();
 
+export default function App({ navigation }) {
   return (
-    <View style={styles.container}>
-      <WebView source={{ uri: "https://www.wsdot.wa.gov/travel/highways-bridges/hov/report-violator" }} 
-               javaScriptEnabled={true} 
-               injectedJavaScript={injectedJavaScript}/>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="DriverCheck"
+          component={DriverCheck}
+        />
+        <Stack.Screen 
+          name="DolForm" 
+          component={DolForm} 
+        />
+      </Stack.Navigator>
+    </NavigationContainer>  
   );
 }
 
@@ -21,5 +28,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });

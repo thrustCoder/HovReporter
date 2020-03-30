@@ -15,7 +15,7 @@ class DriverCheck extends Component {
 }
 
 // DOIT: better structure of styles?
-// DOIT extract to common styles?
+// DOIT: extract to common styles?
 const styles = StyleSheet.create({
   container: {
     flex: 1,

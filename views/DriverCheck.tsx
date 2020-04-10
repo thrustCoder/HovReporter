@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 
-class DriverCheck extends Component {
+export default class DriverCheck extends Component {
     render() {
         return (
             <View style={styles.container}>
@@ -17,15 +17,13 @@ class DriverCheck extends Component {
 // DOIT: better structure of styles?
 // DOIT: extract to common styles?
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'black',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  containerH3: {
-    color: 'white',
-  }
+    container: {
+        flex: 1,
+        backgroundColor: 'black',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    containerH3: {
+        color: 'white',
+    }
 });
-
-export default DriverCheck;

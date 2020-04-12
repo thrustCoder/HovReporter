@@ -27,3 +27,9 @@ export const updateHighway = highway => ({
         payload: highway,
     }
 );
+
+export const updateVehicle = vehicle => ({
+        type: 'VehicleUpdate',
+        payload: vehicle,
+    }
+);

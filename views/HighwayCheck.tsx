@@ -13,7 +13,7 @@ class HighwayCheck extends Component {
 
     updateHighway() {
         this.props.updateHighway(this.state.highway);
-        this.props.navigation.navigate('DolForm');
+        this.props.navigation.navigate('DolPreCheck');
     }
 
     render() {

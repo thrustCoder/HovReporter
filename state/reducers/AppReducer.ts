@@ -13,7 +13,12 @@ const initialState = {
         minute: '',
         amPm: ''
       },
-      occupants: '1'
+      occupants: '1',
+      vehicle: {
+        make: '',
+        model: '',
+        color: ''
+      }
   }
 };
 
@@ -34,6 +39,9 @@ const appStateReducer = (state = initialState, action) => {
         break;
     case 'HighwayUpdate':
         dolForm.highway = action.payload;
+        break;
+    case 'VehicleUpdate':
+        dolForm.vehicle = action.payload;
         break;
     default:
         return state;

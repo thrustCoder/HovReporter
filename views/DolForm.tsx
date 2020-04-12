@@ -4,11 +4,28 @@ import { WebView } from 'react-native-webview';
 import { connect } from 'react-redux';
 
 class DolForm extends Component {
+    private webView;
+    private injectedJavaScript2 = `window.ReactNativeWebView.postMessage(JSON.stringify({type: "PostNavigate", payload: window.location.href})); `;
+
+    onPostMessage(eventData) {
+        let data = JSON.parse(eventData);
+
+        if ((data.type === "PostNavigate") && (RegExp('^https://www.wsdot.wa.gov/node/[0-9]+/done').test(data.payload.split()[0]))) {
+            console.log("Huzzzahhh!");
+            this.props.navigation.navigate('FinalSuccess');
+        } else {
+            console.log("Huhhhuuuu!");
+            this.props.navigation.navigate('FinalSuccess');
+
+            // DOIT: uncomment when final
+            // let that = this;
+            // setTimeout(function() { that.webView.injectJavaScript(that.injectedJavaScript2) }, 5000);
+        }
+    }
+
     render() {
         let form = this.props.appState.dolForm;
         console.log(form);
-        console.log(form.license.plate);
-        console.log(form.license.state);
 
         let subjectWord = (form.occupants > 1) ? 'people' : 'person';
         let location = `Saw ${form.occupants} ${subjectWord} in a vehicle on HOV lane.`;
@@ -25,13 +42,29 @@ class DolForm extends Component {
           `document.getElementsByClassName('g-recaptcha')[0].style["margin"] = "100px auto 100px 310px"; ` +
           `document.getElementsByClassName('form-submit')[0].style.transform = "scale(3.5)"; ` +
           `document.getElementsByClassName('form-submit')[0].style["margin"] = "50px auto 100px 300px"; ` +
-          `document.getElementsByClassName('form-submit')[0].scrollIntoView(); `;
+          `document.getElementsByClassName('form-submit')[0].scrollIntoView(); ` +
+          `document.getElementsByClassName('webform-submit button-primary form-submit')[0].onclick = ` + 
+            `function() { window.ReactNativeWebView.postMessage(JSON.stringify({type: "SubmitButtonClick", payload: window.location.href})); }; `;
+        
+        if (form.vehicle) {
+          if (form.vehicle.make) {
+            injectedJavaScript = `${injectedJavaScript} document.getElementById('edit-submitted-make').value = "${form.vehicle.make}"; `; 
+          }
+          if (form.vehicle.model) {
+            injectedJavaScript = `${injectedJavaScript} document.getElementById('edit-submitted-model').value = "${form.vehicle.model}"; `; 
+          }
+          if (form.vehicle.color) {
+            injectedJavaScript = `${injectedJavaScript} document.getElementById('edit-submitted-color').value = "${form.vehicle.color}"; `; 
+          }
+        }
 
         return (
           <View style={styles.container}>
-            <WebView source={{ uri: "https://www.wsdot.wa.gov/travel/highways-bridges/hov/report-violator" }} 
+            <WebView ref={webView => (this.webView = webView)}
+                    source={{ uri: "https://www.wsdot.wa.gov/travel/highways-bridges/hov/report-violator" }} 
                     javaScriptEnabled={true} 
-                    injectedJavaScript={injectedJavaScript}/>
+                    injectedJavaScript={injectedJavaScript}
+                    onMessage={(event) => this.onPostMessage(event.nativeEvent.data)}/>
           </View>
         );
     }

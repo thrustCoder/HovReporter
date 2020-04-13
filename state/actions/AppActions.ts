@@ -39,3 +39,9 @@ export const updateVehicle = vehicle => ({
         payload: vehicle,
     }
 );
+
+export const updateComments = comments => ({
+        type: 'CommentsUpdate',
+        payload: comments,
+    }
+);

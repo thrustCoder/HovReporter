@@ -3,21 +3,27 @@ import { StyleSheet, View } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateTime } from '../state/actions/AppActions';
+import { updateDate, updateTime } from '../state/actions/AppActions';
 
 class TimeCheck extends Component {
     mapCurrentTimeToState() {
         let currentDateTime = new Date();
         let hour = currentDateTime.getHours() % 12;
         let minute = currentDateTime.getMinutes() - (currentDateTime.getMinutes() % 5);
-        let amPm = (currentDateTime.getHours() >= 12) ? 'pm' : 'am'
+        let amPm = (currentDateTime.getHours() >= 12) ? 'pm' : 'am';
         let time = {
             hour,
             minute,
             amPm
-        }
+        };
+        let date = {
+            month: (currentDateTime.getMonth() + 1),
+            day: currentDateTime.getDate(),
+            year: currentDateTime.getFullYear()
+        };
     
         this.props.updateTime(time);
+        this.props.updateDate(date);
         this.props.navigation.navigate('OccupancyCheck');
     }
 
@@ -52,7 +58,8 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
-      updateTime,
+        updateDate,
+        updateTime
     }, dispatch)
 );
 

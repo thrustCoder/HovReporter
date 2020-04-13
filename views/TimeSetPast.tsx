@@ -4,7 +4,7 @@ import { Text, Button, Input, Icon } from 'react-native-elements';
 import RNPickerSelect from 'react-native-picker-select';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateDate } from '../state/actions/AppActions';
+import { updateDate, updateTime } from '../state/actions/AppActions';
 
 class TimeSetPast extends Component {
     state = {
@@ -21,24 +21,33 @@ class TimeSetPast extends Component {
     };
 
     updateDateTime() {
+        let currentDateTime = new Date();
         this.props.updateDate({
-            day: this.state.date.day,
-            month: this.state.date.month,
-            year: this.state.date.year
+            day: this.state.date.day || currentDateTime.getDate(),
+            month: this.state.date.month || (currentDateTime.getMonth() + 1),
+            year: this.state.date.year || currentDateTime.getFullYear()
         });
         this.props.updateTime({
-            hour: this.state.time.hour,
-            minute: this.state.time.minute,
-            amPm: this.state.time.amPm    
+            hour: this.state.time.hour || (currentDateTime.getHours() % 12),
+            minute: this.state.time.minute || (currentDateTime.getMinutes() - (currentDateTime.getMinutes() % 5)),
+            amPm: this.state.time.amPm || ((currentDateTime.getHours() >= 12) ? 'pm' : 'am')
         });
         this.props.navigation.navigate('OccupancyCheck');
     }
 
     render() {
+        let currentDateTime = new Date();
+        let currentMonth = `${this.state.date.month || (currentDateTime.getMonth() + 1)}`;
+        let currentDay = `${this.state.date.day || currentDateTime.getDate()}`;
+        let currentYear = `${this.state.date.year || currentDateTime.getFullYear()}`;
+        let currentHour = `${this.state.time.hour || (currentDateTime.getHours() % 12)}`;
+        let currentMinute = `${this.state.time.minute || (currentDateTime.getMinutes() - (currentDateTime.getMinutes() % 5))}`;
+
         return (
             <View style={styles.container}>
                 <Text h3 style={styles.containerH3}>Select month</Text>
                 <RNPickerSelect
+                    value={currentMonth}
                     onValueChange={(month) => this.setState({
                         date: {
                             day: this.state.date.day,
@@ -56,6 +65,7 @@ class TimeSetPast extends Component {
                 />
                 <Text h3 style={styles.containerH3}>Select day</Text>
                 <RNPickerSelect
+                    value={currentDay}
                     onValueChange={(day) => this.setState({
                         date: {
                             day,
@@ -68,11 +78,12 @@ class TimeSetPast extends Component {
                         { label: '1', value: '1' },
                         { label: '2', value: '2' },
                         { label: '3', value: '3' },
-                        { label: '12', value: '12' },
+                        { label: '13', value: '13' },
                     ]}
                 />
                 <Text h3 style={styles.containerH3}>Select year</Text>
                 <RNPickerSelect
+                    value={currentYear}
                     onValueChange={(year) => this.setState({
                         date: {
                             day: this.state.date.day,
@@ -89,6 +100,7 @@ class TimeSetPast extends Component {
                 />
                 <Text h3 style={styles.containerH3}>Select hour</Text>
                 <RNPickerSelect
+                    value={currentHour}
                     onValueChange={(hour) => this.setState({
                         time: {
                             hour,
@@ -100,11 +112,13 @@ class TimeSetPast extends Component {
                     items={[
                         { label: '1', value: '1' },
                         { label: '2', value: '2' },
-                        { label: '3', value: '3' }
+                        { label: '3', value: '3' },
+                        { label: '10', value: '10' }
                     ]}
                 />
                 <Text h3 style={styles.containerH3}>Select minute</Text>
                 <RNPickerSelect
+                    value={currentMinute}
                     onValueChange={(minute) => this.setState({
                         time: {
                             hour: this.state.time.hour,
@@ -116,7 +130,8 @@ class TimeSetPast extends Component {
                     items={[
                         { label: '00', value: '0' },
                         { label: '05', value: '5' },
-                        { label: '10', value: '10' }
+                        { label: '10', value: '10' },
+                        { label: '45', value: '45' }
                     ]}
                 />
                 <Button title="am" onPress={() => this.setState({
@@ -164,6 +179,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
         updateDate,
+        updateTime
     }, dispatch)
 );
 

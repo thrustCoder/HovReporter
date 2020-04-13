@@ -7,6 +7,7 @@ import Start from './views/Start';
 import DriverCheck from './views/DriverCheck';
 import DriverBlackhole from './views/DriverBlackhole';
 import TimeCheck from './views/TimeCheck';
+import TimeSetPast from './views/TimeSetPast';
 import OccupancyCheck from './views/OccupancyCheck';
 import LicenseCheck from './views/LicenseCheck';
 import HighwayCheck from './views/HighwayCheck';
@@ -15,6 +16,8 @@ import DolPreLaunch from './views/DolPreLaunch';
 import DolForm from './views/DolForm';
 import FinalSuccess from './views/FinalSuccess';
 
+import CommentsCheck from './views/optional/CommentsCheck';
+import DolPreCheckComments from './views/optional/DolPreCheckComments';
 import VehicleDetailsCheck from './views/optional/VehicleDetailsCheck';
 
 import { Provider } from 'react-redux';
@@ -46,6 +49,10 @@ export default function App({ navigation }) {
             component={TimeCheck}
           />
           <Stack.Screen
+            name="TimeSetPast"
+            component={TimeSetPast}
+          />
+          <Stack.Screen
             name="OccupancyCheck"
             component={OccupancyCheck}
           />
@@ -64,6 +71,14 @@ export default function App({ navigation }) {
           <Stack.Screen
             name="DolPreCheck"
             component={DolPreCheck}
+          />
+          <Stack.Screen
+            name="DolPreCheckComments"
+            component={DolPreCheckComments}
+          />
+          <Stack.Screen
+            name="CommentsCheck"
+            component={CommentsCheck}
           />
           <Stack.Screen
             name="DolPreLaunch"

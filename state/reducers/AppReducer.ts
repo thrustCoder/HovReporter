@@ -26,7 +26,8 @@ const initialState = {
         make: '',
         model: '',
         color: ''
-      }
+      },
+      comments: ''
   }
 };
 
@@ -53,6 +54,9 @@ const appStateReducer = (state = initialState, action) => {
         break;
     case 'VehicleUpdate':
         dolForm.vehicle = action.payload;
+        break;
+    case 'CommentsUpdate':
+        dolForm.comments = action.payload;
         break;
     default:
         return state;

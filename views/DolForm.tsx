@@ -37,6 +37,9 @@ class DolForm extends Component {
           `document.getElementById('edit-submitted-observed-on-ramp-${observedOnRampSelectorIndex}').click(); ` +
           `document.getElementById('edit-submitted-location').value = "${location}"; ` +
           `document.getElementById('edit-submitted-occupants').value = "${form.occupants}"; ` +
+          `document.getElementById('edit-submitted-date-month').value = "${form.date.month}"; ` +
+          `document.getElementById('edit-submitted-date-day').value = "${form.date.day}"; ` +
+          `document.getElementById('edit-submitted-date-year').value = "${form.date.year}"; ` +
           `document.getElementById('edit-submitted-time-of-violation-hour').value = "${form.time.hour}"; ` +
           `document.getElementById('edit-submitted-time-of-violation-minute').value = "${form.time.minute}"; ` +
           `document.getElementById('edit-submitted-time-of-violation-ampm-${form.time.amPm}').checked = "true"; ` +
@@ -56,8 +59,12 @@ class DolForm extends Component {
             injectedJavaScript = `${injectedJavaScript} document.getElementById('edit-submitted-model').value = "${form.vehicle.model}"; `; 
           }
           if (form.vehicle.color) {
-            injectedJavaScript = `${injectedJavaScript} document.getElementById('edit-submitted-color').value = "${form.vehicle.color}"; `; 
+            injectedJavaScript = `${injectedJavaScript} document.getElementById('edit-submitted-color').value = "${form.vehicle.color}"; `;
           }
+        }
+
+        if (form.comments) {
+          injectedJavaScript = `${injectedJavaScript} document.getElementById('edit-submitted-comments').value = "${form.comments}"; `;
         }
 
         return (

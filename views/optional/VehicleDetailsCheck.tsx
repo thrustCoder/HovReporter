@@ -18,7 +18,7 @@ class VehicleDetailsCheck extends Component {
             model: this.state.model,
             color: this.state.color
         });
-        this.props.navigation.navigate('DolPreLaunch');
+        this.props.navigation.navigate('DolPreCheckComments');
     }
 
     render() {

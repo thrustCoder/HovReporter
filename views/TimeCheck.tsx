@@ -26,7 +26,7 @@ class TimeCheck extends Component {
             <View style={styles.container}>
                 <Text h3 style={styles.containerH3}>Did you notice the violation just now (within past 10 minutes)?</Text>
                 <Button title="Yes" onPress={() => this.mapCurrentTimeToState()}/>
-                <Button title="No" onPress={() => this.props.navigation.navigate('OccupancyCheck')}/>
+                <Button title="No" onPress={() => this.props.navigation.navigate('TimeSetPast')}/>
             </View>
         );
     }
@@ -37,12 +37,12 @@ class TimeCheck extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
     },
     containerH3: {
-        color: 'white',
+        color: 'black',
     }
 });
 

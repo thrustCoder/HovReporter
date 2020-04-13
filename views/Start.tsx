@@ -9,7 +9,8 @@ class Start extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Button title="Report a violation" onPress={() => this.props.navigation.navigate('DriverCheck')} />
+                <Text h3 style={styles.containerH3}>Let's report an HOV violation on Department of Licensing site</Text>
+                <Button title="Report" onPress={() => this.props.navigation.navigate('DriverCheck')} />
             </View>
         );
     }
@@ -20,12 +21,12 @@ class Start extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
     },
     containerH3: {
-        color: 'white',
+        color: 'black',
     }
 });
 

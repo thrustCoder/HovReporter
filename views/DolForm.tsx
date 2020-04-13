@@ -29,10 +29,12 @@ class DolForm extends Component {
 
         let subjectWord = (form.occupants > 1) ? 'people' : 'person';
         let location = `Saw ${form.occupants} ${subjectWord} in a vehicle on HOV lane.`;
+        let observedOnRampSelectorIndex = form.highway.isRamp ? 1 : 2;
         let injectedJavaScript = 
           `document.getElementById('edit-submitted-license').value = "${form.license.plate}"; ` +
           `document.getElementById('edit-submitted-state').value = "${form.license.state}"; ` +
-          `document.getElementById('edit-submitted-highway-ferry-terminal').value = "${form.highway}"; ` +
+          `document.getElementById('edit-submitted-highway-ferry-terminal').value = "${form.highway.name}"; ` +
+          `document.getElementById('edit-submitted-observed-on-ramp-${observedOnRampSelectorIndex}').click(); ` +
           `document.getElementById('edit-submitted-location').value = "${location}"; ` +
           `document.getElementById('edit-submitted-occupants').value = "${form.occupants}"; ` +
           `document.getElementById('edit-submitted-time-of-violation-hour').value = "${form.time.hour}"; ` +
@@ -73,7 +75,7 @@ class DolForm extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: 'white',
     }
 });
 

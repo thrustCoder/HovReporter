@@ -5,18 +5,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateOccupants } from '../state/actions/AppActions';
 
-class OccupancyCheck extends Component {
-    updateOccupants(numberOfOccupants) {
-        this.props.updateOccupants(numberOfOccupants);
-        this.props.navigation.navigate('LicenseCheck');
-    }
-
+class DriverBlackhole extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text h3 style={styles.containerH3}>How many people do you see in the vehicle?</Text>
-                <Button title="1" onPress={() => this.updateOccupants(1)}/>
-                <Button title="2" onPress={() => this.updateOccupants(2)}/>
+                <Text h3>Please focus on driving.</Text>
+                <Text onPress={() => this.props.navigation.navigate('Start')}>Start over</Text>
             </View>
         );
     }
@@ -46,4 +40,4 @@ const mapDispatchToProps = dispatch => (
     }, dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(OccupancyCheck);
+export default connect(mapStateToProps, mapDispatchToProps)(DriverBlackhole);

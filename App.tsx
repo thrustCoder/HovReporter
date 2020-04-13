@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Start from './views/Start';
 import DriverCheck from './views/DriverCheck';
+import DriverBlackhole from './views/DriverBlackhole';
 import TimeCheck from './views/TimeCheck';
 import OccupancyCheck from './views/OccupancyCheck';
 import LicenseCheck from './views/LicenseCheck';
@@ -35,6 +36,10 @@ export default function App({ navigation }) {
           <Stack.Screen
             name="DriverCheck"
             component={DriverCheck}
+          />
+          <Stack.Screen
+            name="DriverBlackhole"
+            component={DriverBlackhole}
           />
           <Stack.Screen
             name="TimeCheck"
@@ -81,7 +86,7 @@ export default function App({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   }

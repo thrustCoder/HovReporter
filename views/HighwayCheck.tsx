@@ -8,11 +8,15 @@ import { updateHighway } from '../state/actions/AppActions';
 
 class HighwayCheck extends Component {
     state = {
-        highway: ''
+        name: '',
+        isRamp: false
     };
 
     updateHighway() {
-        this.props.updateHighway(this.state.highway);
+        this.props.updateHighway({
+            name: this.state.name,
+            isRamp: this.state.isRamp
+        });
         this.props.navigation.navigate('DolPreCheck');
     }
 
@@ -21,7 +25,7 @@ class HighwayCheck extends Component {
             <View style={styles.container}>
                 <Text h3 style={styles.containerH3}>Select highway</Text>
                 <RNPickerSelect
-                    onValueChange={(highway) => this.setState({highway})}
+                    onValueChange={(highwayName) => this.setState({name: highwayName})}
                     placeholder={{label: 'Select highway', value: null}}
                     items={[
                         { label: 'I-5 Northbound', value: 'I-5NB' },
@@ -29,6 +33,10 @@ class HighwayCheck extends Component {
                         { label: 'I-90 Eastbound', value: 'I-90EB' },
                     ]}
                 />
+                <Text h3 style={styles.containerH3}>Did the violation happen on a ramp?</Text>
+                <Button title="Yes" onPress={() => this.setState({isRamp: true})}/>
+                <Button title="No" onPress={() => this.setState({isRamp: false})}/>
+
                 <Button title="Next" onPress={() => this.updateHighway()}/>
                 <Button title="Previous" onPress={() => this.props.navigation.navigate('LicenseCheck')}/>
             </View>

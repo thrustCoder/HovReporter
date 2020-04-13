@@ -3,20 +3,16 @@ import { StyleSheet, View } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateOccupants } from '../state/actions/AppActions';
+import { updateOccupants } from '../../state/actions/AppActions';
 
-class OccupancyCheck extends Component {
-    updateOccupants(numberOfOccupants) {
-        this.props.updateOccupants(numberOfOccupants);
-        this.props.navigation.navigate('LicenseCheck');
-    }
-
+class DolPreCheckComments extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text h3 style={styles.containerH3}>How many people do you see in the vehicle?</Text>
-                <Button title="1" onPress={() => this.updateOccupants(1)}/>
-                <Button title="2" onPress={() => this.updateOccupants(2)}/>
+                <Text h3 style={styles.foregroundText}>All set to finish the Department of Licensing report.</Text>
+                <Text style={styles.foregroundText}>Do you want to enter any additional comments?</Text>
+                <Button title="Yes" onPress={() => this.props.navigation.navigate('CommentsCheck')} />
+                <Button title="No, finish the report" onPress={() => this.props.navigation.navigate('DolPreLaunch')} />
             </View>
         );
     }
@@ -31,7 +27,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    containerH3: {
+    foregroundText: {
         color: 'black',
     }
 });
@@ -46,4 +42,4 @@ const mapDispatchToProps = dispatch => (
     }, dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(OccupancyCheck);
+export default connect(mapStateToProps, mapDispatchToProps)(DolPreCheckComments);

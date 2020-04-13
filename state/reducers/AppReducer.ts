@@ -6,19 +6,28 @@ const initialState = {
         plate: '',
         state: 'WA'
       },
-      highway: '',
+      highway: {
+        name: '',
+        isRamp: false
+      },
       location: '',
       time: {
         hour: '',
         minute: '',
         amPm: ''
       },
+      date: {
+        day: '',
+        month: '',
+        year: ''
+      },
       occupants: '1',
       vehicle: {
         make: '',
         model: '',
         color: ''
-      }
+      },
+      comments: ''
   }
 };
 
@@ -31,6 +40,9 @@ const appStateReducer = (state = initialState, action) => {
     case 'TimeUpdate':
         dolForm.time = action.payload;
         break;
+    case 'DateUpdate':
+        dolForm.date = action.payload;
+        break;
     case 'OccupantsUpdate':
         dolForm.occupants = action.payload;
         break;
@@ -42,6 +54,9 @@ const appStateReducer = (state = initialState, action) => {
         break;
     case 'VehicleUpdate':
         dolForm.vehicle = action.payload;
+        break;
+    case 'CommentsUpdate':
+        dolForm.comments = action.payload;
         break;
     default:
         return state;

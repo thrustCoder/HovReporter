@@ -23,12 +23,12 @@ class DolPreCheck extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
     },
     foregroundText: {
-        color: 'white',
+        color: 'black',
     }
 });
 

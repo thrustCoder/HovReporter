@@ -6,9 +6,9 @@ export default class DriverCheck extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text h3 style={styles.containerH3}>Are you currently driving a vehicle?</Text>
-                <Button title="Yes" onPress={() => this.props.navigation.navigate('TimeCheck')}/>
-                <Button title="No" onPress={() => this.props.navigation.navigate('TimeCheck')}/>
+                <Text h3 style={styles.containerH3}>Are you currently driving and using the app?</Text>
+                <Button title="Yes" onPress={() => this.props.navigation.navigate('DriverBlackhole')}/>
+                <Text onPress={() => this.props.navigation.navigate('TimeCheck')}>No</Text>
             </View>
         );
     }
@@ -19,11 +19,11 @@ export default class DriverCheck extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
     },
     containerH3: {
-        color: 'white',
+        color: 'black',
     }
 });

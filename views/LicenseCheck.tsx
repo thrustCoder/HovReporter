@@ -47,7 +47,8 @@ class LicenseCheck extends Component {
                     ]}
                 />
                 <Button title="Next" onPress={() => this.updateLicense()}/>
-                <Button title="Previous" onPress={() => this.props.navigation.navigate('DriverCheck')}/>
+                <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
+                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
             </View>
         );
     }

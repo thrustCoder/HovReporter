@@ -16,6 +16,11 @@ export const updateDate = date => ({
     }
 );
 
+export const updateDateTime = () => ({
+        type: 'DateTimeUpdate'
+    }
+);
+
 export const updateOccupants = occupants => ({
         type: 'OccupantsUpdate',
         payload: occupants,

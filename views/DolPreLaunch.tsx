@@ -13,6 +13,8 @@ class DolPreLaunch extends Component {
                 <Text>We have already filled the form for you, based on your input data. </Text>
                 <Text>In the form, please check the box for Captcha and click Submit. That's it! </Text>
                 <Button title="Let's go" onPress={() => this.props.navigation.navigate('DolForm')} />
+                <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
+                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
             </View>
         );
     }

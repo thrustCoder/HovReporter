@@ -13,6 +13,8 @@ class DolPreCheckComments extends Component {
                 <Text style={styles.foregroundText}>Do you want to enter any additional comments?</Text>
                 <Button title="Yes" onPress={() => this.props.navigation.navigate('CommentsCheck')} />
                 <Button title="No, finish the report" onPress={() => this.props.navigation.navigate('DolPreLaunch')} />
+                <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
+                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
             </View>
         );
     }

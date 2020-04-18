@@ -27,6 +27,8 @@ class CommentsCheck extends Component {
                     onChangeText={(comments) => this.setState({comments})}
                     value={this.state.comments} />
                 <Button title="Finish report" onPress={() => this.updateComments()}/>
+                <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
+                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
             </View>
             </ScrollView>
         );

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const initialState = {
+const initialAppState = {
   dolForm: {
       license: {
         plate: '',
@@ -31,7 +31,27 @@ const initialState = {
   }
 };
 
-const appStateReducer = (state = initialState, action) => {
+const initialNavState = {
+  navSequence: ['TimeCheck', 'OccupancyCheck', 'LicenseCheck', 'HighwayCheck'],
+  TimeCheck: {
+    completed: false,
+    appProps: ['date', 'time']
+  },
+  OccupancyCheck: {
+    completed: false,
+    appProps: ['occupants']
+  },
+  LicenseCheck: {
+    completed: false,
+    appProps: ['license']
+  },
+  HighwayCheck: {
+    completed: false,
+    appProps: ['highway']
+  }
+};
+
+const appStateReducer = (state = initialAppState, action) => {
   const {
     dolForm
   } = state;
@@ -67,6 +87,30 @@ const appStateReducer = (state = initialState, action) => {
   };
 };
 
+const navStateReducer = (state = initialNavState, action) => {
+  const reducedState = state;
+
+  switch (action.type) {
+    case 'DateTimeUpdate':
+        reducedState.TimeCheck.completed = true;
+        break;
+    case 'OccupantsUpdate':
+        reducedState.OccupancyCheck.completed = true;
+        break;
+    case 'LicenseUpdate':
+        reducedState.LicenseCheck.completed = true;
+        break;
+    case 'HighwayUpdate':
+        reducedState.HighwayCheck.completed = true;
+        break;
+    default:
+        return state;
+  }
+
+  return reducedState;
+};
+
 export default combineReducers({
   appState: appStateReducer,
+  navState: navStateReducer
 });

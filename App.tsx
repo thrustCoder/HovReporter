@@ -31,7 +31,7 @@ export default function App({ navigation }) {
   return (
     <Provider store={ store }>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen
             name="Start"
             component={Start}

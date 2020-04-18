@@ -8,7 +8,24 @@ import { updateOccupants } from '../state/actions/AppActions';
 class OccupancyCheck extends Component {
     updateOccupants(numberOfOccupants) {
         this.props.updateOccupants(numberOfOccupants);
-        this.props.navigation.navigate('LicenseCheck');
+        this.props.navigation.navigate(this.getNextStep());
+    }
+
+    getNextStep() {
+        let currentNavIndex = this.props.navState.navSequence.lastIndexOf('OccupancyCheck');
+        let i = currentNavIndex;
+        let nextState;
+
+        do {
+            i = (i + 1) % 4;
+            nextState = this.props.navState[this.props.navState.navSequence[i]];
+        } while (nextState.completed === true && this.props.navState.navSequence[i] !== 'OccupancyCheck');
+
+        if (!nextState) {
+            return 'DolPreCheck';
+        }
+
+        return this.props.navState.navSequence[i];
     }
 
     render() {
@@ -17,6 +34,8 @@ class OccupancyCheck extends Component {
                 <Text h3 style={styles.containerH3}>How many people do you see in the vehicle?</Text>
                 <Button title="1" onPress={() => this.updateOccupants(1)}/>
                 <Button title="2" onPress={() => this.updateOccupants(2)}/>
+                <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
+                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
             </View>
         );
     }
@@ -37,8 +56,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    const { appState } = state
-    return { appState }
+    const { appState, navState } = state
+    return { appState, navState }
 };
 const mapDispatchToProps = dispatch => (
     bindActionCreators({

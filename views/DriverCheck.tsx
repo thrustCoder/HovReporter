@@ -9,6 +9,8 @@ export default class DriverCheck extends Component {
                 <Text h3 style={styles.containerH3}>Are you currently driving and using the app?</Text>
                 <Button title="Yes" onPress={() => this.props.navigation.navigate('DriverBlackhole')}/>
                 <Text onPress={() => this.props.navigation.navigate('TimeCheck')}>No</Text>
+                <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
+                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
             </View>
         );
     }

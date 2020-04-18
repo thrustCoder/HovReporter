@@ -10,7 +10,7 @@ class DriverBlackhole extends Component {
         return (
             <View style={styles.container}>
                 <Text h3>Please focus on driving.</Text>
-                <Text onPress={() => this.props.navigation.navigate('Start')}>Start over</Text>
+                <Text onPress={() => this.props.navigation.popToTop()}>Start over</Text>
             </View>
         );
     }

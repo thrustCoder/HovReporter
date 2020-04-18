@@ -38,7 +38,8 @@ class HighwayCheck extends Component {
                 <Button title="No" onPress={() => this.setState({isRamp: false})}/>
 
                 <Button title="Next" onPress={() => this.updateHighway()}/>
-                <Button title="Previous" onPress={() => this.props.navigation.navigate('LicenseCheck')}/>
+                <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
+                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
             </View>
         );
     }

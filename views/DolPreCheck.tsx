@@ -13,6 +13,8 @@ class DolPreCheck extends Component {
                 <Text style={styles.foregroundText}>Do you want to enter the make, model or color of vehicle?</Text>
                 <Button title="Yes" onPress={() => this.props.navigation.navigate('VehicleDetailsCheck')} />
                 <Button title="No, finish the report" onPress={() => this.props.navigation.navigate('DolPreLaunch')} />
+                <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
+                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
             </View>
         );
     }

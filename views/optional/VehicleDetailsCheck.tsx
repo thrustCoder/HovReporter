@@ -65,6 +65,8 @@ class VehicleDetailsCheck extends Component {
                     }
                 />
                 <Button title="Next" onPress={() => this.updateVehicle()}/>
+                <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
+                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
             </View>
         );
     }

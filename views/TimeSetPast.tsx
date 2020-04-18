@@ -150,7 +150,8 @@ class TimeSetPast extends Component {
                 })}/>
 
                 <Button title="Next" onPress={() => this.updateDateTime()}/>
-                <Button title="Previous" onPress={() => this.props.navigation.navigate('LicenseCheck')}/>
+                <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
+                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
             </View>
         );
     }

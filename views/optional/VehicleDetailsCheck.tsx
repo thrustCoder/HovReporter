@@ -69,7 +69,10 @@ class VehicleDetailsCheck extends Component {
                         />
                     }
                 />
-                <Button title="Next" onPress={() => this.updateVehicle()}/>
+                <Button title="Next" 
+                    disabled={!this.state.make || !this.state.model || !this.state.color}
+                    onPress={() => this.updateVehicle()}
+                />
                 <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
                 <Button title="Cancel" onPress={() => this.clearAllState()} />
             </View>

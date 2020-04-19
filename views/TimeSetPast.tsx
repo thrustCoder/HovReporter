@@ -4,7 +4,8 @@ import { Text, Button, Input, Icon } from 'react-native-elements';
 import RNPickerSelect from 'react-native-picker-select';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateDate, updateTime, clearAllState } from '../state/actions/AppActions';
+import { updateDate, updateTime, updateDateTime, clearAllState } from '../state/actions/AppActions';
+import datetime from '../state/providers/ui-content/DateTime';
 
 class TimeSetPast extends Component {
     state = {
@@ -32,7 +33,26 @@ class TimeSetPast extends Component {
             minute: this.state.time.minute || (currentDateTime.getMinutes() - (currentDateTime.getMinutes() % 5)),
             amPm: this.state.time.amPm || ((currentDateTime.getHours() >= 12) ? 'pm' : 'am')
         });
-        this.props.navigation.navigate('OccupancyCheck');
+
+        this.props.updateDateTime();
+        this.props.navigation.navigate(this.getNextStep());
+    }
+
+    getNextStep() {
+        let currentNavIndex = this.props.navState.navSequence.lastIndexOf('TimeCheck');
+        let i = currentNavIndex;
+        let nextState;
+
+        do {
+            i = (i + 1) % 4;
+            nextState = this.props.navState[this.props.navState.navSequence[i]];
+        } while (nextState.completed === true && this.props.navState.navSequence[i] !== 'TimeCheck');
+
+        if (this.props.navState.navSequence[i] === 'TimeCheck') {
+            return 'DolPreCheck';
+        }
+
+        return this.props.navState.navSequence[i];
     }
 
     clearAllState() {
@@ -61,12 +81,7 @@ class TimeSetPast extends Component {
                         }
                     })}
                     placeholder={{label: 'Select month', value: null}}
-                    items={[
-                        { label: 'Jan', value: '1' },
-                        { label: 'Feb', value: '2' },
-                        { label: 'Mar', value: '3' },
-                        { label: 'Apr', value: '4' },
-                    ]}
+                    items={datetime.monthPickerItems}
                 />
                 <Text h3 style={styles.containerH3}>Select day</Text>
                 <RNPickerSelect
@@ -79,12 +94,7 @@ class TimeSetPast extends Component {
                         }
                     })}
                     placeholder={{label: 'Select day', value: null}}
-                    items={[
-                        { label: '1', value: '1' },
-                        { label: '2', value: '2' },
-                        { label: '3', value: '3' },
-                        { label: '13', value: '13' },
-                    ]}
+                    items={datetime.dayPickerItems}
                 />
                 <Text h3 style={styles.containerH3}>Select year</Text>
                 <RNPickerSelect
@@ -97,11 +107,7 @@ class TimeSetPast extends Component {
                         }
                     })}
                     placeholder={{label: 'Select year', value: null}}
-                    items={[
-                        { label: '2019', value: '2019' },
-                        { label: '2020', value: '2020' },
-                        { label: '2021', value: '2021' }
-                    ]}
+                    items={datetime.yearPickerItems}
                 />
                 <Text h3 style={styles.containerH3}>Select hour</Text>
                 <RNPickerSelect
@@ -114,12 +120,7 @@ class TimeSetPast extends Component {
                         }
                     })}
                     placeholder={{label: 'Select hour', value: null}}
-                    items={[
-                        { label: '1', value: '1' },
-                        { label: '2', value: '2' },
-                        { label: '3', value: '3' },
-                        { label: '10', value: '10' }
-                    ]}
+                    items={datetime.hourPickerItems}
                 />
                 <Text h3 style={styles.containerH3}>Select minute</Text>
                 <RNPickerSelect
@@ -132,12 +133,7 @@ class TimeSetPast extends Component {
                         }
                     })}
                     placeholder={{label: 'Select minute', value: null}}
-                    items={[
-                        { label: '00', value: '0' },
-                        { label: '05', value: '5' },
-                        { label: '10', value: '10' },
-                        { label: '45', value: '45' }
-                    ]}
+                    items={datetime.minutePickerItems}
                 />
                 <Button title="am" onPress={() => this.setState({
                     time: {
@@ -186,6 +182,7 @@ const mapDispatchToProps = dispatch => (
     bindActionCreators({
         updateDate,
         updateTime,
+        updateDateTime,
         clearAllState
     }, dispatch)
 );

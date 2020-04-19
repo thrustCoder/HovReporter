@@ -5,6 +5,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateLicense, clearAllState } from '../state/actions/AppActions';
+import statePickerItems from '../state/providers/ui-content/State';
 
 class LicenseCheck extends Component {
     state = {
@@ -62,13 +63,12 @@ class LicenseCheck extends Component {
                 <RNPickerSelect
                     onValueChange={(stateProvince) => this.setState({stateProvince})}
                     placeholder={{label: 'State', value: null}}
-                    items={[
-                        { label: 'Alabama', value: 'AL' },
-                        { label: 'Alaska', value: 'AK' },
-                        { label: 'American Samoa', value: 'AS' },
-                    ]}
+                    items={statePickerItems}
                 />
-                <Button title="Next" onPress={() => this.updateLicense()}/>
+                <Button title="Next" 
+                    disabled={!this.state.plate || !this.state.stateProvince}
+                    onPress={() => this.updateLicense()}
+                />
                 <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
                 <Button title="Cancel" onPress={() => this.clearAllState()} />
                 <Button title="Skip" 

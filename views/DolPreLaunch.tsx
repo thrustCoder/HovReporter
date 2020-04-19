@@ -3,9 +3,14 @@ import { StyleSheet, View } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateOccupants } from '../state/actions/AppActions';
+import { updateOccupants, clearAllState } from '../state/actions/AppActions';
 
 class DolPreLaunch extends Component {
+    clearAllState() {
+        this.props.clearAllState();
+        this.props.navigation.popToTop();
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -14,7 +19,7 @@ class DolPreLaunch extends Component {
                 <Text>In the form, please check the box for Captcha and click Submit. That's it! </Text>
                 <Button title="Let's go" onPress={() => this.props.navigation.navigate('DolForm')} />
                 <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
-                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
+                <Button title="Cancel" onPress={() => this.clearAllState()} />
             </View>
         );
     }
@@ -35,12 +40,13 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    const { appState } = state
-    return { appState }
+    const { appState, navState } = state
+    return { appState, navState }
 };
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
         updateOccupants,
+        clearAllState
     }, dispatch)
 );
 

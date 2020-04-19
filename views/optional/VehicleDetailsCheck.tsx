@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Text, Button, Input, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateVehicle } from '../../state/actions/AppActions';
+import { updateVehicle, clearAllState } from '../../state/actions/AppActions';
 
 class VehicleDetailsCheck extends Component {
     state = {
@@ -19,6 +19,11 @@ class VehicleDetailsCheck extends Component {
             color: this.state.color
         });
         this.props.navigation.navigate('DolPreCheckComments');
+    }
+
+    clearAllState() {
+        this.props.clearAllState();
+        this.props.navigation.popToTop();
     }
 
     render() {
@@ -66,7 +71,7 @@ class VehicleDetailsCheck extends Component {
                 />
                 <Button title="Next" onPress={() => this.updateVehicle()}/>
                 <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
-                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
+                <Button title="Cancel" onPress={() => this.clearAllState()} />
             </View>
         );
     }
@@ -89,12 +94,13 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    const { appState } = state
-    return { appState }
+    const { appState, navState } = state
+    return { appState, navState }
 };
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
         updateVehicle,
+        clearAllState
     }, dispatch)
 );
 

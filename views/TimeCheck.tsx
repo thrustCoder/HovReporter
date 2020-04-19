@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateDate, updateTime, updateDateTime } from '../state/actions/AppActions';
+import { updateDate, updateTime, updateDateTime, clearAllState } from '../state/actions/AppActions';
 
 class TimeCheck extends Component {
     mapCurrentTimeToState() {
@@ -39,11 +39,16 @@ class TimeCheck extends Component {
             nextState = this.props.navState[this.props.navState.navSequence[i]];
         } while (nextState.completed === true && this.props.navState.navSequence[i] !== 'TimeCheck');
 
-        if (!nextState) {
+        if (this.props.navState.navSequence[i] === 'TimeCheck') {
             return 'DolPreCheck';
         }
 
         return this.props.navState.navSequence[i];
+    }
+
+    clearAllState() {
+        this.props.clearAllState();
+        this.props.navigation.popToTop();
     }
 
     render() {
@@ -53,7 +58,11 @@ class TimeCheck extends Component {
                 <Button title="Yes" onPress={() => this.mapCurrentTimeToState()}/>
                 <Button title="No" onPress={() => this.props.navigation.navigate('TimeSetPast')}/>
                 <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
-                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
+                <Button title="Cancel" onPress={() => this.clearAllState()} />
+                <Button title="Skip" 
+                    disabled={this.getNextStep() === 'DolPreCheck'}
+                    onPress={() => this.props.navigation.navigate(this.getNextStep())} 
+                />
             </View>
         );
     }
@@ -81,7 +90,8 @@ const mapDispatchToProps = dispatch => (
     bindActionCreators({
         updateDate,
         updateTime,
-        updateDateTime
+        updateDateTime,
+        clearAllState
     }, dispatch)
 );
 

@@ -50,3 +50,8 @@ export const updateComments = comments => ({
         payload: comments,
     }
 );
+
+export const clearAllState = () => ({
+        type: 'ClearAllState',
+    }
+);

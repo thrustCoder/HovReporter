@@ -4,7 +4,7 @@ import { Text, Button, Input, Icon } from 'react-native-elements';
 import RNPickerSelect from 'react-native-picker-select';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateLicense } from '../state/actions/AppActions';
+import { updateLicense, clearAllState } from '../state/actions/AppActions';
 
 class LicenseCheck extends Component {
     state = {
@@ -17,7 +17,29 @@ class LicenseCheck extends Component {
             plate: this.state.plate,
             state: this.state.stateProvince
         });
-        this.props.navigation.navigate('HighwayCheck');
+        this.props.navigation.navigate(this.getNextStep());
+    }
+
+    getNextStep() {
+        let currentNavIndex = this.props.navState.navSequence.lastIndexOf('LicenseCheck');
+        let i = currentNavIndex;
+        let nextState;
+
+        do {
+            i = (i + 1) % 4;
+            nextState = this.props.navState[this.props.navState.navSequence[i]];
+        } while (nextState.completed === true && this.props.navState.navSequence[i] !== 'LicenseCheck');
+
+        if (this.props.navState.navSequence[i] === 'LicenseCheck') {
+            return 'DolPreCheck';
+        }
+
+        return this.props.navState.navSequence[i];
+    }
+
+    clearAllState() {
+        this.props.clearAllState();
+        this.props.navigation.popToTop();
     }
 
     render() {
@@ -48,7 +70,11 @@ class LicenseCheck extends Component {
                 />
                 <Button title="Next" onPress={() => this.updateLicense()}/>
                 <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
-                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
+                <Button title="Cancel" onPress={() => this.clearAllState()} />
+                <Button title="Skip" 
+                    disabled={this.getNextStep() === 'DolPreCheck'}
+                    onPress={() => this.props.navigation.navigate(this.getNextStep())} 
+                />
             </View>
         );
     }
@@ -70,13 +96,14 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = (stateProvince) => {
-    const { appState } = stateProvince
-    return { appState }
+const mapStateToProps = (state) => {
+    const { appState, navState } = state
+    return { appState, navState }
 };
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
         updateLicense,
+        clearAllState
     }, dispatch)
 );
 

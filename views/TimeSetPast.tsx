@@ -4,7 +4,7 @@ import { Text, Button, Input, Icon } from 'react-native-elements';
 import RNPickerSelect from 'react-native-picker-select';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateDate, updateTime } from '../state/actions/AppActions';
+import { updateDate, updateTime, clearAllState } from '../state/actions/AppActions';
 
 class TimeSetPast extends Component {
     state = {
@@ -33,6 +33,11 @@ class TimeSetPast extends Component {
             amPm: this.state.time.amPm || ((currentDateTime.getHours() >= 12) ? 'pm' : 'am')
         });
         this.props.navigation.navigate('OccupancyCheck');
+    }
+
+    clearAllState() {
+        this.props.clearAllState();
+        this.props.navigation.popToTop();
     }
 
     render() {
@@ -151,7 +156,7 @@ class TimeSetPast extends Component {
 
                 <Button title="Next" onPress={() => this.updateDateTime()}/>
                 <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
-                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
+                <Button title="Cancel" onPress={() => this.clearAllState()} />
             </View>
         );
     }
@@ -174,13 +179,14 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    const { appState } = state
-    return { appState }
+    const { appState, navState } = state
+    return { appState, navState }
 };
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
         updateDate,
-        updateTime
+        updateTime,
+        clearAllState
     }, dispatch)
 );
 

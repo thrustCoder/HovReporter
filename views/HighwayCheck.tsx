@@ -4,7 +4,7 @@ import { Text, Button, Input, Icon } from 'react-native-elements';
 import RNPickerSelect from 'react-native-picker-select';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateHighway } from '../state/actions/AppActions';
+import { updateHighway, clearAllState } from '../state/actions/AppActions';
 
 class HighwayCheck extends Component {
     state = {
@@ -17,7 +17,29 @@ class HighwayCheck extends Component {
             name: this.state.name,
             isRamp: this.state.isRamp
         });
-        this.props.navigation.navigate('DolPreCheck');
+        this.props.navigation.navigate(this.getNextStep());
+    }
+
+    getNextStep() {
+        let currentNavIndex = this.props.navState.navSequence.lastIndexOf('HighwayCheck');
+        let i = currentNavIndex;
+        let nextState;
+
+        do {
+            i = (i + 1) % 4;
+            nextState = this.props.navState[this.props.navState.navSequence[i]];
+        } while (nextState.completed === true && this.props.navState.navSequence[i] !== 'HighwayCheck');
+
+        if (this.props.navState.navSequence[i] === 'HighwayCheck') {
+            return 'DolPreCheck';
+        }
+
+        return this.props.navState.navSequence[i];
+    }
+
+    clearAllState() {
+        this.props.clearAllState();
+        this.props.navigation.popToTop();
     }
 
     render() {
@@ -39,7 +61,11 @@ class HighwayCheck extends Component {
 
                 <Button title="Next" onPress={() => this.updateHighway()}/>
                 <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
-                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
+                <Button title="Cancel" onPress={() => this.clearAllState()} />
+                <Button title="Skip" 
+                    disabled={this.getNextStep() === 'DolPreCheck'}
+                    onPress={() => this.props.navigation.navigate(this.getNextStep())} 
+                />
             </View>
         );
     }
@@ -62,12 +88,13 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    const { appState } = state
-    return { appState }
+    const { appState, navState } = state
+    return { appState, navState }
 };
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
         updateHighway,
+        clearAllState
     }, dispatch)
 );
 

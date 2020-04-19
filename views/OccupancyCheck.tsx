@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateOccupants } from '../state/actions/AppActions';
+import { updateOccupants, clearAllState } from '../state/actions/AppActions';
 
 class OccupancyCheck extends Component {
     updateOccupants(numberOfOccupants) {
@@ -21,11 +21,16 @@ class OccupancyCheck extends Component {
             nextState = this.props.navState[this.props.navState.navSequence[i]];
         } while (nextState.completed === true && this.props.navState.navSequence[i] !== 'OccupancyCheck');
 
-        if (!nextState) {
+        if (this.props.navState.navSequence[i] === 'OccupancyCheck') {
             return 'DolPreCheck';
         }
 
         return this.props.navState.navSequence[i];
+    }
+
+    clearAllState() {
+        this.props.clearAllState();
+        this.props.navigation.popToTop();
     }
 
     render() {
@@ -35,7 +40,11 @@ class OccupancyCheck extends Component {
                 <Button title="1" onPress={() => this.updateOccupants(1)}/>
                 <Button title="2" onPress={() => this.updateOccupants(2)}/>
                 <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
-                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
+                <Button title="Cancel" onPress={() => this.clearAllState()} />
+                <Button title="Skip"
+                    disabled={this.getNextStep() === 'DolPreCheck'}
+                    onPress={() => this.props.navigation.navigate(this.getNextStep())} 
+                />
             </View>
         );
     }
@@ -62,6 +71,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
         updateOccupants,
+        clearAllState
     }, dispatch)
 );
 

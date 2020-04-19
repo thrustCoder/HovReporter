@@ -52,7 +52,7 @@ const initialNavState = {
 };
 
 const appStateReducer = (state = initialAppState, action) => {
-  const {
+  let {
     dolForm
   } = state;
 
@@ -78,6 +78,9 @@ const appStateReducer = (state = initialAppState, action) => {
     case 'CommentsUpdate':
         dolForm.comments = action.payload;
         break;
+    case 'ClearAllState':
+        dolForm = initialAppState.dolForm;
+        break;
     default:
         return state;
   }
@@ -88,7 +91,7 @@ const appStateReducer = (state = initialAppState, action) => {
 };
 
 const navStateReducer = (state = initialNavState, action) => {
-  const reducedState = state;
+  let reducedState = state;
 
   switch (action.type) {
     case 'DateTimeUpdate':
@@ -102,6 +105,12 @@ const navStateReducer = (state = initialNavState, action) => {
         break;
     case 'HighwayUpdate':
         reducedState.HighwayCheck.completed = true;
+        break;
+    case 'ClearAllState':
+        reducedState.TimeCheck.completed = false;
+        reducedState.OccupancyCheck.completed = false;
+        reducedState.LicenseCheck.completed = false;
+        reducedState.HighwayCheck.completed = false;
         break;
     default:
         return state;

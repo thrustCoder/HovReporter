@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput, ScrollView } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateComments } from '../../state/actions/AppActions';
+import { updateComments, clearAllState } from '../../state/actions/AppActions';
 
 class CommentsCheck extends Component {
     state = {
@@ -13,6 +13,11 @@ class CommentsCheck extends Component {
     updateComments() {
         this.props.updateComments(this.state.comments);
         this.props.navigation.navigate('DolPreLaunch');
+    }
+
+    clearAllState() {
+        this.props.clearAllState();
+        this.props.navigation.popToTop();
     }
 
     render() {
@@ -28,7 +33,7 @@ class CommentsCheck extends Component {
                     value={this.state.comments} />
                 <Button title="Finish report" onPress={() => this.updateComments()}/>
                 <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
-                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
+                <Button title="Cancel" onPress={() => this.clearAllState()} />
             </View>
             </ScrollView>
         );
@@ -50,12 +55,13 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    const { appState } = state
-    return { appState }
+    const { appState, navState } = state
+    return { appState, navState }
 };
 const mapDispatchToProps = dispatch => (
     bindActionCreators({
         updateComments,
+        clearAllState
     }, dispatch)
 );
 

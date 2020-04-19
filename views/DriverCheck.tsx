@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Text, Button } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Text, Button, clearAllState } from 'react-native-elements';
 
-export default class DriverCheck extends Component {
+class DriverCheck extends Component {
+    clearAllState() {
+        this.props.clearAllState();
+        this.props.navigation.popToTop();
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -10,7 +17,7 @@ export default class DriverCheck extends Component {
                 <Button title="Yes" onPress={() => this.props.navigation.navigate('DriverBlackhole')}/>
                 <Text onPress={() => this.props.navigation.navigate('TimeCheck')}>No</Text>
                 <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
-                <Button title="Cancel" onPress={() => this.props.navigation.popToTop()} />
+                <Button title="Cancel" onPress={() => this.clearAllState()} />
             </View>
         );
     }
@@ -29,3 +36,15 @@ const styles = StyleSheet.create({
         color: 'black',
     }
 });
+
+const mapStateToProps = (state) => {
+    const { appState, navState } = state
+    return { appState, navState }
+};
+const mapDispatchToProps = dispatch => (
+    bindActionCreators({
+        clearAllState
+    }, dispatch)
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(DriverCheck);

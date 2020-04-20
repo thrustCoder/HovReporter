@@ -4,6 +4,7 @@ import { WebView } from 'react-native-webview';
 import { connect } from 'react-redux';
 
 class DolForm extends Component {
+    private pingForSuccessCount = 0;
     private webView;
     private injectedJavaScript2 = `window.ReactNativeWebView.postMessage(JSON.stringify({type: "PostNavigate", payload: window.location.href})); `;
 
@@ -11,15 +12,18 @@ class DolForm extends Component {
         let data = JSON.parse(eventData);
 
         if ((data.type === "PostNavigate") && (RegExp('^https://www.wsdot.wa.gov/node/[0-9]+/done').test(data.payload.split()[0]))) {
-            console.log("Huzzzahhh!");
+            console.log("Success!");
             this.props.navigation.navigate('FinalSuccess');
         } else {
-            console.log("Huhhhuuuu!");
+            // DOIT: comment when final
             this.props.navigation.navigate('FinalSuccess');
 
             // DOIT: uncomment when final
             // let that = this;
-            // setTimeout(function() { that.webView.injectJavaScript(that.injectedJavaScript2) }, 5000);
+            // if (this.pingForSuccessCount < 15) {
+            //   this.pingForSuccessCount++;
+            //   setTimeout(function() { that.webView.injectJavaScript(that.injectedJavaScript2) }, 5000);
+            // }
         }
     }
 
@@ -43,12 +47,14 @@ class DolForm extends Component {
           `document.getElementById('edit-submitted-time-of-violation-hour').value = "${form.time.hour}"; ` +
           `document.getElementById('edit-submitted-time-of-violation-minute').value = "${form.time.minute}"; ` +
           `document.getElementById('edit-submitted-time-of-violation-ampm-${form.time.amPm}').checked = "true"; ` +
-          `document.getElementsByClassName('g-recaptcha')[0].style.transform = "scale(2.4)"; ` +
-          `document.getElementsByClassName('g-recaptcha')[0].style["margin"] = "100px auto 100px 310px"; ` +
-          `document.getElementsByClassName('form-submit')[0].style.transform = "scale(3.5)"; ` +
-          `document.getElementsByClassName('form-submit')[0].style["margin"] = "50px auto 100px 300px"; ` +
-          `document.getElementsByClassName('form-submit')[0].scrollIntoView(); ` +
-          `document.getElementsByClassName('webform-submit button-primary form-submit')[0].onclick = ` + 
+          `let captchaEl = document.getElementsByClassName('g-recaptcha')[0]; ` +
+          `captchaEl.style.transform = "scale(2.4)"; ` +
+          `captchaEl.style["margin"] = "100px auto 100px 310px"; ` +
+          `let submitBtnEl = document.getElementsByClassName('form-submit')[0]; ` +
+          `submitBtnEl.style.transform = "scale(3.5)"; ` +
+          `submitBtnEl.style["margin"] = "50px auto 100px 300px"; ` +
+          `submitBtnEl.scrollIntoView(); ` +
+          `submitBtnEl.onclick = ` + 
             `function() { window.ReactNativeWebView.postMessage(JSON.stringify({type: "SubmitButtonClick", payload: window.location.href})); }; `;
         
         if (form.vehicle) {

@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Text, Button, clearAllState } from 'react-native-elements';
+import { Text, Button } from 'react-native-elements';
+import { clearAllState } from '../state/actions/AppActions';
 
 class DriverCheck extends Component {
     clearAllState() {

@@ -7,7 +7,10 @@ const boundingLayout = StyleSheet.create({
     },
     header: {
         height: 100,
-        backgroundColor: 'chartreuse'
+        backgroundColor: 'chartreuse',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end'
     },
     content: {
         flex: 1,
@@ -18,11 +21,29 @@ const boundingLayout = StyleSheet.create({
     },
     footer: {
         height: 90,
-        backgroundColor: 'aqua'
+        backgroundColor: 'aqua',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start'
     },
     boundingContainer: {
         backgroundColor: 'beige',
         marginHorizontal: 20
+    },
+    topImageArea: {
+        alignSelf: 'center'
+    },
+    mainArea: {
+        marginVertical: 20,
+        textAlign: 'center',
+        backgroundColor: 'aquamarine'
+    },
+    actionArea: {
+        marginTop: 40,
+        marginBottom: 20,
+        marginHorizontal: 20,
+        flexDirection: 'row',
+        justifyContent: 'center'
     }
 });
 

@@ -22,7 +22,7 @@ const boundingLayout = StyleSheet.create({
     footer: {
         height: 90,
         backgroundColor: 'aqua',
-        flexDirection: 'column',
+        flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'flex-start'
     },
@@ -37,6 +37,13 @@ const boundingLayout = StyleSheet.create({
         marginVertical: 20,
         textAlign: 'center',
         backgroundColor: 'aquamarine'
+    },
+    mainSubAreaFlowRow: {
+        marginTop: 10,
+        marginBottom: 10,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        backgroundColor: '#8a2be2'
     },
     actionArea: {
         marginTop: 40,

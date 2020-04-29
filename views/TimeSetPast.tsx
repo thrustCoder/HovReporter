@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { Text, Button, Icon } from 'react-native-elements';
 import RNPickerSelect from 'react-native-picker-select';
 import { connect } from 'react-redux';
@@ -197,7 +197,7 @@ class TimeSetPast extends Component {
                                     placeholder={{label: 'Select minute', value: null}}
                                     items={datetime.minutePickerItems}
                                 />
-                                <View style={contentItems.amPmContainer}>
+                                <View style={contentItems.inlineBtnsContainers}>
                                     <Button style={contentItems.amPmButton}
                                         buttonStyle={{ backgroundColor: this.state.amPm.amColor }}
                                         title="am" 

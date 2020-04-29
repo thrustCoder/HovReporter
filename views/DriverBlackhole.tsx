@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { Text, Icon, Image } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -24,7 +24,7 @@ class DriverBlackhole extends Component {
                             name='times-circle'
                             type='font-awesome'
                             color={colors.red}
-                            size='50'
+                            size={50}
                             onPress={() => this.clearAllState()}
                         />
                     </View>       
@@ -41,7 +41,7 @@ class DriverBlackhole extends Component {
                                 Please focus on driving.
                             </Text>
                             <Text h4 style={contentItems.mainText}>
-                                You can always report the violation later.
+                                You can always come back to the app and report the violation later.
                             </Text>
                         </View>
                     </View>
@@ -52,20 +52,6 @@ class DriverBlackhole extends Component {
         );
     }
 }
-
-// DOIT: better structure of styles?
-// DOIT: extract to common styles?
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    containerH3: {
-        color: 'black',
-    }
-});
 
 const mapStateToProps = (state) => {
     const { appState, navState } = state

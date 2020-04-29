@@ -24,7 +24,7 @@ class DriverCheck extends Component {
                             name='times-circle'
                             type='font-awesome'
                             color={colors.red}
-                            size='50'
+                            size={50}
                             onPress={() => this.clearAllState()}
                         />
                     </View>       
@@ -58,7 +58,7 @@ class DriverCheck extends Component {
                             name='arrow-circle-left'
                             type='font-awesome'
                             color={colors.green}
-                            size='70'
+                            size={70}
                             onPress={() => this.props.navigation.goBack()}
                         />
                     </View>

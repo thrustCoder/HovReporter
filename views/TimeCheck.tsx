@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Text, Button } from 'react-native-elements';
+import { View } from 'react-native';
+import { Text, Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateDate, updateTime, updateDateTime, clearAllState } from '../state/actions/AppActions';
+
+import colors from '../styles/Colors';
+import boundingLayout from '../styles/BoundingLayout';
+import contentItems from '../styles/ContentItems';
 
 class TimeCheck extends Component {
     mapCurrentTimeToState() {
@@ -53,34 +57,77 @@ class TimeCheck extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <Text h3 style={styles.containerH3}>Did you notice the violation just now (within past 10 minutes)?</Text>
-                <Button title="Yes" onPress={() => this.mapCurrentTimeToState()}/>
-                <Button title="No" onPress={() => this.props.navigation.navigate('TimeSetPast')}/>
-                <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
-                <Button title="Cancel" onPress={() => this.clearAllState()} />
-                <Button title="Skip" 
-                    disabled={this.getNextStep() === 'DolPreCheck'}
-                    onPress={() => this.props.navigation.navigate(this.getNextStep())} 
-                />
+            <View style={boundingLayout.container}>
+                <View style={boundingLayout.header}>
+                    <View style={contentItems.cancelButton}>
+                        <Icon
+                            name='times-circle'
+                            type='font-awesome'
+                            color={colors.red}
+                            size={50}
+                            onPress={() => this.clearAllState()}
+                        />
+                    </View>       
+                </View>
+                <View style={boundingLayout.content}>
+                    <View style={boundingLayout.boundingContainer}>
+                        <View style={boundingLayout.topImageArea}>
+                            <Icon
+                                name='watch'
+                                type='octicon'
+                                color={colors.green}
+                                size={100}
+                                onPress={() => this.props.navigation.goBack()}
+                            />
+                        </View>
+                        <View style={boundingLayout.mainArea}>
+                            <Text h3 style={contentItems.mainText}>
+                                Did you notice the HOV violation just now (or within past 15 minutes)?
+                            </Text>
+                        </View>
+                        <View style={boundingLayout.actionArea}>
+                            <Button style={contentItems.mainButtonPrimary} 
+                                    titleStyle={contentItems.buttonTitle}
+                                    buttonStyle={{ backgroundColor: colors.green }}
+                                    title="Yes" 
+                                    onPress={() => this.mapCurrentTimeToState()} 
+                            />
+                            <Button style={contentItems.mainButtonSecondary} 
+                                    titleStyle={contentItems.buttonTitle}
+                                    buttonStyle={{ backgroundColor: colors.green }}
+                                    title="No" 
+                                    onPress={() => this.props.navigation.navigate('TimeSetPast')} 
+                            />
+                        </View>
+                    </View>
+                </View>
+                <View style={boundingLayout.footer}>
+                    <View style={contentItems.backButton}>
+                        <Icon
+                            name='arrow-circle-left'
+                            type='font-awesome'
+                            color={colors.green}
+                            size={70}
+                            onPress={() => this.props.navigation.goBack()}
+                        />
+                    </View>
+                    <View style={contentItems.skipButton}>
+                        <Icon
+                            name='debug-step-over'
+                            type='material-community'
+                            color={colors.green}
+                            size={85}
+                            disabled={this.getNextStep() === 'DolPreCheck'}
+                            onPress={() => this.props.navigation.navigate(this.getNextStep())}
+                        />
+                    </View>
+                    <View style={contentItems.nextButtonFiller}>
+                    </View>
+                </View>
             </View>
         );
     }
 }
-
-// DOIT: better structure of styles?
-// DOIT: extract to common styles?
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    containerH3: {
-        color: 'black',
-    }
-});
 
 const mapStateToProps = (state) => {
     const { appState, navState } = state

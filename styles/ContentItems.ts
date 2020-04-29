@@ -59,7 +59,7 @@ const contentItems = StyleSheet.create({
         marginHorizontal: 5,
         marginVertical: 3,
     },
-    amPmContainer: {
+    inlineBtnsContainers: {
         marginLeft: 10,
         flexDirection: 'row',
         justifyContent: 'flex-end',
@@ -91,6 +91,10 @@ const contentItems = StyleSheet.create({
         ...mainTextCore,
         marginLeft: 10,
     },
+    inputLabel: {
+        ...mainTextCore,
+        marginLeft: 10,
+    }
 });
 
 export default contentItems;

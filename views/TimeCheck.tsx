@@ -55,6 +55,10 @@ class TimeCheck extends Component {
         this.props.navigation.popToTop();
     }
 
+    isSkipBtnDisabled() {
+        return this.getNextStep() === 'DolPreCheck';
+    }
+
     render() {
         return (
             <View style={boundingLayout.container}>
@@ -115,9 +119,10 @@ class TimeCheck extends Component {
                         <Icon
                             name='debug-step-over'
                             type='material-community'
-                            color={colors.green}
+                            color={this.isSkipBtnDisabled() ? colors.darkGray : colors.green}
                             size={85}
-                            disabled={this.getNextStep() === 'DolPreCheck'}
+                            disabled={this.isSkipBtnDisabled()}
+                            disabledStyle={{ backgroundColor: 'aqua' }}
                             onPress={() => this.props.navigation.navigate(this.getNextStep())}
                         />
                     </View>

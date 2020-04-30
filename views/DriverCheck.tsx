@@ -31,6 +31,14 @@ class DriverCheck extends Component {
                 </View>
                 <View style={boundingLayout.content}>
                     <View style={boundingLayout.boundingContainer}>
+                        <View style={boundingLayout.topImageArea}>
+                            <Icon
+                                name='mobile'
+                                type='font-awesome'
+                                color={colors.green}
+                                size={100}
+                            />
+                        </View>
                         <View style={boundingLayout.mainArea}>
                             <Text h3 style={contentItems.mainText}>
                                 Are you using the app while driving?

@@ -91,7 +91,6 @@ class HighwayCheck extends Component {
                                 type='font-awesome'
                                 color={colors.green}
                                 size={100}
-                                onPress={() => this.props.navigation.goBack()}
                             />
                         </View>
                         <View style={boundingLayout.mainArea}>

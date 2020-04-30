@@ -18,8 +18,7 @@ class Start extends Component {
                 <View style={boundingLayout.content}>
                     <View style={boundingLayout.boundingContainer}>
                         <View style={boundingLayout.topImageArea}>
-                            <Image style={contentItems.hovSignImage} source={require('../images/hov-sign.png')} />
-                            <Image style={contentItems.carPassingImage} source={require('../images/car-passing.gif')} />
+                            <Image style={contentItems.carPassingImage} source={require('../images/hov-sign.jpg')} />
                         </View>
                         <View style={boundingLayout.mainArea}>
                             <Text h3 style={contentItems.mainText}>

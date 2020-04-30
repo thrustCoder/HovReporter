@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, TextInput, ScrollView } from 'react-native';
-import { Text, Button } from 'react-native-elements';
+import { View, TextInput, ScrollView, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Text, Button, Icon, Input } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateComments, clearAllState } from '../../state/actions/AppActions';
+
+import colors from '../../styles/Colors';
+import boundingLayout from '../../styles/BoundingLayout';
+import contentItems from '../../styles/ContentItems';
 
 class CommentsCheck extends Component {
     state = {
@@ -22,37 +26,72 @@ class CommentsCheck extends Component {
 
     render() {
         return (
-            <ScrollView keyboardShouldPersistTaps='handled'>
-            <View style={styles.container}>
-                <Text h3 style={styles.containerH3}>Additional comments</Text>
-                <TextInput
-                    multiline={true}
-                    numberOfLines={4}
-                    style={{ height: 100, width: 300, borderColor: 'gray', borderWidth: 1 }}
-                    onChangeText={(comments) => this.setState({comments})}
-                    value={this.state.comments} />
-                <Button title="Finish report" onPress={() => this.updateComments()}/>
-                <Button title="Back" onPress={() => this.props.navigation.goBack()}/>
-                <Button title="Cancel" onPress={() => this.clearAllState()} />
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+            <View style={boundingLayout.container}>
+                <View style={boundingLayout.header}>
+                    <View style={contentItems.cancelButton}>
+                        <Icon
+                            name='times-circle'
+                            type='font-awesome'
+                            color={colors.red}
+                            size={50}
+                            onPress={() => this.clearAllState()}
+                        />
+                    </View>       
+                </View>
+                <View style={boundingLayout.content}>
+                    <View style={boundingLayout.boundingContainer}>
+                        <View style={boundingLayout.topImageArea}>
+                            <Icon
+                                name='comments'
+                                type='font-awesome'
+                                color={colors.green}
+                                size={100}
+                            />
+                        </View>
+                        <View style={boundingLayout.mainArea}>
+                            <Text h3 style={contentItems.mainText}>
+                                Comments
+                            </Text>
+                            <Input style={contentItems.textarea}
+                                containerStyle={contentItems.textareaContainer}
+                                placeholder='Enter comments'
+                                multiline={true}
+                                numberOfLines={5}
+                                onChangeText={(comments) => this.setState({comments})}
+                                value={this.state.comments}
+                            />
+                        </View>
+                        <View style={boundingLayout.actionArea}>
+                            <Button style={contentItems.mainButton} 
+                                    titleStyle={contentItems.buttonTitle}
+                                    buttonStyle={{ backgroundColor: colors.green }}
+                                    title="Finish report" 
+                                    onPress={() => this.updateComments()} 
+                            />
+                        </View>
+                    </View>
+                </View>
+                <View style={boundingLayout.footer}>
+                    <View style={contentItems.backButton}>
+                        <Icon
+                            name='arrow-circle-left'
+                            type='font-awesome'
+                            color={colors.green}
+                            size={70}
+                            onPress={() => this.props.navigation.goBack()}
+                        />
+                    </View>
+                    <View style={contentItems.skipButtonFiller}>
+                    </View>
+                    <View style={contentItems.nextButtonFiller}>
+                    </View>
+                </View>
             </View>
-            </ScrollView>
+            </TouchableWithoutFeedback>
         );
     }
 }
-
-// DOIT: better structure of styles?
-// DOIT: extract to common styles?
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    containerH3: {
-        color: 'black',
-    }
-});
 
 const mapStateToProps = (state) => {
     const { appState, navState } = state

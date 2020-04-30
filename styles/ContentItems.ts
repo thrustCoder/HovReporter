@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import colors from './Colors';
 
 const mainTextCore = {
     marginVertical: 7,
@@ -51,6 +52,11 @@ const contentItems = StyleSheet.create({
         alignSelf: 'center',
         marginHorizontal: 10
     },
+    mainButtonSecondaryLong: {
+        width: 250,
+        alignSelf: 'center',
+        marginHorizontal: 10
+    },
     buttonTitle: { 
         fontWeight: '700', 
         fontSize: 25 
@@ -70,8 +76,8 @@ const contentItems = StyleSheet.create({
         marginBottom: -5 
     },
     carPassingImage: { 
-        width: 150, 
-        height: 105 
+        width: 350, 
+        height: 120 
     },
     noTextWhileDriveImage: {
         width: 150,
@@ -94,6 +100,15 @@ const contentItems = StyleSheet.create({
     inputLabel: {
         ...mainTextCore,
         marginLeft: 10,
+    },
+    textarea: {
+        width: 300, 
+        borderColor: colors.darkGray, 
+        borderWidth: 1
+    },
+    textareaContainer: {
+        width: 300, 
+        height: 150
     }
 });
 

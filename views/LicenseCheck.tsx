@@ -77,7 +77,6 @@ class LicenseCheck extends Component {
                                 type='material'
                                 color={colors.green}
                                 size={100}
-                                onPress={() => this.props.navigation.goBack()}
                             />
                         </View>
                         <View style={boundingLayout.mainArea}>

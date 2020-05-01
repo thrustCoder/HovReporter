@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Button, Alert } from 'react-native';
+import { View } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { WebView } from 'react-native-webview';
 import { connect } from 'react-redux';
+
+import colors from '../styles/Colors';
+import boundingLayout from '../styles/BoundingLayout';
+import contentItems from '../styles/ContentItems';
 
 class DolForm extends Component {
     private pingForSuccessCount = 0;
@@ -48,11 +53,11 @@ class DolForm extends Component {
           `document.getElementById('edit-submitted-time-of-violation-minute').value = "${form.time.minute}"; ` +
           `document.getElementById('edit-submitted-time-of-violation-ampm-${form.time.amPm}').checked = "true"; ` +
           `let captchaEl = document.getElementsByClassName('g-recaptcha')[0]; ` +
-          `captchaEl.style.transform = "scale(2.4)"; ` +
-          `captchaEl.style["margin"] = "100px auto 100px 310px"; ` +
+          `captchaEl.style.transform = "scale(2)"; ` +
+          `captchaEl.style["margin"] = "100px 0 100px 270px"; ` +
           `let submitBtnEl = document.getElementsByClassName('form-submit')[0]; ` +
-          `submitBtnEl.style.transform = "scale(3.5)"; ` +
-          `submitBtnEl.style["margin"] = "50px auto 100px 300px"; ` +
+          `submitBtnEl.style.transform = "scale(3)"; ` +
+          `submitBtnEl.style["margin"] = "50px auto 100px 270px"; ` +
           `submitBtnEl.scrollIntoView(); ` +
           `submitBtnEl.onclick = ` + 
             `function() { window.ReactNativeWebView.postMessage(JSON.stringify({type: "SubmitButtonClick", payload: window.location.href})); }; `;
@@ -74,27 +79,44 @@ class DolForm extends Component {
         }
 
         return (
-          <View style={styles.container}>
-            <WebView ref={webView => (this.webView = webView)}
-                    source={{ uri: "https://www.wsdot.wa.gov/travel/highways-bridges/hov/report-violator" }} 
-                    javaScriptEnabled={true} 
-                    injectedJavaScript={injectedJavaScript}
-                    onMessage={(event) => this.onPostMessage(event.nativeEvent.data)}/>
+          <View style={boundingLayout.container}>
+              <View style={boundingLayout.header}>
+                  <View style={contentItems.cancelButton}>
+                      <Icon
+                          name='times-circle'
+                          type='font-awesome'
+                          color={colors.red}
+                          size={50}
+                          onPress={() => this.clearAllState()}
+                      />
+                  </View>       
+              </View>
+              <WebView 
+                  ref={webView => (this.webView = webView)}
+                  source={{ uri: "https://www.wsdot.wa.gov/travel/highways-bridges/hov/report-violator" }} 
+                  javaScriptEnabled={true} 
+                  injectedJavaScript={injectedJavaScript}
+                  onMessage={(event) => this.onPostMessage(event.nativeEvent.data)}
+              />
+              <View style={boundingLayout.footer}>
+                  <View style={contentItems.backButton}>
+                      <Icon
+                          name='arrow-circle-left'
+                          type='font-awesome'
+                          color={colors.green}
+                          size={70}
+                          onPress={() => this.props.navigation.goBack()}
+                      />
+                  </View>
+              </View>
           </View>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-    }
-});
-
 const mapStateToProps = (state) => {
-  const { appState } = state
-  return { appState }
+  const { appState, navState } = state
+  return { appState, navState }
 };
 
 export default connect(mapStateToProps)(DolForm);

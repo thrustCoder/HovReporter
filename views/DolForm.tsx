@@ -3,6 +3,8 @@ import { View } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { WebView } from 'react-native-webview';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { clearAllState } from '../state/actions/AppActions';
 
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
@@ -12,6 +14,11 @@ class DolForm extends Component {
     private pingForSuccessCount = 0;
     private webView;
     private injectedJavaScript2 = `window.ReactNativeWebView.postMessage(JSON.stringify({type: "PostNavigate", payload: window.location.href})); `;
+
+    clearAllState() {
+      this.props.clearAllState();
+      this.props.navigation.popToTop();
+    }
 
     onPostMessage(eventData) {
         let data = JSON.parse(eventData);
@@ -118,5 +125,10 @@ const mapStateToProps = (state) => {
   const { appState, navState } = state
   return { appState, navState }
 };
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+      clearAllState
+  }, dispatch)
+);
 
-export default connect(mapStateToProps)(DolForm);
+export default connect(mapStateToProps, mapDispatchToProps)(DolForm);

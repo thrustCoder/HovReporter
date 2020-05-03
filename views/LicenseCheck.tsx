@@ -85,9 +85,10 @@ class LicenseCheck extends Component {
                                     License plate:
                                 </Text>
                                 <Input containerStyle={{ width: 150, backgroundColor: '#a52a2a' }}
-                                    inputStyle={{ marginTop: -10 }}
+                                    inputStyle={contentItems.input}
                                     placeholder='Enter plate number'
                                     label=''
+                                    autoCapitalize='characters'
                                     onChangeText={plate => this.setState({plate})}
                                 />
                             </View>

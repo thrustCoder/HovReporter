@@ -63,7 +63,7 @@ class VehicleDetailsCheck extends Component {
                                 <Text h4 style={contentItems.inputLabel}>
                                     Make:
                                 </Text>
-                                <Input containerStyle={{ width: 150 }}
+                                <Input containerStyle={{ width: 175 }}
                                     inputStyle={contentItems.input}
                                     placeholder='Enter make'
                                     label=''
@@ -74,7 +74,7 @@ class VehicleDetailsCheck extends Component {
                                 <Text h4 style={contentItems.inputLabel}>
                                     Model:
                                 </Text>
-                                <Input containerStyle={{ width: 150 }}
+                                <Input containerStyle={{ width: 175 }}
                                     inputStyle={contentItems.input}
                                     placeholder='Enter model'
                                     label=''
@@ -85,7 +85,7 @@ class VehicleDetailsCheck extends Component {
                                 <Text h4 style={contentItems.inputLabel}>
                                     Color:
                                 </Text>
-                                <Input containerStyle={{ width: 150 }}
+                                <Input containerStyle={{ width: 175 }}
                                     inputStyle={contentItems.input}
                                     placeholder='Enter color'
                                     label=''

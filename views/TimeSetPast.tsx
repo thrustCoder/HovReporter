@@ -37,7 +37,7 @@ class TimeSetPast extends Component {
             year: this.state.date.year || currentDateTime.getFullYear()
         });
         this.props.updateTime({
-            hour: this.state.time.hour || (currentDateTime.getHours() % 12),
+            hour: this.state.time.hour || (currentDateTime.getHours() % 12 === 0 ? '12' : (currentDateTime.getHours() % 12)),
             minute: this.state.time.minute || (currentDateTime.getMinutes() - (currentDateTime.getMinutes() % 5)),
             amPm: this.state.time.amPm || ((currentDateTime.getHours() >= 12) ? 'pm' : 'am')
         });
@@ -94,6 +94,12 @@ class TimeSetPast extends Component {
         let currentHour = `${this.state.time.hour || (currentDateTime.getHours() % 12 === 0 ? '12' : (currentDateTime.getHours() % 12))}`;
         let currentMinute = `${this.state.time.minute || (currentDateTime.getMinutes() - (currentDateTime.getMinutes() % 5))}`;
 
+        if (currentDateTime.getHours() >= 12) {
+            this.state.amPm.pmColor = colors.green;
+        } else {
+            this.state.amPm.amColor = colors.green;
+        }
+
         return (
             <View style={boundingLayout.container}>
                 <View style={boundingLayout.header}>
@@ -118,6 +124,9 @@ class TimeSetPast extends Component {
                             />
                         </View>
                         <View style={boundingLayout.mainArea}>
+                            <Text h3 style={contentItems.mainText}>
+                                Please enter the time when violation happened.
+                            </Text>
                             <View style={boundingLayout.mainSubAreaFlowRow}>
                                 <Text h4 style={contentItems.pickerLabel}>
                                     Day:

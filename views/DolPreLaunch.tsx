@@ -41,17 +41,17 @@ class DolPreLaunch extends Component {
                         </View>
                         <View style={boundingLayout.mainArea}>
                             <Text h4 style={contentItems.mainText}>
-                                As the final step, we will take you to the Department of Licensing site for submitting the report. The report has been filled already with the details you provided.
+                                As the final step, we will take you to the Department of Licensing site for submitting the report. The report page has already been filled with the details you provided earlier. You just need to check the box for Captcha and click Submit. That's it!
                             </Text>
-                            <Text h4 style={contentItems.mainText}>
-                                Within the report page, please check the box for Captcha and click Submit. That's it!
+                            <Text style={contentItems.mainText}>
+                                You can always zoom into the report and scroll to verify your entries.
                             </Text>
                         </View>
                         <View style={boundingLayout.actionArea}>
                             <Button style={contentItems.mainButtonSecondaryLong} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
-                                    title="Finish the report!" 
+                                    title="Take me to the report" 
                                     onPress={() => this.props.navigation.navigate('DolForm')} 
                             />
                         </View>

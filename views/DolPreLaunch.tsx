@@ -41,10 +41,10 @@ class DolPreLaunch extends Component {
                         </View>
                         <View style={boundingLayout.mainArea}>
                             <Text h4 style={contentItems.mainText}>
-                                As the final step, we will take you to the Department of Licensing site for submitting the form. The form has been filled already with the details you provided.
+                                As the final step, we will take you to the Department of Licensing site for submitting the report. The report has been filled already with the details you provided.
                             </Text>
-                            <Text h3 style={contentItems.mainText}>
-                                In the next page, please check the box for Captcha and click Submit. That's it!
+                            <Text h4 style={contentItems.mainText}>
+                                Within the report page, please check the box for Captcha and click Submit. That's it!
                             </Text>
                         </View>
                         <View style={boundingLayout.actionArea}>

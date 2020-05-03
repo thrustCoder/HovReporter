@@ -13,8 +13,6 @@ class Start extends Component {
     render() {
         return (
             <View style={boundingLayout.container}>
-                <View style={boundingLayout.header}>
-                </View>
                 <View style={boundingLayout.content}>
                     <View style={boundingLayout.boundingContainer}>
                         <View style={boundingLayout.topImageArea}>
@@ -37,8 +35,6 @@ class Start extends Component {
                             />
                         </View>
                     </View>
-                </View>
-                <View style={boundingLayout.footer}>
                 </View>
             </View>
         );

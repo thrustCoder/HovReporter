@@ -63,8 +63,8 @@ class VehicleDetailsCheck extends Component {
                                 <Text h4 style={contentItems.inputLabel}>
                                     Make:
                                 </Text>
-                                <Input containerStyle={{ width: 150, backgroundColor: '#a52a2a' }}
-                                    inputStyle={{ marginTop: -10 }}
+                                <Input containerStyle={{ width: 150 }}
+                                    inputStyle={contentItems.input}
                                     placeholder='Enter make'
                                     label=''
                                     onChangeText={make => this.setState({make})}
@@ -74,8 +74,8 @@ class VehicleDetailsCheck extends Component {
                                 <Text h4 style={contentItems.inputLabel}>
                                     Model:
                                 </Text>
-                                <Input containerStyle={{ width: 150, backgroundColor: '#a52a2a' }}
-                                    inputStyle={{ marginTop: -10 }}
+                                <Input containerStyle={{ width: 150 }}
+                                    inputStyle={contentItems.input}
                                     placeholder='Enter model'
                                     label=''
                                     onChangeText={model => this.setState({model})}
@@ -85,8 +85,8 @@ class VehicleDetailsCheck extends Component {
                                 <Text h4 style={contentItems.inputLabel}>
                                     Color:
                                 </Text>
-                                <Input containerStyle={{ width: 150, backgroundColor: '#a52a2a' }}
-                                    inputStyle={{ marginTop: -10 }}
+                                <Input containerStyle={{ width: 150 }}
+                                    inputStyle={contentItems.input}
                                     placeholder='Enter color'
                                     label=''
                                     onChangeText={color => this.setState({color})}

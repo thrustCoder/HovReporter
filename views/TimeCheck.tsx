@@ -85,7 +85,7 @@ class TimeCheck extends Component {
                         </View>
                         <View style={boundingLayout.mainArea}>
                             <Text h3 style={contentItems.mainText}>
-                                Did you notice the HOV violation just now (or within past 15 minutes)?
+                                Did you notice the HOV violation just now (within past 15 minutes)?
                             </Text>
                         </View>
                         <View style={boundingLayout.actionArea}>

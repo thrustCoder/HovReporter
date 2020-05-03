@@ -77,7 +77,8 @@ const contentItems = StyleSheet.create({
     },
     carPassingImage: { 
         width: 350, 
-        height: 120 
+        height: 120,
+        marginVertical: 20
     },
     noTextWhileDriveImage: {
         width: 150,
@@ -86,16 +87,20 @@ const contentItems = StyleSheet.create({
     },
     // https://github.com/lawnstarter/react-native-picker-select/issues/29#issuecomment-397457974
     pickerIOS: {
-        color: 'white',
+        color: colors.white,
         marginVertical: 10,
         marginRight: 10,
         marginLeft: 5,
         fontSize: 25,
-        backgroundColor: '#a52a2a'
+        backgroundColor: colors.green
     },
     pickerLabel: {
         ...mainTextCore,
         marginLeft: 10,
+    },
+    input: {
+        marginTop: -13, 
+        fontSize: 30
     },
     inputLabel: {
         ...mainTextCore,

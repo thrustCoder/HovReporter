@@ -2,19 +2,15 @@ import React, {Component} from 'react';
 import { View } from 'react-native';
 import { Text, Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { updateOccupants, clearAllState } from '../state/actions/AppActions';
+import { mapStateToPropsFn, getMapDispatchToPropsFn } from '../state/actions/ActionMapper';
+import { clearAllStateFn } from "../state/providers/ui-actions/Navigation";
 
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
 
 class FinalSuccess extends Component {
-    clearAllState() {
-        this.props.clearAllState();
-        this.props.navigation.navigate('Start');
-    }
-
     render() {
         return (
             <View style={boundingLayout.container}>
@@ -47,7 +43,7 @@ class FinalSuccess extends Component {
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
                                     title="Go back to start" 
-                                    onPress={() => this.clearAllState()} 
+                                    onPress={() => clearAllStateFn(this.props)} 
                             />
                         </View>
                     </View>
@@ -57,15 +53,9 @@ class FinalSuccess extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { appState, navState } = state
-    return { appState, navState }
-};
-const mapDispatchToProps = dispatch => (
-    bindActionCreators({
-        updateOccupants,
-        clearAllState
-    }, dispatch)
-);
+const mapDispatchToPropsFn = getMapDispatchToPropsFn({
+    updateOccupants,
+    clearAllState
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(FinalSuccess);
+export default connect(mapStateToPropsFn, mapDispatchToPropsFn)(FinalSuccess);

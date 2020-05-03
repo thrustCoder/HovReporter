@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -23,6 +22,7 @@ import VehicleDetailsCheck from './views/optional/VehicleDetailsCheck';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import appStateReducer from './state/reducers/AppReducer';
+import viewNames from './state/ViewNames';
 
 const Stack = createStackNavigator();
 const store = createStore(appStateReducer);
@@ -33,63 +33,63 @@ export default function App({ navigation }) {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen
-            name="Start"
+            name={viewNames.Start}
             component={Start}
           />
           <Stack.Screen
-            name="DriverCheck"
+            name={viewNames.DriverCheck}
             component={DriverCheck}
           />
           <Stack.Screen
-            name="DriverBlackhole"
+            name={viewNames.DriverBlackhole}
             component={DriverBlackhole}
           />
           <Stack.Screen
-            name="TimeCheck"
+            name={viewNames.TimeCheck}
             component={TimeCheck}
           />
           <Stack.Screen
-            name="TimeSetPast"
+            name={viewNames.TimeSetPast}
             component={TimeSetPast}
           />
           <Stack.Screen
-            name="OccupancyCheck"
+            name={viewNames.OccupancyCheck}
             component={OccupancyCheck}
           />
           <Stack.Screen
-            name="LicenseCheck"
+            name={viewNames.LicenseCheck}
             component={LicenseCheck}
           />
           <Stack.Screen
-            name="HighwayCheck"
+            name={viewNames.HighwayCheck}
             component={HighwayCheck}
           />
           <Stack.Screen
-            name="VehicleDetailsCheck"
+            name={viewNames.VehicleDetailsCheck}
             component={VehicleDetailsCheck}
           />
           <Stack.Screen
-            name="DolPreCheck"
+            name={viewNames.DolPreCheck}
             component={DolPreCheck}
           />
           <Stack.Screen
-            name="DolPreCheckComments"
+            name={viewNames.DolPreCheckComments}
             component={DolPreCheckComments}
           />
           <Stack.Screen
-            name="CommentsCheck"
+            name={viewNames.CommentsCheck}
             component={CommentsCheck}
           />
           <Stack.Screen
-            name="DolPreLaunch"
+            name={viewNames.DolPreLaunch}
             component={DolPreLaunch}
           />
           <Stack.Screen 
-            name="DolForm" 
+            name={viewNames.DolForm}
             component={DolForm} 
           />
           <Stack.Screen 
-            name="FinalSuccess" 
+            name={viewNames.FinalSuccess}
             component={FinalSuccess} 
           />
         </Stack.Navigator>
@@ -97,12 +97,3 @@ export default function App({ navigation }) {
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-});

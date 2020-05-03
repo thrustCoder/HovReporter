@@ -3,9 +3,11 @@ import { View } from 'react-native';
 import { Text, Button, Input, Icon } from 'react-native-elements';
 import RNPickerSelect from 'react-native-picker-select';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { updateLicense, clearAllState } from '../state/actions/AppActions';
 import statePickerItems from '../state/providers/ui-content/State';
+import { mapStateToPropsFn, getMapDispatchToPropsFn } from '../state/actions/ActionMapper';
+import { getNextStepFn, clearAllStateFn } from "../state/providers/ui-actions/Navigation";
+import viewNames from '../state/ViewNames';
 
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
@@ -22,37 +24,15 @@ class LicenseCheck extends Component {
             plate: this.state.plate,
             state: this.state.stateProvince
         });
-        this.props.navigation.navigate(this.getNextStep());
+        this.props.navigation.navigate(getNextStepFn(this.props, viewNames.LicenseCheck));
     }
 
     isNextBtnDisabled() {
         return !this.state.plate || !this.state.stateProvince;
     }
 
-    getNextStep() {
-        let currentNavIndex = this.props.navState.navSequence.lastIndexOf('LicenseCheck');
-        let i = currentNavIndex;
-        let nextState;
-
-        do {
-            i = (i + 1) % 4;
-            nextState = this.props.navState[this.props.navState.navSequence[i]];
-        } while (nextState.completed === true && this.props.navState.navSequence[i] !== 'LicenseCheck');
-
-        if (this.props.navState.navSequence[i] === 'LicenseCheck') {
-            return 'DolPreCheck';
-        }
-
-        return this.props.navState.navSequence[i];
-    }
-
-    clearAllState() {
-        this.props.clearAllState();
-        this.props.navigation.popToTop();
-    }
-
     isSkipBtnDisabled() {
-        return this.getNextStep() === 'DolPreCheck';
+        return getNextStepFn(this.props, viewNames.LicenseCheck) === viewNames.DolPreCheck;
     }
 
     render() {
@@ -65,7 +45,7 @@ class LicenseCheck extends Component {
                             type='font-awesome'
                             color={colors.red}
                             size={50}
-                            onPress={() => this.clearAllState()}
+                            onPress={() => clearAllStateFn(this.props)}
                         />
                     </View>       
                 </View>
@@ -123,7 +103,7 @@ class LicenseCheck extends Component {
                             size={85}
                             disabled={this.isSkipBtnDisabled()}
                             disabledStyle={{ backgroundColor: 'aqua' }}
-                            onPress={() => this.props.navigation.navigate(this.getNextStep())}
+                            onPress={() => this.props.navigation.navigate(getNextStepFn(this.props, viewNames.LicenseCheck))}
                         />
                     </View>
                     <View style={contentItems.nextButton}>
@@ -143,15 +123,9 @@ class LicenseCheck extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { appState, navState } = state
-    return { appState, navState }
-};
-const mapDispatchToProps = dispatch => (
-    bindActionCreators({
-        updateLicense,
-        clearAllState
-    }, dispatch)
-);
+const mapDispatchToPropsFn = getMapDispatchToPropsFn({
+    updateLicense,
+    clearAllState
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(LicenseCheck);
+export default connect(mapStateToPropsFn, mapDispatchToPropsFn)(LicenseCheck);

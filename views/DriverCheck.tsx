@@ -1,20 +1,17 @@
 import React, {Component} from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { Text, Button, Icon } from 'react-native-elements';
 import { clearAllState } from '../state/actions/AppActions';
+import { mapStateToPropsFn, getMapDispatchToPropsFn } from '../state/actions/ActionMapper';
+import { clearAllStateFn } from "../state/providers/ui-actions/Navigation";
 
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
+import viewNames from '../state/ViewNames';
 
 class DriverCheck extends Component {
-    clearAllState() {
-        this.props.clearAllState();
-        this.props.navigation.popToTop();
-    }
-
     render() {
         return (
             <View style={boundingLayout.container}>
@@ -25,7 +22,7 @@ class DriverCheck extends Component {
                             type='font-awesome'
                             color={colors.red}
                             size={50}
-                            onPress={() => this.clearAllState()}
+                            onPress={() => clearAllStateFn(this.props)}
                         />
                     </View>       
                 </View>
@@ -49,13 +46,13 @@ class DriverCheck extends Component {
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
                                     title="Yes" 
-                                    onPress={() => this.props.navigation.navigate('DriverBlackhole')} 
+                                    onPress={() => this.props.navigation.navigate(viewNames.DriverBlackhole)} 
                             />
                             <Button style={contentItems.mainButtonSecondary} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
                                     title="No" 
-                                    onPress={() => this.props.navigation.navigate('TimeCheck')} 
+                                    onPress={() => this.props.navigation.navigate(viewNames.TimeCheck)} 
                             />
                         </View>
                     </View>
@@ -76,14 +73,8 @@ class DriverCheck extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { appState, navState } = state
-    return { appState, navState }
-};
-const mapDispatchToProps = dispatch => (
-    bindActionCreators({
-        clearAllState
-    }, dispatch)
-);
+const mapDispatchToPropsFn = getMapDispatchToPropsFn({
+    clearAllState
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(DriverCheck);
+export default connect(mapStateToPropsFn, mapDispatchToPropsFn)(DriverCheck);

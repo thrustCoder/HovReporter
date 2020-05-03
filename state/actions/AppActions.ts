@@ -1,57 +1,63 @@
-export const updateLicenseState = licenseState => ({
-        type: 'LicenseStateUpdate',
-        payload: licenseState,
-    }
-);
+export const appActions = {
+    TimeUpdate: 'TimeUpdate',
+    DateUpdate: 'DateUpdate',
+    DateTimeUpdate: 'DateTimeUpdate',
+    OccupantsUpdate: 'OccupantsUpdate',
+    LicenseUpdate: 'LicenseUpdate',
+    HighwayUpdate: 'HighwayUpdate',
+    VehicleUpdate: 'VehicleUpdate',
+    CommentsUpdate: 'CommentsUpdate',
+    ClearAllState: 'ClearAllState'
+};
 
 export const updateTime = time => ({
-        type: 'TimeUpdate',
+        type: appActions.TimeUpdate,
         payload: time,
     }
 );
 
 export const updateDate = date => ({
-        type: 'DateUpdate',
+        type: appActions.DateUpdate,
         payload: date,
     }
 );
 
 export const updateDateTime = () => ({
-        type: 'DateTimeUpdate'
+        type: appActions.DateTimeUpdate
     }
 );
 
 export const updateOccupants = occupants => ({
-        type: 'OccupantsUpdate',
+        type: appActions.OccupantsUpdate,
         payload: occupants,
     }
 );
 
 export const updateLicense = license => ({
-        type: 'LicenseUpdate',
+        type: appActions.LicenseUpdate,
         payload: license,
     }
 );
 
 export const updateHighway = highway => ({
-        type: 'HighwayUpdate',
+        type: appActions.HighwayUpdate,
         payload: highway,
     }
 );
 
 export const updateVehicle = vehicle => ({
-        type: 'VehicleUpdate',
+        type: appActions.VehicleUpdate,
         payload: vehicle,
     }
 );
 
 export const updateComments = comments => ({
-        type: 'CommentsUpdate',
+        type: appActions.CommentsUpdate,
         payload: comments,
     }
 );
 
 export const clearAllState = () => ({
-        type: 'ClearAllState',
+        type: appActions.ClearAllState,
     }
 );

@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import { View } from 'react-native';
 import { Text, Button, Image } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { updateOccupants } from '../state/actions/AppActions';
+import { mapStateToPropsFn, getMapDispatchToPropsFn } from '../state/actions/ActionMapper';
 
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
+import viewNames from '../state/ViewNames';
 
 class Start extends Component {
     render() {
@@ -31,7 +32,7 @@ class Start extends Component {
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
                                     title="Let's report" 
-                                    onPress={() => this.props.navigation.navigate('DriverCheck')} 
+                                    onPress={() => this.props.navigation.navigate(viewNames.DriverCheck)} 
                             />
                         </View>
                     </View>
@@ -41,14 +42,8 @@ class Start extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { appState } = state
-    return { appState }
-};
-const mapDispatchToProps = dispatch => (
-    bindActionCreators({
-        updateOccupants,
-    }, dispatch)
-);
+const mapDispatchToPropsFn = getMapDispatchToPropsFn({
+    updateOccupants,
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Start);
+export default connect(mapStateToPropsFn, mapDispatchToPropsFn)(Start);

@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import { View } from 'react-native';
 import { Text, Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { mapStateToPropsFn, getMapDispatchToPropsFn } from '../state/actions/ActionMapper';
 import { updateDate, updateTime, updateDateTime, clearAllState } from '../state/actions/AppActions';
+import { getNextStepFn, clearAllStateFn } from "../state/providers/ui-actions/Navigation";
+import viewNames from "../state/ViewNames";
 
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
@@ -30,33 +32,11 @@ class TimeCheck extends Component {
         this.props.updateDate(date);
         this.props.updateDateTime();
         
-        this.props.navigation.navigate(this.getNextStep());
-    }
-
-    getNextStep() {
-        let currentNavIndex = this.props.navState.navSequence.lastIndexOf('TimeCheck');
-        let i = currentNavIndex;
-        let nextState;
-
-        do {
-            i = (i + 1) % 4;
-            nextState = this.props.navState[this.props.navState.navSequence[i]];
-        } while (nextState.completed === true && this.props.navState.navSequence[i] !== 'TimeCheck');
-
-        if (this.props.navState.navSequence[i] === 'TimeCheck') {
-            return 'DolPreCheck';
-        }
-
-        return this.props.navState.navSequence[i];
-    }
-
-    clearAllState() {
-        this.props.clearAllState();
-        this.props.navigation.popToTop();
+        this.props.navigation.navigate(getNextStepFn(this.props, viewNames.TimeCheck));
     }
 
     isSkipBtnDisabled() {
-        return this.getNextStep() === 'DolPreCheck';
+        return getNextStepFn(this.props, viewNames.TimeCheck) === viewNames.DolPreCheck;
     }
 
     render() {
@@ -69,7 +49,7 @@ class TimeCheck extends Component {
                             type='font-awesome'
                             color={colors.red}
                             size={50}
-                            onPress={() => this.clearAllState()}
+                            onPress={() => clearAllStateFn(this.props)}
                         />
                     </View>       
                 </View>
@@ -99,7 +79,7 @@ class TimeCheck extends Component {
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
                                     title="No" 
-                                    onPress={() => this.props.navigation.navigate('TimeSetPast')} 
+                                    onPress={() => this.props.navigation.navigate(viewNames.TimeSetPast)} 
                             />
                         </View>
                     </View>
@@ -122,7 +102,7 @@ class TimeCheck extends Component {
                             size={85}
                             disabled={this.isSkipBtnDisabled()}
                             disabledStyle={{ backgroundColor: 'aqua' }}
-                            onPress={() => this.props.navigation.navigate(this.getNextStep())}
+                            onPress={() => this.props.navigation.navigate(getNextStepFn(this.props, viewNames.TimeCheck))}
                         />
                     </View>
                     <View style={contentItems.nextButtonFiller}>
@@ -133,17 +113,11 @@ class TimeCheck extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { appState, navState } = state
-    return { appState, navState }
-};
-const mapDispatchToProps = dispatch => (
-    bindActionCreators({
-        updateDate,
-        updateTime,
-        updateDateTime,
-        clearAllState
-    }, dispatch)
-);
+const mapDispatchToPropsFn = getMapDispatchToPropsFn({
+    updateDate,
+    updateTime,
+    updateDateTime,
+    clearAllState
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(TimeCheck);
+export default connect(mapStateToPropsFn, mapDispatchToPropsFn)(TimeCheck);

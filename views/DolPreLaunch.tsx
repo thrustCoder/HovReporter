@@ -2,19 +2,16 @@ import React, {Component} from 'react';
 import { View } from 'react-native';
 import { Text, Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { updateOccupants, clearAllState } from '../state/actions/AppActions';
+import { mapStateToPropsFn, getMapDispatchToPropsFn } from '../state/actions/ActionMapper';
+import { clearAllStateFn } from "../state/providers/ui-actions/Navigation";
 
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
+import viewNames from '../state/ViewNames';
 
 class DolPreLaunch extends Component {
-    clearAllState() {
-        this.props.clearAllState();
-        this.props.navigation.popToTop();
-    }
-
     render() {
         return (
             <View style={boundingLayout.container}>
@@ -25,7 +22,7 @@ class DolPreLaunch extends Component {
                             type='font-awesome'
                             color={colors.red}
                             size={50}
-                            onPress={() => this.clearAllState()}
+                            onPress={() => clearAllStateFn(this.props)}
                         />
                     </View>       
                 </View>
@@ -44,7 +41,7 @@ class DolPreLaunch extends Component {
                                 As the final step, we will take you to the Department of Licensing site for submitting the report. The report page has already been filled with the details you provided earlier. You just need to check the box for Captcha and click Submit. That's it!
                             </Text>
                             <Text style={contentItems.mainText}>
-                                You can always zoom into the report and scroll to verify your entries.
+                                You can always zoom into the report to verify your entries before submitting.
                             </Text>
                         </View>
                         <View style={boundingLayout.actionArea}>
@@ -52,7 +49,7 @@ class DolPreLaunch extends Component {
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
                                     title="Take me to the report" 
-                                    onPress={() => this.props.navigation.navigate('DolForm')} 
+                                    onPress={() => this.props.navigation.navigate(viewNames.DolForm)} 
                             />
                         </View>
                     </View>
@@ -73,15 +70,9 @@ class DolPreLaunch extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { appState, navState } = state
-    return { appState, navState }
-};
-const mapDispatchToProps = dispatch => (
-    bindActionCreators({
-        updateOccupants,
-        clearAllState
-    }, dispatch)
-);
+const mapDispatchToPropsFn = getMapDispatchToPropsFn({
+    updateOccupants,
+    clearAllState
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(DolPreLaunch);
+export default connect(mapStateToPropsFn, mapDispatchToPropsFn)(DolPreLaunch);

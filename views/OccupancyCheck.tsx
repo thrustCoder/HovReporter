@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import { View } from 'react-native';
 import { Text, Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { mapStateToPropsFn, getMapDispatchToPropsFn } from '../state/actions/ActionMapper';
+import { getNextStepFn, clearAllStateFn } from "../state/providers/ui-actions/Navigation";
+import viewNames from '../state/ViewNames';
 import { updateOccupants, clearAllState } from '../state/actions/AppActions';
 
 import colors from '../styles/Colors';
@@ -11,47 +13,25 @@ import contentItems from '../styles/ContentItems';
 
 class OccupancyCheck extends Component {
     state = {
-        button1Color: colors.blue,
-        button2Color: colors.blue
+        button1Color: colors.darkGray,
+        button2Color: colors.darkGray
     };
 
     updateOccupants(numberOfOccupants) {
         if (numberOfOccupants === 1) {
             this.state.button1Color = colors.green;
-            this.state.button2Color = colors.blue;
+            this.state.button2Color = colors.darkGray;
         } else {
             this.state.button2Color = colors.green;
-            this.state.button1Color = colors.blue;
+            this.state.button1Color = colors.darkGray;
         }
 
         this.props.updateOccupants(numberOfOccupants);
-        this.props.navigation.navigate(this.getNextStep());
-    }
-
-    getNextStep() {
-        let currentNavIndex = this.props.navState.navSequence.lastIndexOf('OccupancyCheck');
-        let i = currentNavIndex;
-        let nextState;
-
-        do {
-            i = (i + 1) % 4;
-            nextState = this.props.navState[this.props.navState.navSequence[i]];
-        } while (nextState.completed === true && this.props.navState.navSequence[i] !== 'OccupancyCheck');
-
-        if (this.props.navState.navSequence[i] === 'OccupancyCheck') {
-            return 'DolPreCheck';
-        }
-
-        return this.props.navState.navSequence[i];
-    }
-
-    clearAllState() {
-        this.props.clearAllState();
-        this.props.navigation.popToTop();
+        this.props.navigation.navigate(getNextStepFn(this.props, viewNames.OccupancyCheck));
     }
 
     isSkipBtnDisabled() {
-        return this.getNextStep() === 'DolPreCheck';
+        return getNextStepFn(this.props, viewNames.OccupancyCheck) === viewNames.DolPreCheck;
     }
 
     render() {
@@ -64,7 +44,7 @@ class OccupancyCheck extends Component {
                             type='font-awesome'
                             color={colors.red}
                             size={50}
-                            onPress={() => this.clearAllState()}
+                            onPress={() => clearAllStateFn(this.props)}
                         />
                     </View>       
                 </View>
@@ -117,7 +97,7 @@ class OccupancyCheck extends Component {
                             size={85}
                             disabled={this.isSkipBtnDisabled()}
                             disabledStyle={{ backgroundColor: 'aqua' }}
-                            onPress={() => this.props.navigation.navigate(this.getNextStep())}
+                            onPress={() => this.props.navigation.navigate(getNextStepFn(this.props, viewNames.OccupancyCheck))}
                         />
                     </View>
                     <View style={contentItems.nextButtonFiller}>
@@ -128,15 +108,9 @@ class OccupancyCheck extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { appState, navState } = state
-    return { appState, navState }
-};
-const mapDispatchToProps = dispatch => (
-    bindActionCreators({
-        updateOccupants,
-        clearAllState
-    }, dispatch)
-);
+const mapDispatchToPropsFn = getMapDispatchToPropsFn({
+    updateOccupants,
+    clearAllState
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(OccupancyCheck);
+export default connect(mapStateToPropsFn, mapDispatchToPropsFn)(OccupancyCheck);

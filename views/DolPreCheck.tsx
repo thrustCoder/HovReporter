@@ -2,19 +2,16 @@ import React, {Component} from 'react';
 import { View } from 'react-native';
 import { Text, Button, Icon, Image } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { updateOccupants, clearAllState } from '../state/actions/AppActions';
+import { mapStateToPropsFn, getMapDispatchToPropsFn } from '../state/actions/ActionMapper';
+import { clearAllStateFn } from "../state/providers/ui-actions/Navigation";
 
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
+import viewNames from '../state/ViewNames';
 
 class DolPreCheck extends Component {
-    clearAllState() {
-        this.props.clearAllState();
-        this.props.navigation.popToTop();
-    }
-
     render() {
         return (
             <View style={boundingLayout.container}>
@@ -25,7 +22,7 @@ class DolPreCheck extends Component {
                             type='font-awesome'
                             color={colors.red}
                             size={50}
-                            onPress={() => this.clearAllState()}
+                            onPress={() => clearAllStateFn(this.props)}
                         />
                     </View>       
                 </View>
@@ -52,13 +49,13 @@ class DolPreCheck extends Component {
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
                                     title="Yes" 
-                                    onPress={() => this.props.navigation.navigate('VehicleDetailsCheck')} 
+                                    onPress={() => this.props.navigation.navigate(viewNames.VehicleDetailsCheck)} 
                             />
                             <Button style={contentItems.mainButtonSecondaryLong} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
                                     title="No, finish the report" 
-                                    onPress={() => this.props.navigation.navigate('DolPreLaunch')} 
+                                    onPress={() => this.props.navigation.navigate(viewNames.DolPreLaunch)} 
                             />
                         </View>
                     </View>
@@ -79,15 +76,9 @@ class DolPreCheck extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { appState, navState } = state
-    return { appState, navState }
-};
-const mapDispatchToProps = dispatch => (
-    bindActionCreators({
-        updateOccupants,
-        clearAllState
-    }, dispatch)
-);
+const mapDispatchToPropsFn = getMapDispatchToPropsFn({
+    updateOccupants,
+    clearAllState
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(DolPreCheck);
+export default connect(mapStateToPropsFn, mapDispatchToPropsFn)(DolPreCheck);

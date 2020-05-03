@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import viewNames from '../ViewNames';
+import { appActions } from '../actions/AppActions';
 
 const initialAppState = {
   dolForm: {
@@ -32,7 +34,12 @@ const initialAppState = {
 };
 
 const initialNavState = {
-  navSequence: ['TimeCheck', 'OccupancyCheck', 'LicenseCheck', 'HighwayCheck'],
+  navSequence: [
+    viewNames.TimeCheck, 
+    viewNames.OccupancyCheck, 
+    viewNames.LicenseCheck, 
+    viewNames.HighwayCheck
+  ],
   TimeCheck: {
     completed: false,
     appProps: ['date', 'time']
@@ -57,28 +64,28 @@ const appStateReducer = (state = initialAppState, action) => {
   } = state;
 
   switch (action.type) {
-    case 'TimeUpdate':
+    case appActions.TimeUpdate:
         dolForm.time = action.payload;
         break;
-    case 'DateUpdate':
+    case appActions.DateUpdate:
         dolForm.date = action.payload;
         break;
-    case 'OccupantsUpdate':
+    case appActions.OccupantsUpdate:
         dolForm.occupants = action.payload;
         break;
-    case 'LicenseUpdate':
+    case appActions.LicenseUpdate:
         dolForm.license = action.payload;
         break;
-    case 'HighwayUpdate':
+    case appActions.HighwayUpdate:
         dolForm.highway = action.payload;
         break;
-    case 'VehicleUpdate':
+    case appActions.VehicleUpdate:
         dolForm.vehicle = action.payload;
         break;
-    case 'CommentsUpdate':
+    case appActions.CommentsUpdate:
         dolForm.comments = action.payload;
         break;
-    case 'ClearAllState':
+    case appActions.ClearAllState:
         dolForm = initialAppState.dolForm;
         break;
     default:
@@ -94,19 +101,19 @@ const navStateReducer = (state = initialNavState, action) => {
   let reducedState = state;
 
   switch (action.type) {
-    case 'DateTimeUpdate':
+    case appActions.DateTimeUpdate:
         reducedState.TimeCheck.completed = true;
         break;
-    case 'OccupantsUpdate':
+    case appActions.OccupantsUpdate:
         reducedState.OccupancyCheck.completed = true;
         break;
-    case 'LicenseUpdate':
+    case appActions.LicenseUpdate:
         reducedState.LicenseCheck.completed = true;
         break;
-    case 'HighwayUpdate':
+    case appActions.HighwayUpdate:
         reducedState.HighwayCheck.completed = true;
         break;
-    case 'ClearAllState':
+    case appActions.ClearAllState:
         reducedState.TimeCheck.completed = false;
         reducedState.OccupancyCheck.completed = false;
         reducedState.LicenseCheck.completed = false;

@@ -3,9 +3,11 @@ import { View } from 'react-native';
 import { Text, Button, Icon } from 'react-native-elements';
 import RNPickerSelect from 'react-native-picker-select';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { mapStateToPropsFn, getMapDispatchToPropsFn } from '../state/actions/ActionMapper';
 import { updateDate, updateTime, updateDateTime, clearAllState } from '../state/actions/AppActions';
 import datetime from '../state/providers/ui-content/DateTime';
+import { getNextStepFn, clearAllStateFn } from "../state/providers/ui-actions/Navigation";
+import viewNames from "../state/ViewNames";
 
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
@@ -24,10 +26,23 @@ class TimeSetPast extends Component {
             amPm: ''    
         },
         amPm: {
-            amColor: colors.blue,
-            pmColor: colors.blue
+            amColor: colors.darkGray,
+            pmColor: colors.darkGray
         }
     };
+
+    constructor(props) {
+        super(props);
+
+        let currentDateTime = new Date();
+        if (currentDateTime.getHours() >= 12) {
+            this.state.amPm.amColor = colors.darkGray;
+            this.state.amPm.pmColor = colors.green;
+        } else {
+            this.state.amPm.amColor = colors.green;
+            this.state.amPm.pmColor = colors.darkGray;
+        }
+    }
 
     updateDateTime() {
         let currentDateTime = new Date();
@@ -43,38 +58,16 @@ class TimeSetPast extends Component {
         });
 
         this.props.updateDateTime();
-        this.props.navigation.navigate(this.getNextStep());
-    }
-
-    getNextStep() {
-        let currentNavIndex = this.props.navState.navSequence.lastIndexOf('TimeCheck');
-        let i = currentNavIndex;
-        let nextState;
-
-        do {
-            i = (i + 1) % 4;
-            nextState = this.props.navState[this.props.navState.navSequence[i]];
-        } while (nextState.completed === true && this.props.navState.navSequence[i] !== 'TimeCheck');
-
-        if (this.props.navState.navSequence[i] === 'TimeCheck') {
-            return 'DolPreCheck';
-        }
-
-        return this.props.navState.navSequence[i];
-    }
-
-    clearAllState() {
-        this.props.clearAllState();
-        this.props.navigation.popToTop();
+        this.props.navigation.navigate(getNextStepFn(this.props, viewNames.TimeCheck));
     }
 
     onAmPmClick(amPmClicked) {
         if (amPmClicked === 'am') {
             this.state.amPm.amColor = colors.green;
-            this.state.amPm.pmColor = colors.blue;
+            this.state.amPm.pmColor = colors.darkGray;
         } else {
             this.state.amPm.pmColor = colors.green;
-            this.state.amPm.amColor = colors.blue;
+            this.state.amPm.amColor = colors.darkGray;
         }
 
         this.setState({
@@ -94,12 +87,6 @@ class TimeSetPast extends Component {
         let currentHour = `${this.state.time.hour || (currentDateTime.getHours() % 12 === 0 ? '12' : (currentDateTime.getHours() % 12))}`;
         let currentMinute = `${this.state.time.minute || (currentDateTime.getMinutes() - (currentDateTime.getMinutes() % 5))}`;
 
-        if (currentDateTime.getHours() >= 12) {
-            this.state.amPm.pmColor = colors.green;
-        } else {
-            this.state.amPm.amColor = colors.green;
-        }
-
         return (
             <View style={boundingLayout.container}>
                 <View style={boundingLayout.header}>
@@ -109,7 +96,7 @@ class TimeSetPast extends Component {
                             type='font-awesome'
                             color={colors.red}
                             size={50}
-                            onPress={() => this.clearAllState()}
+                            onPress={() => clearAllStateFn(this.props)}
                         />
                     </View>       
                 </View>
@@ -246,17 +233,11 @@ class TimeSetPast extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { appState, navState } = state
-    return { appState, navState }
-};
-const mapDispatchToProps = dispatch => (
-    bindActionCreators({
-        updateDate,
-        updateTime,
-        updateDateTime,
-        clearAllState
-    }, dispatch)
-);
+const mapDispatchToPropsFn = getMapDispatchToPropsFn({
+    updateDate,
+    updateTime,
+    updateDateTime,
+    clearAllState
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(TimeSetPast);
+export default connect(mapStateToPropsFn, mapDispatchToPropsFn)(TimeSetPast);

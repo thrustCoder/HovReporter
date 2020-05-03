@@ -2,19 +2,15 @@ import React, {Component} from 'react';
 import { View } from 'react-native';
 import { Text, Icon, Image } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { clearAllState } from '../state/actions/AppActions';
+import { mapStateToPropsFn, getMapDispatchToPropsFn } from '../state/actions/ActionMapper';
+import { clearAllStateFn } from "../state/providers/ui-actions/Navigation";
 
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
 
 class DriverBlackhole extends Component {
-    clearAllState() {
-        this.props.clearAllState();
-        this.props.navigation.popToTop();
-    }
-
     render() {
         return (
             <View style={boundingLayout.container}>
@@ -25,7 +21,7 @@ class DriverBlackhole extends Component {
                             type='font-awesome'
                             color={colors.red}
                             size={50}
-                            onPress={() => this.clearAllState()}
+                            onPress={() => clearAllStateFn(this.props)}
                         />
                     </View>       
                 </View>
@@ -53,14 +49,8 @@ class DriverBlackhole extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { appState, navState } = state
-    return { appState, navState }
-};
-const mapDispatchToProps = dispatch => (
-    bindActionCreators({
-        clearAllState,
-    }, dispatch)
-);
+const mapDispatchToPropsFn = getMapDispatchToPropsFn({
+    clearAllState,
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(DriverBlackhole);
+export default connect(mapStateToPropsFn, mapDispatchToPropsFn)(DriverBlackhole);

@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import { View } from 'react-native';
 import { Text, Input, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { updateVehicle, clearAllState } from '../../state/actions/AppActions';
+import { mapStateToPropsFn, getMapDispatchToPropsFn } from '../../state/actions/ActionMapper';
+import { clearAllStateFn } from "../../state/providers/ui-actions/Navigation";
+import viewNames from '../../state/ViewNames';
 
 import colors from '../../styles/Colors';
 import boundingLayout from '../../styles/BoundingLayout';
@@ -22,12 +24,7 @@ class VehicleDetailsCheck extends Component {
             model: this.state.model,
             color: this.state.color
         });
-        this.props.navigation.navigate('DolPreCheckComments');
-    }
-
-    clearAllState() {
-        this.props.clearAllState();
-        this.props.navigation.popToTop();
+        this.props.navigation.navigate(viewNames.DolPreCheckComments);
     }
 
     isNextBtnDisabled() {
@@ -44,7 +41,7 @@ class VehicleDetailsCheck extends Component {
                             type='font-awesome'
                             color={colors.red}
                             size={50}
-                            onPress={() => this.clearAllState()}
+                            onPress={() => clearAllStateFn(this.props)}
                         />
                     </View>       
                 </View>
@@ -124,15 +121,9 @@ class VehicleDetailsCheck extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    const { appState, navState } = state
-    return { appState, navState }
-};
-const mapDispatchToProps = dispatch => (
-    bindActionCreators({
-        updateVehicle,
-        clearAllState
-    }, dispatch)
-);
+const mapDispatchToPropsFn = getMapDispatchToPropsFn({
+    updateVehicle,
+    clearAllState
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(VehicleDetailsCheck);
+export default connect(mapStateToPropsFn, mapDispatchToPropsFn)(VehicleDetailsCheck);

@@ -64,9 +64,9 @@ class LicenseCheck extends Component {
                                 <Text h4 style={contentItems.inputLabel}>
                                     License plate:
                                 </Text>
-                                <Input containerStyle={{ width: 150, backgroundColor: '#a52a2a' }}
+                                <Input containerStyle={{ width: 170, backgroundColor: '#a52a2a' }}
                                     inputStyle={contentItems.input}
-                                    placeholder='Enter plate number'
+                                    placeholder='plate #'
                                     label=''
                                     autoCapitalize='characters'
                                     onChangeText={plate => this.setState({plate})}
@@ -76,7 +76,11 @@ class LicenseCheck extends Component {
                                 <Text h4 style={contentItems.pickerLabel}>
                                     License state:
                                 </Text>
-                                <RNPickerSelect style={{inputIOS: contentItems.pickerIOS}}
+                                <RNPickerSelect style={{
+                                        inputIOS: contentItems.pickerIOS, 
+                                        inputAndroid: contentItems.pickerAndroid 
+                                    }}
+                                    useNativeAndroidPickerStyle={false}
                                     onValueChange={(stateProvince) => this.setState({stateProvince})}
                                     placeholder={{label: 'State', value: null}}
                                     items={statePickerItems}

@@ -94,6 +94,14 @@ const contentItems = StyleSheet.create({
         fontSize: 25,
         backgroundColor: colors.green
     },
+    pickerAndroid: {
+        color: colors.white,
+        marginVertical: 10,
+        marginRight: 10,
+        marginLeft: 5,
+        fontSize: 25,
+        backgroundColor: colors.green
+    },
     pickerLabel: {
         ...mainTextCore,
         marginLeft: 10,

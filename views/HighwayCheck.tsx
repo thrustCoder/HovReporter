@@ -78,7 +78,11 @@ class HighwayCheck extends Component {
                                 <Text h4 style={contentItems.inputLabel}>
                                     Highway:
                                 </Text>
-                                <RNPickerSelect style={{inputIOS: contentItems.pickerIOS}}
+                                <RNPickerSelect style={{
+                                        inputIOS: contentItems.pickerIOS, 
+                                        inputAndroid: contentItems.pickerAndroid 
+                                    }}
+                                    useNativeAndroidPickerStyle={false}
                                     onValueChange={(highwayName) => this.setState({name: highwayName})}
                                     placeholder={{label: 'Select highway', value: null}}
                                     items={highwayPickerItems}

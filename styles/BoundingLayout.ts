@@ -50,7 +50,7 @@ const boundingLayout = StyleSheet.create({
         marginBottom: 20,
         marginHorizontal: 20,
         flexDirection: 'row',
-        justifyContent: 'center'
+        justifyContent: 'space-around'
     }
 });
 

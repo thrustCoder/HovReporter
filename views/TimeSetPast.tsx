@@ -118,7 +118,11 @@ class TimeSetPast extends Component {
                                 <Text h4 style={contentItems.pickerLabel}>
                                     Day:
                                 </Text>
-                                <RNPickerSelect style={{inputIOS: contentItems.pickerIOS}}
+                                <RNPickerSelect style={{
+                                        inputIOS: contentItems.pickerIOS, 
+                                        inputAndroid: contentItems.pickerAndroid 
+                                    }}
+                                    useNativeAndroidPickerStyle={false}
                                     value={currentDay}
                                     onValueChange={(day) => this.setState({
                                         date: {
@@ -133,7 +137,11 @@ class TimeSetPast extends Component {
                                 <Text h4 style={contentItems.pickerLabel}>
                                     Month:
                                 </Text>
-                                <RNPickerSelect style={{inputIOS: contentItems.pickerIOS}}
+                                <RNPickerSelect style={{
+                                        inputIOS: contentItems.pickerIOS, 
+                                        inputAndroid: contentItems.pickerAndroid 
+                                    }}
+                                    useNativeAndroidPickerStyle={false}
                                     value={currentMonth}
                                     onValueChange={(month) => this.setState({
                                         date: {
@@ -148,7 +156,11 @@ class TimeSetPast extends Component {
                                 <Text h4 style={contentItems.pickerLabel}>
                                     Year:
                                 </Text>
-                                <RNPickerSelect style={{inputIOS: contentItems.pickerIOS}}
+                                <RNPickerSelect style={{
+                                        inputIOS: contentItems.pickerIOS, 
+                                        inputAndroid: contentItems.pickerAndroid 
+                                    }}
+                                    useNativeAndroidPickerStyle={false}
                                     value={currentYear}
                                     onValueChange={(year) => this.setState({
                                         date: {
@@ -165,7 +177,11 @@ class TimeSetPast extends Component {
                                 <Text h4 style={contentItems.pickerLabel}>
                                     Hour
                                 </Text>
-                                <RNPickerSelect style={{inputIOS: contentItems.pickerIOS}}
+                                <RNPickerSelect style={{
+                                        inputIOS: contentItems.pickerIOS, 
+                                        inputAndroid: contentItems.pickerAndroid 
+                                    }}
+                                    useNativeAndroidPickerStyle={false}
                                     value={currentHour}
                                     onValueChange={(hour) => this.setState({
                                         time: {
@@ -180,7 +196,11 @@ class TimeSetPast extends Component {
                                 <Text h4 style={contentItems.pickerLabel}>
                                     Minute
                                 </Text>
-                                <RNPickerSelect style={{inputIOS: contentItems.pickerIOS}}
+                                <RNPickerSelect style={{
+                                        inputIOS: contentItems.pickerIOS, 
+                                        inputAndroid: contentItems.pickerAndroid 
+                                    }}
+                                    useNativeAndroidPickerStyle={false}
                                     value={currentMinute}
                                     onValueChange={(minute) => this.setState({
                                         time: {

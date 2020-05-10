@@ -38,10 +38,10 @@ class DolPreLaunch extends Component {
                         </View>
                         <View style={boundingLayout.mainArea}>
                             <Text h4 style={contentItems.mainText}>
-                                As the final step, we will take you to the Department of Licensing site for submitting the report. The report page has already been filled with the details you provided earlier. You just need to check the box for Captcha and click Submit. That's it!
+                                We will now take you to the WA Department of Licensing site for submitting the report. In the report, you just need to check the box for Captcha and click Submit. That's it!
                             </Text>
                             <Text style={contentItems.mainText}>
-                                You can always zoom into the report to verify your entries before submitting.
+                                The report has already been filled with the details you provided earlier. You can always zoom in and verify your entries before submitting.
                             </Text>
                         </View>
                         <View style={boundingLayout.actionArea}>

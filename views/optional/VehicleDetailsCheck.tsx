@@ -98,7 +98,7 @@ class VehicleDetailsCheck extends Component {
                             name='arrow-circle-left'
                             type='font-awesome'
                             color={colors.green}
-                            size={70}
+                            size={boundingLayout.footerNavigationBtn.height}
                             onPress={() => this.props.navigation.goBack()}
                         />
                     </View>
@@ -109,9 +109,9 @@ class VehicleDetailsCheck extends Component {
                             name='arrow-circle-right'
                             type='font-awesome'
                             color={this.isNextBtnDisabled() ? colors.darkGray : colors.green}
-                            size={70}
+                            size={boundingLayout.footerNavigationBtn.height}
                             disabled={this.isNextBtnDisabled()}
-                            disabledStyle={{ backgroundColor: 'aqua' }}
+                            disabledStyle={{ backgroundColor: colors.white }}
                             onPress={() => this.updateVehicle()}
                         />
                     </View>

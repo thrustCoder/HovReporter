@@ -17,6 +17,7 @@ class CommentsCheck extends Component {
     };
 
     updateComments() {
+        this.state.comments = this.state.comments.replace(/\n/g, " ");
         this.props.updateComments(this.state.comments);
         this.props.navigation.navigate(viewNames.DolPreLaunch);
     }
@@ -75,7 +76,7 @@ class CommentsCheck extends Component {
                                 name='arrow-circle-left'
                                 type='font-awesome'
                                 color={colors.green}
-                                size={70}
+                                size={boundingLayout.footerNavigationBtn.height}
                                 onPress={() => this.props.navigation.goBack()}
                             />
                         </View>

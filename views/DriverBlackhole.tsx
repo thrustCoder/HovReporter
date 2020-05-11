@@ -37,7 +37,7 @@ class DriverBlackhole extends Component {
                                 Please focus on driving.
                             </Text>
                             <Text h4 style={contentItems.mainText}>
-                                You can always come back to the app and report the violation later.
+                                You can always come back and report the violation later.
                             </Text>
                         </View>
                     </View>

@@ -112,7 +112,7 @@ class TimeSetPast extends Component {
                         </View>
                         <View style={boundingLayout.mainArea}>
                             <Text h3 style={contentItems.mainText}>
-                                Please enter the time when violation happened.
+                                Please enter the time when it happened.
                             </Text>
                             <View style={boundingLayout.mainSubAreaFlowRow}>
                                 <Text h4 style={contentItems.pickerLabel}>
@@ -175,7 +175,7 @@ class TimeSetPast extends Component {
                             </View>
                             <View style={boundingLayout.mainSubAreaFlowRow}>
                                 <Text h4 style={contentItems.pickerLabel}>
-                                    Hour
+                                    Hour:
                                 </Text>
                                 <RNPickerSelect style={{
                                         inputIOS: contentItems.pickerIOS, 
@@ -194,7 +194,7 @@ class TimeSetPast extends Component {
                                     items={datetime.hourPickerItems}
                                 />
                                 <Text h4 style={contentItems.pickerLabel}>
-                                    Minute
+                                    Minute:
                                 </Text>
                                 <RNPickerSelect style={{
                                         inputIOS: contentItems.pickerIOS, 
@@ -232,7 +232,7 @@ class TimeSetPast extends Component {
                             name='arrow-circle-left'
                             type='font-awesome'
                             color={colors.green}
-                            size={70}
+                            size={boundingLayout.footerNavigationBtn.height}
                             onPress={() => this.props.navigation.goBack()}
                         />
                     </View>
@@ -243,7 +243,7 @@ class TimeSetPast extends Component {
                             name='arrow-circle-right'
                             type='font-awesome'
                             color={colors.green}
-                            size={70}
+                            size={boundingLayout.footerNavigationBtn.height}
                             onPress={() => this.updateDateTime()}
                         />
                     </View>

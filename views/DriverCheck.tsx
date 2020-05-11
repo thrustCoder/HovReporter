@@ -41,7 +41,7 @@ class DriverCheck extends Component {
                                 Are you using the app while driving?
                             </Text>
                         </View>
-                        <View style={boundingLayout.actionArea}>
+                        <View style={boundingLayout.actionAreaSmall}>
                             <Button style={contentItems.mainButtonPrimary} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
@@ -63,7 +63,7 @@ class DriverCheck extends Component {
                             name='arrow-circle-left'
                             type='font-awesome'
                             color={colors.green}
-                            size={70}
+                            size={boundingLayout.footerNavigationBtn.height}
                             onPress={() => this.props.navigation.goBack()}
                         />
                     </View>

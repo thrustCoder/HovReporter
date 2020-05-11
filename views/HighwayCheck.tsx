@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import { View } from 'react-native';
-import { Text, Button, Icon } from 'react-native-elements';
+import { Text, Button, Input, Icon } from 'react-native-elements';
 import RNPickerSelect from 'react-native-picker-select';
 import { connect } from 'react-redux';
-import { updateHighway, clearAllState } from '../state/actions/AppActions';
+import { updateHighway, updateLocation, clearAllState } from '../state/actions/AppActions';
 import highwayPickerItems from '../state/providers/ui-content/Highway';
 import { mapStateToPropsFn, getMapDispatchToPropsFn } from '../state/actions/ActionMapper';
 import { getNextStepFn, clearAllStateFn } from "../state/providers/ui-actions/Navigation";
@@ -17,8 +17,10 @@ class HighwayCheck extends Component {
     state = {
         name: '',
         isRamp: null,
+        location: '',
         yesBtnColor: colors.darkGray,
-        noBtnColor: colors.darkGray
+        noBtnColor: colors.darkGray,
+        notSureBtnColor: colors.darkGray
     };
 
     updateHighway() {
@@ -26,6 +28,8 @@ class HighwayCheck extends Component {
             name: this.state.name,
             isRamp: this.state.isRamp || false
         });
+
+        this.props.updateLocation(this.state.location || 'Not sure');
         this.props.navigation.navigate(getNextStepFn(this.props, viewNames.HighwayCheck));
     }
 
@@ -41,8 +45,20 @@ class HighwayCheck extends Component {
         this.setState({ isRamp });
     }
 
+    onNotSureClick() {
+        this.state.notSureBtnColor = colors.green;
+        this.setState({location: 'Not sure'});
+    }
+
+    onChangeText(location) {
+        if (this.state.notSureBtnColor === colors.green) {
+            this.state.notSureBtnColor = colors.darkGray;
+        }
+        this.setState({location});
+    }
+
     isNextBtnDisabled() {
-        return !this.state.name || this.state.isRamp === null;
+        return !this.state.name || !this.state.location || this.state.isRamp === null;
     }
 
     isSkipBtnDisabled() {
@@ -89,6 +105,24 @@ class HighwayCheck extends Component {
                                 />
                             </View>
                             <View style={boundingLayout.mainSubAreaFlowRow}>
+                                <Text h4 style={contentItems.inputLabel}>
+                                    Location:
+                                </Text>
+                                <Input containerStyle={{ width: 150 }}
+                                    inputStyle={contentItems.inputSmall}
+                                    placeholder='e.g. nearest exit'
+                                    value={this.state.location}
+                                    label=''
+                                    onChangeText={location => this.onChangeText(location)}
+                                />
+                                <View style={contentItems.inlineBtnsContainers}>
+                                    <Button style={contentItems.notSureButton}
+                                        buttonStyle={{ backgroundColor: this.state.notSureBtnColor }}
+                                        title="Not sure" 
+                                        onPress={() => this.onNotSureClick()}/>
+                                </View>
+                            </View>
+                            <View style={boundingLayout.mainSubAreaFlowRow}>
                                 <Text h4 style={contentItems.pickerLabel}>
                                     Happened on a ramp?
                                 </Text>
@@ -112,7 +146,7 @@ class HighwayCheck extends Component {
                             name='arrow-circle-left'
                             type='font-awesome'
                             color={colors.green}
-                            size={70}
+                            size={boundingLayout.footerNavigationBtn.height}
                             onPress={() => this.props.navigation.goBack()}
                         />
                     </View>
@@ -121,9 +155,9 @@ class HighwayCheck extends Component {
                             name='debug-step-over'
                             type='material-community'
                             color={this.isSkipBtnDisabled() ? colors.darkGray : colors.green}
-                            size={85}
+                            size={boundingLayout.footerSkipBtn.height}
                             disabled={this.isSkipBtnDisabled()}
-                            disabledStyle={{ backgroundColor: 'aqua' }}
+                            disabledStyle={{ backgroundColor: colors.white }}
                             onPress={() => this.props.navigation.navigate(getNextStepFn(this.props, viewNames.HighwayCheck))}
                         />
                     </View>
@@ -132,9 +166,9 @@ class HighwayCheck extends Component {
                             name='arrow-circle-right'
                             type='font-awesome'
                             color={this.isNextBtnDisabled() ? colors.darkGray : colors.green}
-                            size={70}
+                            size={boundingLayout.footerNavigationBtn.height}
                             disabled={this.isNextBtnDisabled()}
-                            disabledStyle={{ backgroundColor: 'aqua' }}
+                            disabledStyle={{ backgroundColor: colors.white }}
                             onPress={() => this.updateHighway()}
                         />
                     </View>
@@ -146,6 +180,7 @@ class HighwayCheck extends Component {
 
 const mapDispatchToPropsFn = getMapDispatchToPropsFn({
     updateHighway,
+    updateLocation,
     clearAllState
 });
 

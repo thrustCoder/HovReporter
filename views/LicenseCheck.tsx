@@ -64,9 +64,9 @@ class LicenseCheck extends Component {
                                 <Text h4 style={contentItems.inputLabel}>
                                     License plate:
                                 </Text>
-                                <Input containerStyle={{ width: 170, backgroundColor: '#a52a2a' }}
+                                <Input containerStyle={{ width: 170 }}
                                     inputStyle={contentItems.input}
-                                    placeholder='plate #'
+                                    placeholder='Plate #'
                                     label=''
                                     autoCapitalize='characters'
                                     onChangeText={plate => this.setState({plate})}
@@ -95,7 +95,7 @@ class LicenseCheck extends Component {
                             name='arrow-circle-left'
                             type='font-awesome'
                             color={colors.green}
-                            size={70}
+                            size={boundingLayout.footerNavigationBtn.height}
                             onPress={() => this.props.navigation.goBack()}
                         />
                     </View>
@@ -104,9 +104,9 @@ class LicenseCheck extends Component {
                             name='debug-step-over'
                             type='material-community'
                             color={this.isSkipBtnDisabled() ? colors.darkGray : colors.green}
-                            size={85}
+                            size={boundingLayout.footerSkipBtn.height}
                             disabled={this.isSkipBtnDisabled()}
-                            disabledStyle={{ backgroundColor: 'aqua' }}
+                            disabledStyle={{ backgroundColor: colors.white }}
                             onPress={() => this.props.navigation.navigate(getNextStepFn(this.props, viewNames.LicenseCheck))}
                         />
                     </View>
@@ -115,9 +115,9 @@ class LicenseCheck extends Component {
                             name='arrow-circle-right'
                             type='font-awesome'
                             color={this.isNextBtnDisabled() ? colors.darkGray : colors.green}
-                            size={70}
+                            size={boundingLayout.footerNavigationBtn.height}
                             disabled={this.isNextBtnDisabled()}
-                            disabledStyle={{ backgroundColor: 'aqua' }}
+                            disabledStyle={{ backgroundColor: colors.white }}
                             onPress={() => this.updateLicense()}
                         />
                     </View>

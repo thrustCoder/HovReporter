@@ -1,11 +1,10 @@
 import { StyleSheet } from 'react-native';
 import colors from './Colors';
 
-const mainTextCore = {
-    marginVertical: 7,
-    marginBottom: 15,
+const mainTextCommon = {
+    marginVertical: 10,
     textAlign: 'center',
-    backgroundColor: 'aquamarine'
+    backgroundColor: colors.white
 };
 const centeredButton = {
     marginHorizontal: 10,
@@ -14,7 +13,11 @@ const centeredButton = {
 
 const contentItems = StyleSheet.create({
     mainText: {
-        ...mainTextCore
+        ...mainTextCommon,
+        marginBottom: 15,
+    },
+    mainTextCramped: {
+        ...mainTextCommon
     },
     mainButton: {
         width: 150,
@@ -65,7 +68,11 @@ const contentItems = StyleSheet.create({
         marginHorizontal: 5,
         marginVertical: 3,
     },
+    notSureButton: {
+        marginVertical: 5
+    },
     inlineBtnsContainers: {
+        marginVertical: 5,
         marginLeft: 10,
         flexDirection: 'row',
         justifyContent: 'flex-end',
@@ -75,9 +82,9 @@ const contentItems = StyleSheet.create({
         height: 35, 
         marginBottom: -5 
     },
-    carPassingImage: { 
-        width: 350, 
-        height: 120,
+    startMainImage: { 
+        width: 90, 
+        height: 150,
         marginVertical: 20
     },
     noTextWhileDriveImage: {
@@ -103,15 +110,22 @@ const contentItems = StyleSheet.create({
         backgroundColor: colors.green
     },
     pickerLabel: {
-        ...mainTextCore,
+        ...mainTextCommon,
+        marginBottom: 15,
         marginLeft: 10,
     },
     input: {
         marginTop: -13, 
-        fontSize: 30
+        fontSize: 28
+    },
+    inputSmall: {
+        marginTop: -15, 
+        marginLeft: -5, 
+        fontSize: 20
     },
     inputLabel: {
-        ...mainTextCore,
+        ...mainTextCommon,
+        marginBottom: 15,
         marginLeft: 10,
     },
     textarea: {

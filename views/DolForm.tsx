@@ -20,19 +20,30 @@ class DolForm extends Component {
     onPostMessage(eventData) {
         let data = JSON.parse(eventData);
 
-        if ((data.type === "PostNavigate") && (RegExp('^https://www.wsdot.wa.gov/node/[0-9]+/done').test(data.payload.split()[0]))) {
+        // A/B: Local testing
+        // if ((data.type === "PostNavigate") && (RegExp('^https://www.wsdot.wa.gov/node/[0-9]+/done').test(data.payload.split()[0]))) {
+        //     console.log("Success!");
+        //     this.props.navigation.navigate(viewNames.FinalSuccess);
+        // } else {
+        //     this.props.navigation.navigate(viewNames.FinalSuccess);
+        // }
+
+        // A/B: Prod version
+        if ((data.type === "PostNavigate") && 
+            (RegExp('^https://www.wsdot.wa.gov/node/[0-9]+/done').test(data.payload.split()[0]))) {
+
             console.log("Success!");
             this.props.navigation.navigate(viewNames.FinalSuccess);
         } else {
-            // DOIT: comment when final
-            this.props.navigation.navigate(viewNames.FinalSuccess);
-
-            // DOIT: uncomment when final
-            // let that = this;
-            // if (this.pingForSuccessCount < 15) {
-            //   this.pingForSuccessCount++;
-            //   setTimeout(function() { that.webView.injectJavaScript(that.injectedJavaScript2) }, 5000);
-            // }
+            let that = this;
+            if (this.pingForSuccessCount < 15) {
+              this.pingForSuccessCount++;
+              setTimeout(function() {
+                if (that.webView) {
+                    that.webView.injectJavaScript(that.injectedJavaScript2) 
+                }
+              }, 5000);
+            }
         }
     }
 
@@ -40,7 +51,6 @@ class DolForm extends Component {
         let form = this.props.appState.dolForm;
         console.log(form);
 
-        let subjectWord = (form.occupants > 1) ? 'people' : 'person';
         let observedOnRampSelectorIndex = form.highway.isRamp ? 1 : 2;
         let injectedJavaScript = 
           `document.getElementById('edit-submitted-license').value = "${form.license.plate}"; ` +

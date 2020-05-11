@@ -19,6 +19,11 @@ const contentItems = StyleSheet.create({
     mainTextCramped: {
         ...mainTextCommon
     },
+    mainTextCrampedHighlight: {
+        ...mainTextCommon,
+        backgroundColor: colors.yellow,
+        fontWeight: 'bold'
+    },
     mainButton: {
         width: 150,
         alignSelf: 'center'

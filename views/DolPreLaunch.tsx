@@ -40,7 +40,7 @@ class DolPreLaunch extends Component {
                             <Text h4 style={contentItems.mainTextCramped}>
                                 We will now take you to the Department of Licensing site for submitting the report.
                             </Text>
-                            <Text h4 style={contentItems.mainTextCramped}>
+                            <Text h4 style={contentItems.mainTextCrampedHighlight}>
                                 In the report, you need to check the box for Captcha and click Submit. That's it!
                             </Text>
                             <Text style={contentItems.mainTextCramped}>

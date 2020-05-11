@@ -89,7 +89,32 @@ const appStateReducer = (state = initialAppState, action) => {
         dolForm.comments = action.payload;
         break;
     case appActions.ClearAllState:
-        dolForm = initialAppState.dolForm;
+        dolForm.license = {
+          plate: '',
+          state: 'WA'
+        };
+        dolForm.highway = {
+          name: '',
+          isRamp: false
+        };
+        dolForm.location = '';
+        dolForm.time = {
+          hour: '',
+          minute: '',
+          amPm: ''
+        };
+        dolForm.date = {
+          day: '',
+          month: '',
+          year: ''
+        };
+        dolForm.occupants = '1';
+        dolForm.vehicle = {
+          make: '',
+          model: '',
+          color: ''
+        };
+        dolForm.comments = '';
         break;
     default:
         return state;

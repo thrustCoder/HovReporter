@@ -68,7 +68,7 @@ class TimeCheck extends Component {
                                 Did you notice the HOV violation just now (within past 15 minutes)?
                             </Text>
                         </View>
-                        <View style={boundingLayout.actionArea}>
+                        <View style={boundingLayout.actionAreaSmall}>
                             <Button style={contentItems.mainButtonPrimary} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
@@ -90,7 +90,7 @@ class TimeCheck extends Component {
                             name='arrow-circle-left'
                             type='font-awesome'
                             color={colors.green}
-                            size={70}
+                            size={boundingLayout.footerNavigationBtn.height}
                             onPress={() => this.props.navigation.goBack()}
                         />
                     </View>
@@ -99,9 +99,9 @@ class TimeCheck extends Component {
                             name='debug-step-over'
                             type='material-community'
                             color={this.isSkipBtnDisabled() ? colors.darkGray : colors.green}
-                            size={85}
+                            size={boundingLayout.footerSkipBtn.height}
                             disabled={this.isSkipBtnDisabled()}
-                            disabledStyle={{ backgroundColor: 'aqua' }}
+                            disabledStyle={{ backgroundColor: colors.white }}
                             onPress={() => this.props.navigation.navigate(getNextStepFn(this.props, viewNames.TimeCheck))}
                         />
                     </View>

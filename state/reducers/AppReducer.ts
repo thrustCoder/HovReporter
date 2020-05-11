@@ -54,7 +54,7 @@ const initialNavState = {
   },
   HighwayCheck: {
     completed: false,
-    appProps: ['highway']
+    appProps: ['highway', 'location']
   }
 };
 
@@ -78,6 +78,9 @@ const appStateReducer = (state = initialAppState, action) => {
         break;
     case appActions.HighwayUpdate:
         dolForm.highway = action.payload;
+        break;
+    case appActions.LocationUpdate:
+        dolForm.location = action.payload;
         break;
     case appActions.VehicleUpdate:
         dolForm.vehicle = action.payload;

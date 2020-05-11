@@ -1,4 +1,17 @@
 import { StyleSheet } from 'react-native';
+import colors from './Colors';
+
+const actionAreaCommon = {
+    marginVertical: 15,
+    // Has to be minimum 15.
+    marginHorizontal: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+};
+const mainAreaCommon = {
+    textAlign: 'center',
+    backgroundColor: colors.white
+};
 
 const boundingLayout = StyleSheet.create({
     container: {
@@ -6,8 +19,8 @@ const boundingLayout = StyleSheet.create({
         justifyContent: 'space-between'
     },
     header: {
-        height: 100,
-        backgroundColor: 'chartreuse',
+        height: 85,
+        backgroundColor: colors.white,
         flexDirection: 'column',
         justifyContent: 'flex-end',
         alignItems: 'flex-end'
@@ -15,43 +28,53 @@ const boundingLayout = StyleSheet.create({
     content: {
         flex: 1,
         flexGrow: 1,
-        backgroundColor: 'grey',
+        backgroundColor: colors.white,
         justifyContent: 'center',
         alignItems: 'center'
     },
     footer: {
-        height: 90,
-        backgroundColor: 'aqua',
+        height: 75,
+        backgroundColor: colors.white,
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        alignItems: 'flex-start'
+        alignItems: 'center'
+    },
+    footerNavigationBtn: {
+        height: 60
+    },
+    footerSkipBtn: {
+        height: 70
     },
     boundingContainer: {
-        backgroundColor: 'beige',
-        marginHorizontal: 20
+        backgroundColor: colors.white,
+        // Has to be minimum 15.
+        marginHorizontal: 10
     },
     topImageArea: {
         alignSelf: 'center'
     },
     mainArea: {
         marginVertical: 20,
-        textAlign: 'center',
-        backgroundColor: 'aquamarine'
+        ...mainAreaCommon
+    },
+    mainAreaCramped: {
+        ...mainAreaCommon
+    },
+    actionArea: {
+        ...actionAreaCommon
+    },
+    actionAreaSmall: {
+        ...actionAreaCommon,
+        width: 200,
+        alignSelf: 'center',
     },
     mainSubAreaFlowRow: {
         marginTop: 10,
         marginBottom: 10,
         flexDirection: 'row',
         justifyContent: 'center',
-        backgroundColor: '#8a2be2'
+        backgroundColor: colors.white
     },
-    actionArea: {
-        marginTop: 40,
-        marginBottom: 20,
-        marginHorizontal: 20,
-        flexDirection: 'row',
-        justifyContent: 'space-around'
-    }
 });
 
 export default boundingLayout;

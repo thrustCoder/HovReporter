@@ -36,12 +36,15 @@ class DolPreLaunch extends Component {
                                 size={100}
                             />
                         </View>
-                        <View style={boundingLayout.mainArea}>
-                            <Text h4 style={contentItems.mainText}>
-                                We will now take you to the WA Department of Licensing site for submitting the report. In the report, you just need to check the box for Captcha and click Submit. That's it!
+                        <View style={boundingLayout.mainAreaCramped}>
+                            <Text h4 style={contentItems.mainTextCramped}>
+                                We will now take you to the Department of Licensing site for submitting the report.
                             </Text>
-                            <Text style={contentItems.mainText}>
-                                The report has already been filled with the details you provided earlier. You can always zoom in and verify your entries before submitting.
+                            <Text h4 style={contentItems.mainTextCramped}>
+                                In the report, you need to check the box for Captcha and click Submit. That's it!
+                            </Text>
+                            <Text style={contentItems.mainTextCramped}>
+                                The report has already been filled with the details you provided earlier. You can zoom in and verify the entries before submitting, if desired.
                             </Text>
                         </View>
                         <View style={boundingLayout.actionArea}>
@@ -60,7 +63,7 @@ class DolPreLaunch extends Component {
                             name='arrow-circle-left'
                             type='font-awesome'
                             color={colors.green}
-                            size={70}
+                            size={boundingLayout.footerNavigationBtn.height}
                             onPress={() => this.props.navigation.goBack()}
                         />
                     </View>

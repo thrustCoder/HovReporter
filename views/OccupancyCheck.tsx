@@ -52,7 +52,7 @@ class OccupancyCheck extends Component {
                     <View style={boundingLayout.boundingContainer}>
                         <View style={boundingLayout.topImageArea}>
                             <Icon
-                                name='torsos-male-female'
+                                name='torsos-female-male'
                                 type='foundation'
                                 color={colors.green}
                                 size={100}
@@ -63,7 +63,7 @@ class OccupancyCheck extends Component {
                                 How many people do you see in the vehicle?
                             </Text>
                         </View>
-                        <View style={boundingLayout.actionArea}>
+                        <View style={boundingLayout.actionAreaSmall}>
                             <Button style={contentItems.mainButtonPrimary} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: this.state.button1Color }}
@@ -85,7 +85,7 @@ class OccupancyCheck extends Component {
                             name='arrow-circle-left'
                             type='font-awesome'
                             color={colors.green}
-                            size={70}
+                            size={boundingLayout.footerNavigationBtn.height}
                             onPress={() => this.props.navigation.goBack()}
                         />
                     </View>
@@ -94,9 +94,9 @@ class OccupancyCheck extends Component {
                             name='debug-step-over'
                             type='material-community'
                             color={this.isSkipBtnDisabled() ? colors.darkGray : colors.green}
-                            size={85}
+                            size={boundingLayout.footerSkipBtn.height}
                             disabled={this.isSkipBtnDisabled()}
-                            disabledStyle={{ backgroundColor: 'aqua' }}
+                            disabledStyle={{ backgroundColor: colors.white }}
                             onPress={() => this.props.navigation.navigate(getNextStepFn(this.props, viewNames.OccupancyCheck))}
                         />
                     </View>

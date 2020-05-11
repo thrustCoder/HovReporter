@@ -5,6 +5,7 @@ export const appActions = {
     OccupantsUpdate: 'OccupantsUpdate',
     LicenseUpdate: 'LicenseUpdate',
     HighwayUpdate: 'HighwayUpdate',
+    LocationUpdate: 'LocationUpdate',
     VehicleUpdate: 'VehicleUpdate',
     CommentsUpdate: 'CommentsUpdate',
     ClearAllState: 'ClearAllState'
@@ -43,6 +44,12 @@ export const updateHighway = highway => ({
         type: appActions.HighwayUpdate,
         payload: highway,
     }
+);
+
+export const updateLocation = location => ({
+    type: appActions.LocationUpdate,
+    payload: location,
+}
 );
 
 export const updateVehicle = vehicle => ({

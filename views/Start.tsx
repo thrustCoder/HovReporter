@@ -24,7 +24,7 @@ class Start extends Component {
                                 Saw someone using an HOV lane illegally?
                             </Text>
                             <Text h4 style={contentItems.mainText}>
-                                Let's report the violation on Department of Licensing site. It's simple!
+                                Let's report the violation on Department of Transportation site. It's simple!
                             </Text>
                         </View>
                         <View style={boundingLayout.actionArea}>

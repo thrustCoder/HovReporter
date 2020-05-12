@@ -29,7 +29,7 @@ class FinalSuccess extends Component {
                                 DONE!
                             </Text>
                             <Text h4 style={contentItems.mainText}>
-                                As per the DOL site, following action would be taken against the offender:
+                                As per the DOT site, following action would be taken against the offender:
                             </Text>
                             <Text style={contentItems.mainText}>
                                 First-time HOV lane violators are sent an educational brochure. Second-time HOV lane violators are sent a letter from WSDOT. Third-time HOV lane violators are sent a letter from the Washington State Patrol.

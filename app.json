@@ -1,6 +1,19 @@
 {
-  "name": "HovReporter",
-  "displayName": "Hov Reporter",
+  "name": "HOV Reporter",
+  "displayName": "HOV lane violation reporting app for Washington state highways and ferry terminals",
+  "icon": "./images/app-icon.png",
+  "version": "1.0.0",
+  "slug": "hov-reporter",
+  "githubUrl": "https://github.com/thrustCoder/HovReporter",
+  "orientation": "portrait",
+  "ios": {
+    "bundleIdentifier": "com.rajarshi129.hovreporter",
+    "buildNumber": "1.0.0"
+  },
+  "android": {
+    "package": "com.rajarshi129.hovreporter",
+    "versionCode": 1
+  },
   "expo": {
     "name": "HovReporter",
     "slug": "expo-template-bare",

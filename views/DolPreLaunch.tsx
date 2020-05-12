@@ -38,7 +38,7 @@ class DolPreLaunch extends Component {
                         </View>
                         <View style={boundingLayout.mainAreaCramped}>
                             <Text h4 style={contentItems.mainTextCramped}>
-                                We will now take you to the Department of Licensing site for submitting the report.
+                                We will now take you to the Department of Transportation site for submitting the report.
                             </Text>
                             <Text h4 style={contentItems.mainTextCrampedHighlight}>
                                 In the report, you need to check the box for Captcha and click Submit. That's it!

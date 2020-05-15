@@ -4,7 +4,7 @@
   "expo": {
     "name": "HOV Reporter",
     "icon": "./images/app-icon.png",
-    "version": "1.0.1",
+    "version": "1.0.4",
     "slug": "hov-reporter",
     "privacy": "unlisted",
     "sdkVersion": "36.0.0",
@@ -13,11 +13,11 @@
     "orientation": "portrait",
     "ios": {
       "bundleIdentifier": "com.rajarshi129.hovreporter",
-      "buildNumber": "1.0.3"
+      "buildNumber": "1.0.4"
     },
     "android": {
       "package": "com.rajarshi129.hovreporter",
-      "versionCode": 3,
+      "versionCode": 4,
       "permissions": []
     },
     "platforms": [

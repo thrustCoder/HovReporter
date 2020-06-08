@@ -52,7 +52,7 @@ class DriverCheck extends Component {
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
                                     title="No" 
-                                    onPress={() => this.props.navigation.navigate(viewNames.TimeCheck)} 
+                                    onPress={() => this.props.navigation.navigate(viewNames.LicenseCheck)} 
                             />
                         </View>
                     </View>

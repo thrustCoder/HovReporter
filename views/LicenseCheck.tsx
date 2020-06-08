@@ -16,7 +16,7 @@ import contentItems from '../styles/ContentItems';
 class LicenseCheck extends Component {
     state = {
         plate: '',
-        stateProvince: ''
+        stateProvince: 'WA'
     };
 
     updateLicense() {
@@ -80,6 +80,7 @@ class LicenseCheck extends Component {
                                         inputIOS: contentItems.pickerIOS, 
                                         inputAndroid: contentItems.pickerAndroid 
                                     }}
+                                    value={this.state.stateProvince}
                                     useNativeAndroidPickerStyle={false}
                                     onValueChange={(stateProvince) => this.setState({stateProvince})}
                                     placeholder={{label: 'State', value: null}}

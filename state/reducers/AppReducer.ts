@@ -35,9 +35,9 @@ const initialAppState = {
 
 const initialNavState = {
   navSequence: [
+    viewNames.LicenseCheck, 
     viewNames.TimeCheck, 
     viewNames.OccupancyCheck, 
-    viewNames.LicenseCheck, 
     viewNames.HighwayCheck
   ],
   TimeCheck: {

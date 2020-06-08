@@ -45,6 +45,10 @@ export default function App({ navigation }) {
             component={DriverBlackhole}
           />
           <Stack.Screen
+            name={viewNames.LicenseCheck}
+            component={LicenseCheck}
+          />
+          <Stack.Screen
             name={viewNames.TimeCheck}
             component={TimeCheck}
           />
@@ -55,10 +59,6 @@ export default function App({ navigation }) {
           <Stack.Screen
             name={viewNames.OccupancyCheck}
             component={OccupancyCheck}
-          />
-          <Stack.Screen
-            name={viewNames.LicenseCheck}
-            component={LicenseCheck}
           />
           <Stack.Screen
             name={viewNames.HighwayCheck}

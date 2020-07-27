@@ -37,6 +37,11 @@ class Start extends Component {
                         </View>
                     </View>
                 </View>
+                <View style={boundingLayout.footerVersion}>
+                    <Text style={contentItems.versionText}>
+                        App version: v1.0.9
+                    </Text>
+                </View>
             </View>
         );
     }

@@ -24,6 +24,11 @@ const contentItems = StyleSheet.create({
         backgroundColor: colors.yellow,
         fontWeight: 'bold'
     },
+    versionText: {
+        ...mainTextCommon,
+        fontWeight: '100',
+        fontSize: 20
+    },
     mainButton: {
         width: 150,
         alignSelf: 'center'

@@ -12,6 +12,11 @@ const mainAreaCommon = {
     textAlign: 'center',
     backgroundColor: colors.white
 };
+const footerCommon = {
+    backgroundColor: colors.white,
+    flexDirection: 'row',
+    alignItems: 'center'
+};
 
 const boundingLayout = StyleSheet.create({
     container: {
@@ -33,11 +38,14 @@ const boundingLayout = StyleSheet.create({
         alignItems: 'center'
     },
     footer: {
+        ...footerCommon,
         height: 75,
-        backgroundColor: colors.white,
-        flexDirection: 'row',
         justifyContent: 'flex-start',
-        alignItems: 'center'
+    },
+    footerVersion: {
+        ...footerCommon,
+        height: 60,
+        justifyContent: 'center',
     },
     footerNavigationBtn: {
         height: 60

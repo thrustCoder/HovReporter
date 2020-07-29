@@ -10,6 +10,8 @@ import viewNames from "../state/ViewNames";
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
+import metricNames from '../state/MetricNames';
+import * as Amplitude from 'expo-analytics-amplitude';
 
 class TimeCheck extends Component {
     mapCurrentTimeToState() {
@@ -37,6 +39,12 @@ class TimeCheck extends Component {
 
     isSkipBtnDisabled() {
         return getNextStepFn(this.props, viewNames.TimeCheck) === viewNames.DolPreCheck;
+    }
+
+    componentDidMount() {
+        Amplitude.logEventWithProperties(metricNames.PageView, {
+            name: viewNames.TimeCheck
+        });        
     }
 
     render() {

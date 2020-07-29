@@ -9,8 +9,17 @@ import { clearAllStateFn } from "../state/providers/ui-actions/Navigation";
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
+import metricNames from '../state/MetricNames';
+import viewNames from '../state/ViewNames';
+import * as Amplitude from 'expo-analytics-amplitude';
 
 class DriverBlackhole extends Component {
+    componentDidMount() {
+        Amplitude.logEventWithProperties(metricNames.PageView, {
+            name: viewNames.DriverBlackhole
+        });        
+    }
+
     render() {
         return (
             <View style={boundingLayout.container}>

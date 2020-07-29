@@ -10,6 +10,8 @@ import colors from '../../styles/Colors';
 import boundingLayout from '../../styles/BoundingLayout';
 import contentItems from '../../styles/ContentItems';
 import viewNames from '../../state/ViewNames';
+import metricNames from '../../state/MetricNames';
+import * as Amplitude from 'expo-analytics-amplitude';
 
 class CommentsCheck extends Component {
     state = {
@@ -20,6 +22,12 @@ class CommentsCheck extends Component {
         this.state.comments = this.state.comments.replace(/\n/g, " ");
         this.props.updateComments(this.state.comments);
         this.props.navigation.navigate(viewNames.DolPreLaunch);
+    }
+
+    componentDidMount() {
+        Amplitude.logEventWithProperties(metricNames.PageView, {
+            name: viewNames.CommentsCheck
+        });        
     }
 
     render() {

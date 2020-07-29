@@ -4,13 +4,21 @@ import { Text, Button, Image } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { updateOccupants } from '../state/actions/AppActions';
 import { mapStateToPropsFn, getMapDispatchToPropsFn } from '../state/actions/ActionMapper';
+import * as Amplitude from 'expo-analytics-amplitude';
 
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
 import viewNames from '../state/ViewNames';
+import metricNames from '../state/MetricNames';
 
 class Start extends Component {
+    componentDidMount() {
+        Amplitude.logEventWithProperties(metricNames.PageView, {
+            name: viewNames.Start
+        });        
+    }
+
     render() {
         return (
             <View style={boundingLayout.container}>

@@ -24,8 +24,12 @@ import { createStore } from 'redux';
 import appStateReducer from './state/reducers/AppReducer';
 import viewNames from './state/ViewNames';
 
+import * as Amplitude from 'expo-analytics-amplitude';
+import { getAmplifyApEyeKee } from './state/providers/config/AmplifyKey'
+
 const Stack = createStackNavigator();
 const store = createStore(appStateReducer);
+Amplitude.initialize(getAmplifyApEyeKee());
 
 export default function App({ navigation }) {
   return (

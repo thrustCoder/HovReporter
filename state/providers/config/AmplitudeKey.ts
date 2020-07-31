@@ -1,5 +1,5 @@
-import Constants from 'expo-constants';
+import globalConfig from '../../../config/global.json';
 
 export const getAmplitudeApEyeKee = () => {
-    return Constants.manifest.extra.Amplitude.apEyeKee.replace(/\$/g, '');
+    return globalConfig.Amplitude.apEyeKee.replace(/\$/g, '');
 }

@@ -10,6 +10,8 @@ import { updateOccupants, clearAllState } from '../state/actions/AppActions';
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
+import metricNames from '../state/MetricNames';
+import * as Amplitude from 'expo-analytics-amplitude';
 
 class OccupancyCheck extends Component {
     state = {
@@ -32,6 +34,12 @@ class OccupancyCheck extends Component {
 
     isSkipBtnDisabled() {
         return getNextStepFn(this.props, viewNames.OccupancyCheck) === viewNames.DolPreCheck;
+    }
+
+    componentDidMount() {
+        Amplitude.logEventWithProperties(metricNames.PageView, {
+            name: viewNames.OccupancyCheck
+        });        
     }
 
     render() {

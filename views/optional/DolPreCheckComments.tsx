@@ -10,8 +10,16 @@ import colors from '../../styles/Colors';
 import boundingLayout from '../../styles/BoundingLayout';
 import contentItems from '../../styles/ContentItems';
 import viewNames from '../../state/ViewNames';
+import metricNames from '../../state/MetricNames';
+import * as Amplitude from 'expo-analytics-amplitude';
 
 class DolPreCheckComments extends Component {
+    componentDidMount() {
+        Amplitude.logEventWithProperties(metricNames.PageView, {
+            name: viewNames.DolPreCheckComments
+        });        
+    }
+
     render() {
         return (
             <View style={boundingLayout.container}>

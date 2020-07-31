@@ -10,6 +10,8 @@ import viewNames from '../../state/ViewNames';
 import colors from '../../styles/Colors';
 import boundingLayout from '../../styles/BoundingLayout';
 import contentItems from '../../styles/ContentItems';
+import metricNames from '../../state/MetricNames';
+import * as Amplitude from 'expo-analytics-amplitude';
 
 class VehicleDetailsCheck extends Component {
     state = {
@@ -29,6 +31,12 @@ class VehicleDetailsCheck extends Component {
 
     isNextBtnDisabled() {
         return !this.state.make || !this.state.model || !this.state.color;
+    }
+
+    componentDidMount() {
+        Amplitude.logEventWithProperties(metricNames.PageView, {
+            name: viewNames.VehicleDetailsCheck
+        });        
     }
 
     render() {

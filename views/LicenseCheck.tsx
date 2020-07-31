@@ -12,6 +12,8 @@ import viewNames from '../state/ViewNames';
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
+import metricNames from '../state/MetricNames';
+import * as Amplitude from 'expo-analytics-amplitude';
 
 class LicenseCheck extends Component {
     state = {
@@ -33,6 +35,12 @@ class LicenseCheck extends Component {
 
     isSkipBtnDisabled() {
         return getNextStepFn(this.props, viewNames.LicenseCheck) === viewNames.DolPreCheck;
+    }
+
+    componentDidMount() {
+        Amplitude.logEventWithProperties(metricNames.PageView, {
+            name: viewNames.LicenseCheck
+        });        
     }
 
     render() {

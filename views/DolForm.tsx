@@ -11,6 +11,8 @@ import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
 import viewNames from '../state/ViewNames';
+import metricNames from '../state/MetricNames';
+import * as Amplitude from 'expo-analytics-amplitude';
 
 class DolForm extends Component {
     private pingForSuccessCount = 0;
@@ -45,6 +47,12 @@ class DolForm extends Component {
               }, 5000);
             }
         }
+    }
+
+    componentDidMount() {
+        Amplitude.logEventWithProperties(metricNames.PageView, {
+            name: viewNames.DolForm
+        });        
     }
 
     render() {

@@ -10,14 +10,11 @@ import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
 import viewNames from '../state/ViewNames';
-import metricNames from '../state/MetricNames';
-import * as Amplitude from 'expo-analytics-amplitude';
+import { logPageViewEvent } from '../telemetry/AmplitudeManager';
 
 class DriverCheck extends Component {
     componentDidMount() {
-        Amplitude.logEventWithProperties(metricNames.PageView, {
-            name: viewNames.DriverCheck
-        });        
+        logPageViewEvent(viewNames.DriverCheck);
     }
 
     render() {

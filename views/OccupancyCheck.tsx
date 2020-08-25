@@ -10,8 +10,7 @@ import { updateOccupants, clearAllState } from '../state/actions/AppActions';
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
-import metricNames from '../state/MetricNames';
-import * as Amplitude from 'expo-analytics-amplitude';
+import { logPageViewEvent } from '../telemetry/AmplitudeManager';
 
 class OccupancyCheck extends Component {
     state = {
@@ -37,9 +36,7 @@ class OccupancyCheck extends Component {
     }
 
     componentDidMount() {
-        Amplitude.logEventWithProperties(metricNames.PageView, {
-            name: viewNames.OccupancyCheck
-        });        
+        logPageViewEvent(viewNames.OccupancyCheck);
     }
 
     render() {

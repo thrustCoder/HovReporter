@@ -25,11 +25,13 @@ import appStateReducer from './state/reducers/AppReducer';
 import viewNames from './state/ViewNames';
 
 import * as Amplitude from 'expo-analytics-amplitude';
-import { getAmplitudeApEyeKee } from './state/providers/config/AmplitudeKey'
+import { getAmplitudeApEyeKee } from './state/providers/config/AmplitudeKey';
 
 const Stack = createStackNavigator();
 const store = createStore(appStateReducer);
-Amplitude.initialize(getAmplitudeApEyeKee());
+if (typeof navigator != 'undefined' && navigator.product == 'ReactNative') {
+  Amplitude.initialize(getAmplitudeApEyeKee());
+}
 
 export default function App({ navigation }) {
   return (

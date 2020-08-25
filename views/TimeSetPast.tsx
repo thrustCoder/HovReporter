@@ -12,8 +12,7 @@ import viewNames from "../state/ViewNames";
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
-import metricNames from '../state/MetricNames';
-import * as Amplitude from 'expo-analytics-amplitude';
+import { logPageViewEvent } from '../telemetry/AmplitudeManager';
 
 class TimeSetPast extends Component {
     state = {
@@ -82,9 +81,7 @@ class TimeSetPast extends Component {
     }
 
     componentDidMount() {
-        Amplitude.logEventWithProperties(metricNames.PageView, {
-            name: viewNames.TimeSetPast
-        });        
+        logPageViewEvent(viewNames.TimeSetPast);
     }
 
     render() {

@@ -36,6 +36,7 @@ class Start extends Component {
                             <Button style={contentItems.mainButton} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
+                                    data-i9n-btn={"Report"}
                                     title="Let's report" 
                                     onPress={() => this.props.navigation.navigate(viewNames.DriverCheck)} 
                             />

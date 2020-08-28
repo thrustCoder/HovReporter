@@ -75,9 +75,11 @@ class LicenseCheck extends Component {
                                     label=''
                                     autoCapitalize='characters'
                                     onChangeText={plate => this.setState({plate})}
+                                    data-i9n-input={"LicenseCheck.Plate"}
                                 />
                             </View>
-                            <View style={boundingLayout.mainSubAreaFlowRow}>
+                            <View style={boundingLayout.mainSubAreaFlowRow} 
+                                    data-i9n-picker={"LicenseCheck.State"}>
                                 <Text h4 style={contentItems.pickerLabel}>
                                     License state:
                                 </Text>
@@ -125,6 +127,7 @@ class LicenseCheck extends Component {
                             disabled={this.isNextBtnDisabled()}
                             disabledStyle={{ backgroundColor: colors.white }}
                             onPress={() => this.updateLicense()}
+                            data-i9n-btn={"LicenseCheck.Next"}
                         />
                     </View>
                 </View>

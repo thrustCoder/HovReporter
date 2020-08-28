@@ -16,7 +16,7 @@ import { logPageViewEvent } from '../telemetry/AmplitudeManager';
 
 class HighwayCheck extends Component {
     state = {
-        name: '',
+        name: 'I-5NB',
         isRamp: null,
         location: '',
         yesBtnColor: colors.darkGray,
@@ -95,7 +95,8 @@ class HighwayCheck extends Component {
                             />
                         </View>
                         <View style={boundingLayout.mainArea}>
-                            <View style={boundingLayout.mainSubAreaFlowRow}>
+                            <View style={boundingLayout.mainSubAreaFlowRow}
+                                    data-i9n-picker={"HighwayCheck.Highway"}>
                                 <Text h4 style={contentItems.inputLabel}>
                                     Highway:
                                 </Text>
@@ -103,6 +104,7 @@ class HighwayCheck extends Component {
                                         inputIOS: contentItems.pickerIOS, 
                                         inputAndroid: contentItems.pickerAndroid 
                                     }}
+                                    value={this.state.name}
                                     useNativeAndroidPickerStyle={false}
                                     onValueChange={(highwayName) => this.setState({name: highwayName})}
                                     placeholder={{label: 'Select highway', value: null}}
@@ -119,12 +121,14 @@ class HighwayCheck extends Component {
                                     value={this.state.location}
                                     label=''
                                     onChangeText={location => this.onChangeText(location)}
+                                    data-i9n-input={"HighwayCheck.Location"}
                                 />
                                 <View style={contentItems.inlineBtnsContainers}>
                                     <Button style={contentItems.notSureButton}
                                         buttonStyle={{ backgroundColor: this.state.notSureBtnColor }}
                                         title="Not sure" 
-                                        onPress={() => this.onNotSureClick()}/>
+                                        onPress={() => this.onNotSureClick()}
+                                        data-i9n-btn={"HighwayCheck.LocationNotSure"}/>
                                 </View>
                             </View>
                             <View style={boundingLayout.mainSubAreaFlowRow}>
@@ -134,11 +138,13 @@ class HighwayCheck extends Component {
                                 <View style={contentItems.inlineBtnsContainers}>
                                     <Button style={contentItems.amPmButton}
                                         buttonStyle={{ backgroundColor: this.state.yesBtnColor }}
+                                        data-i9n-btn={"HighwayCheck.RampYes"}
                                         title="Yes" 
                                         onPress={() => this.onIsRampClick(true)}/>
                                     <Button style={contentItems.amPmButton}
                                         buttonStyle={{ backgroundColor: this.state.noBtnColor }}
-                                        title="No" 
+                                        data-i9n-btn={"HighwayCheck.RampNo"}
+                                        title="No"
                                         onPress={() => this.onIsRampClick(false)}/>
                                 </View>
                             </View>
@@ -175,6 +181,7 @@ class HighwayCheck extends Component {
                             disabled={this.isNextBtnDisabled()}
                             disabledStyle={{ backgroundColor: colors.white }}
                             onPress={() => this.updateHighway()}
+                            data-i9n-btn={"HighwayCheck.Next"}
                         />
                     </View>
                 </View>

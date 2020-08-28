@@ -50,12 +50,14 @@ class DriverCheck extends Component {
                             <Button style={contentItems.mainButtonPrimary} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
+                                    data-i9n-btn={"DriverCheck.Yes"}
                                     title="Yes" 
                                     onPress={() => this.props.navigation.navigate(viewNames.DriverBlackhole)} 
                             />
                             <Button style={contentItems.mainButtonSecondary} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
+                                    data-i9n-btn={"DriverCheck.No"}
                                     title="No" 
                                     onPress={() => this.props.navigation.navigate(viewNames.LicenseCheck)} 
                             />

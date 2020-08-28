@@ -59,6 +59,7 @@ class DolPreCheck extends Component {
                             <Button style={contentItems.mainButtonSecondaryLong} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
+                                    data-i9n-btn={"DolPreCheck.FinishReport"}
                                     title="No, finish the report" 
                                     onPress={() => this.props.navigation.navigate(viewNames.DolPreLaunch)} 
                             />

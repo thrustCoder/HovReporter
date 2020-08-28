@@ -107,7 +107,8 @@ class TimeSetPast extends Component {
                 </View>
                 <View style={boundingLayout.content}>
                     <View style={boundingLayout.boundingContainer}>
-                        <View style={boundingLayout.topImageArea}>
+                        <View style={boundingLayout.topImageArea}
+                                data-i9n-capture={"true"}>
                             <Icon
                                 name='watch'
                                 type='octicon'
@@ -119,7 +120,8 @@ class TimeSetPast extends Component {
                             <Text h3 style={contentItems.mainText}>
                                 Please enter the time when it happened.
                             </Text>
-                            <View style={boundingLayout.mainSubAreaFlowRow}>
+                            <View style={boundingLayout.mainSubAreaFlowRow}
+                                    data-i9n-picker={"TimeSetPast.Date"}>
                                 <Text h4 style={contentItems.pickerLabel}>
                                     Day:
                                 </Text>
@@ -178,7 +180,8 @@ class TimeSetPast extends Component {
                                     items={datetime.yearPickerItems}
                                 />
                             </View>
-                            <View style={boundingLayout.mainSubAreaFlowRow}>
+                            <View style={boundingLayout.mainSubAreaFlowRow}
+                                    data-i9n-picker={"TimeSetPast.Time"}>
                                 <Text h4 style={contentItems.pickerLabel}>
                                     Hour:
                                 </Text>
@@ -250,6 +253,7 @@ class TimeSetPast extends Component {
                             color={colors.green}
                             size={boundingLayout.footerNavigationBtn.height}
                             onPress={() => this.updateDateTime()}
+                            data-i9n-btn={"TimeSetPast.Next"}
                         />
                     </View>
                 </View>

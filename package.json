@@ -5,8 +5,8 @@
     "ios": "react-native run-ios",
     "web": "expo start --web",
     "start": "react-native start",
-    "test": "jest",
-    "cypress:open": "cypress open"
+    "test:unit": "jest",
+    "test:i9n": "cypress open"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.7",

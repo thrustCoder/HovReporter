@@ -44,7 +44,7 @@ class Start extends Component {
                 </View>
                 <View style={boundingLayout.footerVersion}>
                     <Text style={contentItems.versionText}>
-                        App version: v1.2.0
+                        App version: v1.3.0
                     </Text>
                 </View>
             </View>

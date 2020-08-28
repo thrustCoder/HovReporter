@@ -9,7 +9,6 @@ const actionAreaCommon = {
     justifyContent: 'space-around'
 };
 const mainAreaCommon = {
-    textAlign: 'center',
     backgroundColor: colors.white
 };
 const footerCommon = {

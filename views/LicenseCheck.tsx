@@ -12,8 +12,7 @@ import viewNames from '../state/ViewNames';
 import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
-import metricNames from '../state/MetricNames';
-import * as Amplitude from 'expo-analytics-amplitude';
+import { logPageViewEvent } from '../telemetry/AmplitudeManager';
 
 class LicenseCheck extends Component {
     state = {
@@ -38,9 +37,7 @@ class LicenseCheck extends Component {
     }
 
     componentDidMount() {
-        Amplitude.logEventWithProperties(metricNames.PageView, {
-            name: viewNames.LicenseCheck
-        });        
+        logPageViewEvent(viewNames.LicenseCheck);
     }
 
     render() {

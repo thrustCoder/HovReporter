@@ -103,14 +103,26 @@ class DolForm extends Component {
                 <View style={boundingLayout.content}>
                     <View style={boundingLayout.boundingContainer}>
                         <View style={boundingLayout.mainArea}>
-                          <div><pre>{JSON.stringify(form, null, 2) }</pre></div>
+                          <pre>{JSON.stringify(form, null, 2)}</pre>
                         </View>
+                    </View>
+                </View>
+                <View style={boundingLayout.footer}>
+                    <View style={contentItems.skipButton}>
+                        <Icon
+                            name='debug-step-over'
+                            type='material-community'
+                            color={colors.green}
+                            size={boundingLayout.footerNavigationBtn.height}
+                            onPress={() => this.props.navigation.navigate(viewNames.FinalSuccess)}
+                            data-i9n-btn={"DolForm.Skip"}
+                        />
                     </View>
                 </View>
             </View>
           );
         }
-        else if (typeof navigator != 'undefined' && navigator.product == 'ReactNative') {
+        else {
           // I'm in react-native
           return (
             <View style={boundingLayout.container}>

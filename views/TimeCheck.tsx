@@ -77,12 +77,14 @@ class TimeCheck extends Component {
                             <Button style={contentItems.mainButtonPrimary} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
+                                    data-i9n-btn={"TimeCheck.Yes"}
                                     title="Yes" 
                                     onPress={() => this.mapCurrentTimeToState()} 
                             />
                             <Button style={contentItems.mainButtonSecondary} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
+                                    data-i9n-btn={"TimeCheck.No"}
                                     title="No" 
                                     onPress={() => this.props.navigation.navigate(viewNames.TimeSetPast)} 
                             />

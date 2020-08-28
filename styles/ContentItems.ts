@@ -27,7 +27,8 @@ const contentItems = StyleSheet.create({
     versionText: {
         ...mainTextCommon,
         fontWeight: '100',
-        fontSize: 20
+        fontSize: 20,
+        paddingHorizontal: 2
     },
     mainButton: {
         width: 150,

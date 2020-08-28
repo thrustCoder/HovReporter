@@ -16,11 +16,11 @@
           "imageConfig": {
             "createDiffImage": true,
             "resizeDevicePixelRatio": true,
-            "threshold": 0.005,
+            "threshold": 0.003,
             "thresholdType": "percent"
           },
           "screenshotConfig": {
-            "blackout": [],
+            "blackout": ["[data-i9n-redact=true]"],
             "capture": "fullPage",
             "clip": null,
             "disableTimersAndAnimations": true,

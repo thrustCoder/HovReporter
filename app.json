@@ -17,7 +17,7 @@
     },
     "android": {
       "package": "com.rajarshi129.hovreporter",
-      "versionCode": 13,
+      "versionCode": 14,
       "permissions": []
     },
     "platforms": [

@@ -96,39 +96,56 @@ class DolForm extends Component {
           injectedJavaScript = `${injectedJavaScript} document.getElementById('edit-submitted-comments').value = "${form.comments}"; `;
         }
 
-        return (
-          <View style={boundingLayout.container}>
-              <View style={boundingLayout.header}>
-                  <View style={contentItems.cancelButton}>
-                      <Icon
-                          name='times-circle'
-                          type='font-awesome'
-                          color={colors.red}
-                          size={50}
-                          onPress={() => clearAllStateFn(this.props)}
-                      />
-                  </View>       
-              </View>
-              <WebView 
-                  ref={webView => (this.webView = webView)}
-                  source={{ uri: "https://www.wsdot.wa.gov/travel/highways-bridges/hov/report-violator" }} 
-                  javaScriptEnabled={true} 
-                  injectedJavaScript={injectedJavaScript}
-                  onMessage={(event) => this.onPostMessage(event.nativeEvent.data)}
-              />
-              <View style={boundingLayout.footer}>
-                  <View style={contentItems.backButton}>
-                      <Icon
-                          name='arrow-circle-left'
-                          type='font-awesome'
-                          color={colors.green}
-                          size={boundingLayout.footerNavigationBtn.height}
-                          onPress={() => this.props.navigation.goBack()}
-                      />
-                  </View>
-              </View>
-          </View>
-        );
+        if (typeof document != 'undefined') {
+          // I'm on the web!
+          return (
+            <View style={boundingLayout.container}>
+                <View style={boundingLayout.content}>
+                    <View style={boundingLayout.boundingContainer}>
+                        <View style={boundingLayout.mainArea}>
+                          <div><pre>{JSON.stringify(form, null, 2) }</pre></div>
+                        </View>
+                    </View>
+                </View>
+            </View>
+          );
+        }
+        else if (typeof navigator != 'undefined' && navigator.product == 'ReactNative') {
+          // I'm in react-native
+          return (
+            <View style={boundingLayout.container}>
+                <View style={boundingLayout.header}>
+                    <View style={contentItems.cancelButton}>
+                        <Icon
+                            name='times-circle'
+                            type='font-awesome'
+                            color={colors.red}
+                            size={50}
+                            onPress={() => clearAllStateFn(this.props)}
+                        />
+                    </View>       
+                </View>
+                <WebView 
+                    ref={webView => (this.webView = webView)}
+                    source={{ uri: "https://www.wsdot.wa.gov/travel/highways-bridges/hov/report-violator" }} 
+                    javaScriptEnabled={true} 
+                    injectedJavaScript={injectedJavaScript}
+                    onMessage={(event) => this.onPostMessage(event.nativeEvent.data)}
+                />
+                <View style={boundingLayout.footer}>
+                    <View style={contentItems.backButton}>
+                        <Icon
+                            name='arrow-circle-left'
+                            type='font-awesome'
+                            color={colors.green}
+                            size={boundingLayout.footerNavigationBtn.height}
+                            onPress={() => this.props.navigation.goBack()}
+                        />
+                    </View>
+                </View>
+            </View>
+          );
+        }
     }
 }
 

@@ -16,7 +16,7 @@ import { logPageViewEvent } from '../telemetry/AmplitudeManager';
 
 class HighwayCheck extends Component {
     state = {
-        name: '',
+        name: 'I-5NB',
         isRamp: null,
         location: '',
         yesBtnColor: colors.darkGray,
@@ -103,6 +103,7 @@ class HighwayCheck extends Component {
                                         inputIOS: contentItems.pickerIOS, 
                                         inputAndroid: contentItems.pickerAndroid 
                                     }}
+                                    value={this.state.name}
                                     useNativeAndroidPickerStyle={false}
                                     onValueChange={(highwayName) => this.setState({name: highwayName})}
                                     placeholder={{label: 'Select highway', value: null}}

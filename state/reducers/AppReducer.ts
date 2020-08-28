@@ -9,7 +9,7 @@ const initialAppState = {
         state: 'WA'
       },
       highway: {
-        name: '',
+        name: 'I-5NB',
         isRamp: false
       },
       location: '',

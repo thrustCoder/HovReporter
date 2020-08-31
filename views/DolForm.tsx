@@ -19,19 +19,21 @@ class DolForm extends Component {
     private injectedJavaScript2 = `window.ReactNativeWebView.postMessage(JSON.stringify({type: "PostNavigate", payload: window.location.href})); `;
 
     onPostMessage(eventData) {
-        let data = JSON.parse(eventData);
+      console.log("Inside onPostMessage: " + eventData);
+      let data = JSON.parse(eventData);
 
         // A/B: Local testing
         // if ((data.type === "PostNavigate") && (RegExp('^https://www.wsdot.wa.gov/node/[0-9]+/done').test(data.payload.split()[0]))) {
         //     console.log("Success!");
         //     this.props.navigation.navigate(viewNames.FinalSuccess);
         // } else {
-        //     this.props.navigation.navigate(viewNames.FinalSuccess);
+        //   console.log("Short circuit success!");
+        //   this.props.navigation.navigate(viewNames.FinalSuccess);
         // }
 
         // A/B: Prod version
         if ((data.type === "PostNavigate") && 
-            (RegExp('^https://www.wsdot.wa.gov/node/[0-9]+/done').test(data.payload.split()[0]))) {
+            (RegExp('^https://wsdot.wa.gov/node/[0-9]+/done').test(data.payload.split()[0]))) {
 
             console.log("Success!");
             this.props.navigation.navigate(viewNames.FinalSuccess);

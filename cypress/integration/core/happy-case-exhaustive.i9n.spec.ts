@@ -4,6 +4,7 @@ describe("Happy case exhaustive", () => {
             .then(() => {
                 cy.wait(2000);
                 cy.document().toMatchImageSnapshot({
+                    // Does not do what it is supposed to do.
                     threshold: 0.003
                 });
             });

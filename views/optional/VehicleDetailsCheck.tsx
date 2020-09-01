@@ -70,6 +70,7 @@ class VehicleDetailsCheck extends Component {
                                     placeholder='Enter make'
                                     label=''
                                     onChangeText={make => this.setState({make})}
+                                    data-i9n-input={"VehicleDetailsCheck.Make"}
                                 />
                             </View>
                             <View style={boundingLayout.mainSubAreaFlowRow}>
@@ -81,6 +82,7 @@ class VehicleDetailsCheck extends Component {
                                     placeholder='Enter model'
                                     label=''
                                     onChangeText={model => this.setState({model})}
+                                    data-i9n-input={"VehicleDetailsCheck.Model"}
                                 />
                             </View>
                             <View style={boundingLayout.mainSubAreaFlowRow}>
@@ -92,6 +94,7 @@ class VehicleDetailsCheck extends Component {
                                     placeholder='Enter color'
                                     label=''
                                     onChangeText={color => this.setState({color})}
+                                    data-i9n-input={"VehicleDetailsCheck.Color"}
                                 />
                             </View>
                         </View>
@@ -118,6 +121,7 @@ class VehicleDetailsCheck extends Component {
                             disabled={this.isNextBtnDisabled()}
                             disabledStyle={{ backgroundColor: colors.white }}
                             onPress={() => this.updateVehicle()}
+                            data-i9n-btn={"VehicleDetailsCheck.Next"}
                         />
                     </View>
                 </View>

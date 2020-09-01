@@ -20,7 +20,7 @@
             "thresholdType": "percent"
           },
           "screenshotConfig": {
-            "blackout": ["[data-i9n-redact=true]"],
+            "blackout": ["[data-i9n-redact-fixit=true]"],
             "capture": "fullPage",
             "clip": null,
             "disableTimersAndAnimations": true,

@@ -13,7 +13,7 @@ describe("Happy case exhaustive", () => {
     it("runs", () => {
         // #1: Click Let's Report btn.
         cy.get('[data-i9n-btn="Report"]').click();
-        cy.wait(2000);
+        cy.wait(3000);
         cy.document().toMatchImageSnapshot();
 
         // #2: Click No btn for not driving.

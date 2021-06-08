@@ -107,8 +107,7 @@ class TimeSetPast extends Component {
                 </View>
                 <View style={boundingLayout.content}>
                     <View style={boundingLayout.boundingContainer}>
-                        <View style={boundingLayout.topImageArea}
-                                data-i9n-capture={"true"}>
+                        <View style={boundingLayout.topImageArea}>
                             <Icon
                                 name='watch'
                                 type='octicon'
@@ -121,7 +120,8 @@ class TimeSetPast extends Component {
                                 Please enter the time when it happened.
                             </Text>
                             <View style={boundingLayout.mainSubAreaFlowRow}
-                                    data-i9n-picker={"TimeSetPast.Date"}>
+                                    data-i9n-picker={"TimeSetPast.Date"}
+                                    data-i9n-capture={"true"}>
                                 <Text h4 style={contentItems.pickerLabel}>
                                     Day:
                                 </Text>

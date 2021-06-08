@@ -25,7 +25,7 @@ describe("Happy case", () => {
         cy.get('[data-i9n-input="LicenseCheck.Plate"]')
             .type('FAKE1234').should('have.value', 'FAKE1234');
         cy.get('[data-i9n-btn="LicenseCheck.Next"]').click();
-        cy.wait(1000);
+        cy.wait(2000);
         cy.document().toMatchImageSnapshot();
     
         // #4: Click No btn for seeing incident in past 15 mins.

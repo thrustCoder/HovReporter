@@ -31,7 +31,6 @@ describe("Happy case", () => {
         // #4: Click No btn for seeing incident in past 15 mins.
         cy.get('[data-i9n-btn="TimeCheck.No"]').click();
         cy.wait(1000);
-        cy.get('[data-i9n-capture="true"]').toMatchImageSnapshot();
 
         // #5: Set the time and click Next btn.
         cy.get('[data-i9n-picker="TimeSetPast.Date"]')
@@ -49,6 +48,10 @@ describe("Happy case", () => {
         cy.get('[data-i9n-picker="TimeSetPast.Time"]')
             .find('select').eq(1)
             .select('00').should('have.value', '0');
+        // We delay taking screenshot because time is set to "current" by default.
+        cy.wait(1000);
+        cy.get('[data-i9n-capture="true"]').toMatchImageSnapshot();
+
         cy.get('[data-i9n-btn="TimeSetPast.Next"]').click();
         cy.wait(1000);
         cy.document().toMatchImageSnapshot();

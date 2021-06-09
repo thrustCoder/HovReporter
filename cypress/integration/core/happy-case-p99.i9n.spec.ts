@@ -18,7 +18,7 @@ describe("Happy case", () => {
 
         // #2: Click No btn for not driving.
         cy.get('[data-i9n-btn="DriverCheck.No"]').click();
-        cy.wait(1000);
+        cy.wait(2000);
         cy.document().toMatchImageSnapshot();
 
         // #3: Enter details for License check and click Next.

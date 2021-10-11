@@ -50,7 +50,7 @@ class Start extends Component {
                     <Text 
                         style={contentItems.versionText}
                         data-i9n-redact={true}>
-                        v1.3.3
+                        v1.3.4
                     </Text>
                 </View>
             </View>

@@ -120,8 +120,7 @@ class TimeSetPast extends Component {
                                 Please enter the time when it happened.
                             </Text>
                             <View style={boundingLayout.mainSubAreaFlowRow}
-                                    data-i9n-picker={"TimeSetPast.Date"}
-                                    data-i9n-capture={"true"}>
+                                    testID={"TimeSetPast.Date"}>
                                 <Text h4 style={contentItems.pickerLabel}>
                                     Day:
                                 </Text>
@@ -181,7 +180,7 @@ class TimeSetPast extends Component {
                                 />
                             </View>
                             <View style={boundingLayout.mainSubAreaFlowRow}
-                                    data-i9n-picker={"TimeSetPast.Time"}>
+                                    testID={"TimeSetPast.Time"}>
                                 <Text h4 style={contentItems.pickerLabel}>
                                     Hour:
                                 </Text>
@@ -253,7 +252,7 @@ class TimeSetPast extends Component {
                             color={colors.green}
                             size={boundingLayout.footerNavigationBtn.height}
                             onPress={() => this.updateDateTime()}
-                            data-i9n-btn={"TimeSetPast.Next"}
+                            testID={"TimeSetPast.Next"}
                         />
                     </View>
                 </View>

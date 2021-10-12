@@ -63,7 +63,7 @@ class CommentsCheck extends Component {
                                     numberOfLines={5}
                                     onChangeText={(comments) => this.setState({comments})}
                                     value={this.state.comments}
-                                    data-i9n-input={"CommentsCheck.Comments"}
+                                    testID={"CommentsCheck.Comments"}
                                 />
                             </View>
                             <View style={boundingLayout.actionArea}>
@@ -72,7 +72,7 @@ class CommentsCheck extends Component {
                                         buttonStyle={{ backgroundColor: colors.green }}
                                         title="Finish report" 
                                         onPress={() => this.updateComments()}
-                                        data-i9n-btn={"CommentsCheck.FinishReport"}
+                                        testID={"CommentsCheck.FinishReport"}
                                 />
                             </View>
                         </View>

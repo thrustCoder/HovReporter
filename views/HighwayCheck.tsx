@@ -96,7 +96,7 @@ class HighwayCheck extends Component {
                         </View>
                         <View style={boundingLayout.mainArea}>
                             <View style={boundingLayout.mainSubAreaFlowRow}
-                                    data-i9n-picker={"HighwayCheck.Highway"}>
+                                    testID={"HighwayCheck.Highway"}>
                                 <Text h4 style={contentItems.inputLabel}>
                                     Highway:
                                 </Text>
@@ -121,14 +121,14 @@ class HighwayCheck extends Component {
                                     value={this.state.location}
                                     label=''
                                     onChangeText={location => this.onChangeText(location)}
-                                    data-i9n-input={"HighwayCheck.Location"}
+                                    testID={"HighwayCheck.Location"}
                                 />
                                 <View style={contentItems.inlineBtnsContainers}>
                                     <Button style={contentItems.notSureButton}
                                         buttonStyle={{ backgroundColor: this.state.notSureBtnColor }}
                                         title="Not sure" 
                                         onPress={() => this.onNotSureClick()}
-                                        data-i9n-btn={"HighwayCheck.LocationNotSure"}/>
+                                        testID={"HighwayCheck.LocationNotSure"}/>
                                 </View>
                             </View>
                             <View style={boundingLayout.mainSubAreaFlowRow}>
@@ -138,12 +138,12 @@ class HighwayCheck extends Component {
                                 <View style={contentItems.inlineBtnsContainers}>
                                     <Button style={contentItems.amPmButton}
                                         buttonStyle={{ backgroundColor: this.state.yesBtnColor }}
-                                        data-i9n-btn={"HighwayCheck.RampYes"}
+                                        testID={"HighwayCheck.RampYes"}
                                         title="Yes" 
                                         onPress={() => this.onIsRampClick(true)}/>
                                     <Button style={contentItems.amPmButton}
                                         buttonStyle={{ backgroundColor: this.state.noBtnColor }}
-                                        data-i9n-btn={"HighwayCheck.RampNo"}
+                                        testID={"HighwayCheck.RampNo"}
                                         title="No"
                                         onPress={() => this.onIsRampClick(false)}/>
                                 </View>
@@ -181,7 +181,7 @@ class HighwayCheck extends Component {
                             disabled={this.isNextBtnDisabled()}
                             disabledStyle={{ backgroundColor: colors.white }}
                             onPress={() => this.updateHighway()}
-                            data-i9n-btn={"HighwayCheck.Next"}
+                            testID={"HighwayCheck.Next"}
                         />
                     </View>
                 </View>

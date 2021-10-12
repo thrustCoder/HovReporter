@@ -72,14 +72,14 @@ class OccupancyCheck extends Component {
                             <Button style={contentItems.mainButtonPrimary} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: this.state.button1Color }}
-                                    data-i9n-btn={"OccupancyCheck.One"}
+                                    testID={"OccupancyCheck.One"}
                                     title="1" 
                                     onPress={() => this.updateOccupants(1)} 
                             />
                             <Button style={contentItems.mainButtonSecondary} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: this.state.button2Color }}
-                                    data-i9n-btn={"OccupancyCheck.Two"}
+                                    testID={"OccupancyCheck.Two"}
                                     title="2" 
                                     onPress={() => this.updateOccupants(2)} 
                             />

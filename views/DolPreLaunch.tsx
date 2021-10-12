@@ -56,7 +56,7 @@ class DolPreLaunch extends Component {
                             <Button style={contentItems.mainButtonSecondaryLong} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
-                                    data-i9n-btn={"DolPreLaunch.FinishReport"}
+                                    testID={"DolPreLaunch.FinishReport"}
                                     title="Take me to the report" 
                                     onPress={() => this.props.navigation.navigate(viewNames.DolForm)} 
                             />

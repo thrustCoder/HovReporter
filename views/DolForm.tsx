@@ -117,7 +117,7 @@ class DolForm extends Component {
                             color={colors.green}
                             size={boundingLayout.footerNavigationBtn.height}
                             onPress={() => this.props.navigation.navigate(viewNames.FinalSuccess)}
-                            data-i9n-btn={"DolForm.Skip"}
+                            testID={"DolForm.Skip"}
                         />
                     </View>
                 </View>

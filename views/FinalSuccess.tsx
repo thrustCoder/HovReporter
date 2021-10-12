@@ -48,7 +48,7 @@ class FinalSuccess extends Component {
                             <Button style={contentItems.mainButtonSecondaryLong} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
-                                    data-i9n-btn={"FinalSuccess.BackToStart"}
+                                    testID={"FinalSuccess.BackToStart"}
                                     title="Go back to start" 
                                     onPress={() => clearAllStateFn(this.props)}
                             />

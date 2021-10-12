@@ -53,7 +53,7 @@ class DolPreCheckComments extends Component {
                             <Button style={contentItems.mainButtonPrimary} 
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
-                                    data-i9n-btn={"DolPreCheckComments.Yes"}
+                                    testID={"DolPreCheckComments.Yes"}
                                     title="Yes" 
                                     onPress={() => this.props.navigation.navigate(viewNames.CommentsCheck)} 
                             />

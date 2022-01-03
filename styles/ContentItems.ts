@@ -99,9 +99,8 @@ const contentItems = StyleSheet.create({
         marginVertical: 20
     },
     startReportImage: { 
-        width: 100, 
-        height: 100,
-        marginVertical: 20,
+        width: 150, 
+        height: 150,
     },
     noTextWhileDriveImage: {
         width: 150,

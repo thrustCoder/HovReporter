@@ -30,7 +30,7 @@ import { getAmplitudeApEyeKee } from './state/providers/config/AmplitudeKey';
 const Stack = createStackNavigator();
 const store = createStore(appStateReducer);
 if (typeof navigator != 'undefined' && navigator.product == 'ReactNative') {
-  Amplitude.initialize(getAmplitudeApEyeKee());
+  Amplitude.initializeAsync(getAmplitudeApEyeKee());
 }
 
 export default function App({ navigation }) {

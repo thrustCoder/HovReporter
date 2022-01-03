@@ -67,7 +67,7 @@ const contentItems = StyleSheet.create({
         marginHorizontal: 10
     },
     mainButtonSecondaryLong: {
-        width: 250,
+        width: 100,
         alignSelf: 'center',
         marginHorizontal: 10
     },
@@ -97,6 +97,10 @@ const contentItems = StyleSheet.create({
         width: 90, 
         height: 150,
         marginVertical: 20
+    },
+    startReportImage: { 
+        width: 150, 
+        height: 150,
     },
     noTextWhileDriveImage: {
         width: 150,

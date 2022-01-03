@@ -22,23 +22,25 @@ class Start extends Component {
                 <View style={boundingLayout.content}>
                     <View style={boundingLayout.boundingContainer}>
                         <View style={boundingLayout.topImageArea}>
-                            <Image style={contentItems.startMainImage} source={require('../images/hov-sign.png')} />
+                            <Image 
+                                style={contentItems.startMainImage} 
+                                source={require('../images/hov-sign.png')} 
+                            />
                         </View>
                         <View style={boundingLayout.mainArea}>
                             <Text h3 style={contentItems.mainText}>
-                                Saw someone using an HOV lane illegally?
+                                Saw an HOV lane violation?
                             </Text>
                             <Text h4 style={contentItems.mainText}>
-                                Let's report the violation on Department of Transportation site. It's simple!
+                                Let's report it to the Department of Transportation. It's easy!
                             </Text>
                         </View>
                         <View style={boundingLayout.actionArea}>
-                            <Button style={contentItems.mainButton} 
-                                    titleStyle={contentItems.buttonTitle}
-                                    buttonStyle={{ backgroundColor: colors.green }}
-                                    testID={"Report"}
-                                    title="Let's report" 
-                                    onPress={() => this.props.navigation.navigate(viewNames.DriverCheck)} 
+                            <Image 
+                                style={contentItems.startReportImage}
+                                source={require('../images/easy.png')} 
+                                testID={"Report"}
+                                onPress={() => this.props.navigation.navigate(viewNames.FinalSuccess)}
                             />
                         </View>
                     </View>
@@ -50,7 +52,7 @@ class Start extends Component {
                     <Text 
                         style={contentItems.versionText}
                         data-i9n-redact={true}>
-                        v1.3.5
+                        v2.0.0
                     </Text>
                 </View>
             </View>

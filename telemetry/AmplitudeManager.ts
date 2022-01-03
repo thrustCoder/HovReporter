@@ -3,7 +3,7 @@ import metricNames from '../state/MetricNames';
 
 export const logPageViewEvent = (viewName) => {
     if (typeof navigator != 'undefined' && navigator.product == 'ReactNative') {
-            Amplitude.logEventWithProperties(metricNames.PageView, {
+            Amplitude.logEventWithPropertiesAsync(metricNames.PageView, {
             name: viewName
         });
     }

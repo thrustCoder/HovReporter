@@ -35,13 +35,10 @@ class FinalSuccess extends Component {
                                 DONE!
                             </Text>
                             <Text h4 style={contentItems.mainText}>
-                                As per the DOT site, following action would be taken against the offender:
+                                We will report the location of violation to WA Department of Transportation.
                             </Text>
                             <Text style={contentItems.mainText}>
-                                First-time HOV lane violators are sent an educational brochure. Second-time HOV lane violators are sent a letter from WSDOT. Third-time HOV lane violators are sent a letter from the Washington State Patrol.
-                            </Text>
-                            <Text style={contentItems.mainText}>
-                                If a law enforcement officer sees an offender, there is a possible fine of $186 for first offense and up to $536 for those who are repeat offenders.
+                                You can now go back home by pressing 'Done'.
                             </Text>
                         </View>
                         <View style={boundingLayout.actionArea}>
@@ -49,7 +46,7 @@ class FinalSuccess extends Component {
                                     titleStyle={contentItems.buttonTitle}
                                     buttonStyle={{ backgroundColor: colors.green }}
                                     testID={"FinalSuccess.BackToStart"}
-                                    title="Go back to start" 
+                                    title="Done" 
                                     onPress={() => clearAllStateFn(this.props)}
                             />
                         </View>

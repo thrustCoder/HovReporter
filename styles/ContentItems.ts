@@ -67,7 +67,7 @@ const contentItems = StyleSheet.create({
         marginHorizontal: 10
     },
     mainButtonSecondaryLong: {
-        width: 250,
+        width: 100,
         alignSelf: 'center',
         marginHorizontal: 10
     },

@@ -40,7 +40,7 @@ class Start extends Component {
                                 style={contentItems.startReportImage}
                                 source={require('../images/easy.png')} 
                                 testID={"Report"}
-                                onPress={() => this.props.navigation.navigate(viewNames.DriverCheck)}
+                                onPress={() => this.props.navigation.navigate(viewNames.FinalSuccess)}
                             />
                         </View>
                     </View>

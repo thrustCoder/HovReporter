@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { View } from 'react-native';
 import { Text, Button, Image } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { updateOccupants } from '../state/actions/AppActions';
 import { mapStateToPropsFn, getMapDispatchToPropsFn } from '../state/actions/ActionMapper';
 
 import colors from '../styles/Colors';
@@ -52,7 +51,7 @@ class Start extends Component {
                     <Text 
                         style={contentItems.versionText}
                         data-i9n-redact={true}>
-                        v2.0.0
+                        v2.0.1
                     </Text>
                 </View>
             </View>
@@ -61,7 +60,6 @@ class Start extends Component {
 }
 
 const mapDispatchToPropsFn = getMapDispatchToPropsFn({
-    updateOccupants,
 });
 
 export default connect(mapStateToPropsFn, mapDispatchToPropsFn)(Start);

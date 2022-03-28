@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { View } from 'react-native';
 import { Text, Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { updateOccupants, clearAllState } from '../state/actions/AppActions';
+import { clearAllState } from '../state/actions/AppActions';
 import { mapStateToPropsFn, getMapDispatchToPropsFn } from '../state/actions/ActionMapper';
 import { clearAllStateFn } from "../state/providers/ui-actions/Navigation";
 
@@ -58,7 +58,6 @@ class FinalSuccess extends Component {
 }
 
 const mapDispatchToPropsFn = getMapDispatchToPropsFn({
-    updateOccupants,
     clearAllState
 });
 

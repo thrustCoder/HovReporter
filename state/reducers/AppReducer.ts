@@ -34,28 +34,6 @@ const initialAppState = {
 };
 
 const initialNavState = {
-  navSequence: [
-    viewNames.LicenseCheck, 
-    viewNames.TimeCheck, 
-    viewNames.OccupancyCheck, 
-    viewNames.HighwayCheck
-  ],
-  TimeCheck: {
-    completed: false,
-    appProps: ['date', 'time']
-  },
-  OccupancyCheck: {
-    completed: false,
-    appProps: ['occupants']
-  },
-  LicenseCheck: {
-    completed: false,
-    appProps: ['license']
-  },
-  HighwayCheck: {
-    completed: false,
-    appProps: ['highway', 'location']
-  }
 };
 
 const appStateReducer = (state = initialAppState, action) => {
@@ -64,30 +42,6 @@ const appStateReducer = (state = initialAppState, action) => {
   } = state;
 
   switch (action.type) {
-    case appActions.TimeUpdate:
-        dolForm.time = action.payload;
-        break;
-    case appActions.DateUpdate:
-        dolForm.date = action.payload;
-        break;
-    case appActions.OccupantsUpdate:
-        dolForm.occupants = action.payload;
-        break;
-    case appActions.LicenseUpdate:
-        dolForm.license = action.payload;
-        break;
-    case appActions.HighwayUpdate:
-        dolForm.highway = action.payload;
-        break;
-    case appActions.LocationUpdate:
-        dolForm.location = action.payload;
-        break;
-    case appActions.VehicleUpdate:
-        dolForm.vehicle = action.payload;
-        break;
-    case appActions.CommentsUpdate:
-        dolForm.comments = action.payload;
-        break;
     case appActions.ClearAllState:
         dolForm.license = {
           plate: '',
@@ -127,29 +81,6 @@ const appStateReducer = (state = initialAppState, action) => {
 
 const navStateReducer = (state = initialNavState, action) => {
   let reducedState = state;
-
-  switch (action.type) {
-    case appActions.DateTimeUpdate:
-        reducedState.TimeCheck.completed = true;
-        break;
-    case appActions.OccupantsUpdate:
-        reducedState.OccupancyCheck.completed = true;
-        break;
-    case appActions.LicenseUpdate:
-        reducedState.LicenseCheck.completed = true;
-        break;
-    case appActions.HighwayUpdate:
-        reducedState.HighwayCheck.completed = true;
-        break;
-    case appActions.ClearAllState:
-        reducedState.TimeCheck.completed = false;
-        reducedState.OccupancyCheck.completed = false;
-        reducedState.LicenseCheck.completed = false;
-        reducedState.HighwayCheck.completed = false;
-        break;
-    default:
-        return state;
-  }
 
   return reducedState;
 };

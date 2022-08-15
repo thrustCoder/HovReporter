@@ -24,23 +24,30 @@ class Start extends Component {
         }
         const newLocation = await Location.getCurrentPositionAsync({});
 
-        // Make POST request
-        fetch('https://hovreporter.azurewebsites.net/locationdetails', {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        'Lat': newLocation.coords.latitude,
-                        'Long': newLocation.coords.longitude
-                    }),
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                })
-                .then((responseJson) => {
-                    console.log(responseJson);
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
+        if (newLocation && newLocation.coords && newLocation.coords.latitude && newLocation.coords.longitude)
+        {
+            // Make POST request
+            fetch('https://hovreporter.azurewebsites.net/locationdetails', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            'Lat': newLocation.coords.latitude,
+                            'Long': newLocation.coords.longitude
+                        }),
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                    .then((responseJson) => {
+                        console.log(responseJson);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+        }
+        else
+        {
+            console.error("Location call did not yield valid results.");
+        }
 
         this.props.navigation.navigate(viewNames.FinalSuccess);
     }

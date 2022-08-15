@@ -1,18 +1,55 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import { View } from 'react-native';
-import { Text, Button, Image } from 'react-native-elements';
+import { Text, Image } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { mapStateToPropsFn, getMapDispatchToPropsFn } from '../state/actions/ActionMapper';
 
-import colors from '../styles/Colors';
 import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
 import viewNames from '../state/ViewNames';
 import { logPageViewEvent } from '../telemetry/AmplitudeManager';
+import * as Location from 'expo-location';
 
 class Start extends Component {
+    
     componentDidMount() {
         logPageViewEvent(viewNames.Start);
+    }
+
+    async sendCurrentLocationToServer() {
+        const { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          console.warn('Permission to access location was denied');
+          return;
+        }
+        const newLocation = await Location.getCurrentPositionAsync({});
+
+        if (newLocation && newLocation.coords && newLocation.coords.latitude && newLocation.coords.longitude)
+        {
+            // Make POST request
+            fetch('https://hovreporter.azurewebsites.net/locationdetails', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            'Lat': newLocation.coords.latitude,
+                            'Long': newLocation.coords.longitude
+                        }),
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                    .then((responseJson) => {
+                        console.log(responseJson);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+        }
+        else
+        {
+            console.error("Location call did not yield valid results.");
+        }
+
+        this.props.navigation.navigate(viewNames.FinalSuccess);
     }
 
     render() {
@@ -39,7 +76,7 @@ class Start extends Component {
                                 style={contentItems.startReportImage}
                                 source={require('../images/easy.png')} 
                                 testID={"Report"}
-                                onPress={() => this.props.navigation.navigate(viewNames.FinalSuccess)}
+                                onPress={() => this.sendCurrentLocationToServer()}
                             />
                         </View>
                     </View>
@@ -51,7 +88,7 @@ class Start extends Component {
                     <Text 
                         style={contentItems.versionText}
                         data-i9n-redact={true}>
-                        v2.0.1
+                        v2.1.1
                     </Text>
                 </View>
             </View>

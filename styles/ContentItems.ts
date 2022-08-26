@@ -107,23 +107,6 @@ const contentItems = StyleSheet.create({
         height: 135,
         resizeMode: 'center'
     },
-    // https://github.com/lawnstarter/react-native-picker-select/issues/29#issuecomment-397457974
-    pickerIOS: {
-        color: colors.white,
-        marginVertical: 10,
-        marginRight: 10,
-        marginLeft: 5,
-        fontSize: 25,
-        backgroundColor: colors.green
-    },
-    pickerAndroid: {
-        color: colors.white,
-        marginVertical: 10,
-        marginRight: 10,
-        marginLeft: 5,
-        fontSize: 25,
-        backgroundColor: colors.green
-    },
     pickerLabel: {
         ...mainTextCommon,
         marginBottom: 15,

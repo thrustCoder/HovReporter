@@ -76,7 +76,7 @@ class Start extends Component {
                                 style={contentItems.startReportImage}
                                 source={require('../images/easy.png')} 
                                 testID={"Report"}
-                                onPress={() => this.sendCurrentLocationToServer}
+                                onPress={() => this.sendCurrentLocationToServer()}
                             />
                         </View>
                     </View>

@@ -22,8 +22,8 @@ class Start extends Component {
           console.warn('Permission to access location was denied');
           return;
         }
-        const newLocation = await Location.getCurrentPositionAsync({});
 
+        const newLocation = await Location.getCurrentPositionAsync({});
         if (newLocation && newLocation.coords && newLocation.coords.latitude && newLocation.coords.longitude)
         {
             // Make POST request
@@ -65,10 +65,10 @@ class Start extends Component {
                         </View>
                         <View style={boundingLayout.mainArea}>
                             <Text h3 style={contentItems.mainText}>
-                                Saw an HOV lane violation?
+                                Just noticed an HOV violation?
                             </Text>
                             <Text h4 style={contentItems.mainText}>
-                                Let's report it to the Department of Transportation. It's easy!
+                                Let's report the location to WA State Patrol. It's easy!
                             </Text>
                         </View>
                         <View style={boundingLayout.actionArea}>
@@ -88,7 +88,7 @@ class Start extends Component {
                     <Text 
                         style={contentItems.versionText}
                         data-i9n-redact={true}>
-                        v3.0.4
+                        v3.0.6
                     </Text>
                 </View>
             </View>

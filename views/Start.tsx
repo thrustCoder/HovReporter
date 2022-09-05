@@ -11,6 +11,8 @@ import { logPageViewEvent } from '../telemetry/AmplitudeManager';
 import { v4 as uuidv4 } from 'uuid';
 import * as Location from 'expo-location';
 
+const sessionId = uuidv4();
+
 class Start extends Component {
     
     componentDidMount() {
@@ -33,7 +35,7 @@ class Start extends Component {
                         body: JSON.stringify({
                             'Lat': newLocation.coords.latitude,
                             'Long': newLocation.coords.longitude,
-                            'SessionId': uuidv4()
+                            'SessionId': sessionId
                         }),
                         headers: {
                             'Content-Type': 'application/json',
@@ -70,7 +72,7 @@ class Start extends Component {
                                 Just noticed an HOV violation?
                             </Text>
                             <Text h4 style={contentItems.mainText}>
-                                Let's report the location to WA State Patrol. It's easy!
+                                Let's report your current location to WA State Patrol. It's easy!
                             </Text>
                         </View>
                         <View style={boundingLayout.actionArea}>

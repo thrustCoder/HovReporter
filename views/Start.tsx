@@ -8,7 +8,10 @@ import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
 import viewNames from '../state/ViewNames';
 import { logPageViewEvent } from '../telemetry/AmplitudeManager';
+import { v4 as uuidv4 } from 'uuid';
 import * as Location from 'expo-location';
+
+const sessionId = uuidv4();
 
 class Start extends Component {
     
@@ -31,7 +34,8 @@ class Start extends Component {
                         method: 'POST',
                         body: JSON.stringify({
                             'Lat': newLocation.coords.latitude,
-                            'Long': newLocation.coords.longitude
+                            'Long': newLocation.coords.longitude,
+                            'SessionId': sessionId
                         }),
                         headers: {
                             'Content-Type': 'application/json',
@@ -68,7 +72,7 @@ class Start extends Component {
                                 Just noticed an HOV violation?
                             </Text>
                             <Text h4 style={contentItems.mainText}>
-                                Let's report the location to WA State Patrol. It's easy!
+                                Let's report your current location to WA State Patrol. It's easy!
                             </Text>
                         </View>
                         <View style={boundingLayout.actionArea}>
@@ -88,7 +92,7 @@ class Start extends Component {
                     <Text 
                         style={contentItems.versionText}
                         data-i9n-redact={true}>
-                        v3.0.7
+                        v3.0.8
                     </Text>
                 </View>
             </View>

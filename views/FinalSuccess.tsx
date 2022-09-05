@@ -35,10 +35,10 @@ class FinalSuccess extends Component {
                                 DONE!
                             </Text>
                             <Text h4 style={contentItems.mainText}>
-                                We will report the location of violation to WA Department of Transportation.
+                                We will report the location of violation to WA State Patrol.
                             </Text>
                             <Text style={contentItems.mainText}>
-                                You can now go back home by pressing 'Done'.
+                                You can go back home by pressing 'Done'.
                             </Text>
                         </View>
                         <View style={boundingLayout.actionArea}>

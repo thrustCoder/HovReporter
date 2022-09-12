@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View } from 'react-native';
+import { Linking, View } from 'react-native';
 import { Text, Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { clearAllState } from '../state/actions/AppActions';
@@ -49,6 +49,13 @@ class FinalSuccess extends Component {
                                     title="Done" 
                                     onPress={() => clearAllStateFn(this.props)}
                             />
+                        </View>
+                        <View style={boundingLayout.actionArea}>
+                            <Text 
+                                style={contentItems.mainTextCramped} 
+                                onPress={() => Linking.openURL('https://www.wsp.wa.gov/i-want-to/compliment-or-complaint/')}>
+                                Send a direct message on WA State Patrol site instead.
+                            </Text>
                         </View>
                     </View>
                 </View>

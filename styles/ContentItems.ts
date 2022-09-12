@@ -17,12 +17,8 @@ const contentItems = StyleSheet.create({
         marginBottom: 15,
     },
     mainTextCramped: {
-        ...mainTextCommon
-    },
-    mainTextCrampedHighlight: {
         ...mainTextCommon,
-        backgroundColor: colors.yellow,
-        fontWeight: 'bold'
+        color: colors.blue
     },
     versionText: {
         ...mainTextCommon,

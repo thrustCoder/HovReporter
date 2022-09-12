@@ -8,6 +8,7 @@ import boundingLayout from '../styles/BoundingLayout';
 import contentItems from '../styles/ContentItems';
 import viewNames from '../state/ViewNames';
 import { logPageViewEvent } from '../telemetry/AmplitudeManager';
+import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import * as Location from 'expo-location';
 
@@ -92,7 +93,7 @@ class Start extends Component {
                     <Text 
                         style={contentItems.versionText}
                         data-i9n-redact={true}>
-                        v3.0.8
+                        v3.0.9
                     </Text>
                 </View>
             </View>
